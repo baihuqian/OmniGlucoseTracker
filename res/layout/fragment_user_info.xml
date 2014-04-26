@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="220dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/userImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_action_user" />
+
+    <TableLayout
+        android:id="@+id/userInfoTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="30dp" >
+
+        <TableRow
+            android:id="@+id/tableRowName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView 
+                android:id="@+id/name"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Name"/>
+            <TextView 
+                android:id="@+id/userName"
+                android:layout_width="100dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="John Doe"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             >
+            <TextView 
+                android:id="@+id/age"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Age"/>
+            <TextView 
+                android:id="@+id/userAge"
+                android:layout_width="100dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="10"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowGlucose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView 
+                android:id="@+id/glucose"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Glucose"/>
+            <TextView 
+                android:id="@+id/userGlucose"
+                android:layout_width="100dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="100"
+                />
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:id="@+id/buttonEmergency"
+        android:layout_width="170dp"
+        android:layout_height="100dp"
+        android:text="Emergency"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
+
+    <TextView
+        android:id="@+id/textViewUnreadMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Unread Message" />
+
+    <TableLayout
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center" >
+
+        <TableRow
+            android:id="@+id/tableRowDoctorMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView 
+                android:id="@+id/doctorMessage"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Doctor"/>
+            <TextView 
+                android:id="@+id/doctorMessageNumber"
+                android:layout_width="50dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="1"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowFatherMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView 
+                android:id="@+id/fatherMessage"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Father"/>
+            <TextView 
+                android:id="@+id/fatherMessageNumber"
+                android:layout_width="50dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="2"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowMotherMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView 
+                android:id="@+id/motherMessage"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Mother"/>
+            <TextView 
+                android:id="@+id/motherMessageNumber"
+                android:layout_width="50dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="0"
+                />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowFriendMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+            <TextView 
+                android:id="@+id/friendMessage"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Friend"/>
+            <TextView 
+                android:id="@+id/friendMessageNumber"
+                android:layout_width="50dp"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="0"
+                />
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

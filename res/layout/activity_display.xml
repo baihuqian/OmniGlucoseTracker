@@ -1,0 +1,28 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="ece641.March11th.ui.DisplayActivity" >
+
+   
+    <FrameLayout
+        android:layout_width="230dp"
+        android:layout_height="match_parent"
+        android:id="@+id/userinfoContainer" >
+    </FrameLayout>
+    
+    <FrameLayout
+        android:layout_width="550dp"
+        android:id="@+id/maininfoContainer"
+        android:layout_height="match_parent" android:layout_weight="0.93">
+    </FrameLayout>
+    
+    <FrameLayout
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:id="@+id/buttonContainer" >
+    </FrameLayout>
+
+</LinearLayout>
