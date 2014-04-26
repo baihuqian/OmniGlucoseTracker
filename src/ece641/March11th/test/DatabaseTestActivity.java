@@ -12,6 +12,7 @@ import ece641.March11th.ui.R.layout;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,17 +27,19 @@ import android.widget.TableRow.LayoutParams;
 import android.os.Build;
 
 public class DatabaseTestActivity extends Activity {
-	
+	int userid;
 	ODTDatabaseHelper dbh1=new ODTDatabaseHelper(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_database_test);
+		Intent intent = getIntent();
+		userid=intent.getIntExtra("userID", 1);
 		int tableRowID = 100;
 		TableLayout	tableLayout = (TableLayout)findViewById(R.id.maintable);
 		Calendar indate=Calendar.getInstance();
-     DateAndGL dateandgl=dbh1.getWeekGL(indate);
+     DateAndGL dateandgl=dbh1.getWeekGL(indate,userid);
 
    ArrayList<Calendar> datelist= dateandgl.getDateList();
    ArrayList<Double> gllist=dateandgl.getGLList();

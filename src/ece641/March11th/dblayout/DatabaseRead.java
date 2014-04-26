@@ -16,8 +16,8 @@ public interface DatabaseRead {
 
 	public Data getData();
 	
-	public DateAndGL getDayGL(Calendar indate);
-	public DateAndGL getWeekGL(Calendar indate);
-	public DateAndGL getMonthGL(Calendar indate);
+	public DateAndGL getDayGL(Calendar indate,int userid);
+	public DateAndGL getWeekGL(Calendar indate,int userid);
+	public DateAndGL getMonthGL(Calendar indate,int userid);
 	
 }

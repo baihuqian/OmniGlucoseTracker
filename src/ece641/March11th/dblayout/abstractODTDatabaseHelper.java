@@ -181,11 +181,13 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
    
     
     //return all the GL level in a Day,if no GL value exist, return null ArrayList
-    public DateAndGL getDayGL(Calendar indate){
+    public DateAndGL getDayGL(Calendar indate,int userid){
     	DateAndGL dateandgl=new DateAndGL();
     	int year=indate.get(Calendar.YEAR);
     	int month=indate.get(Calendar.MONTH);
     	int day=indate.get(Calendar.DAY_OF_MONTH);
+    	
+    	
     	
     	ArrayList<Double> gllist=new ArrayList<Double>();
     	ArrayList<Calendar> datelist=new ArrayList<Calendar>();
@@ -194,6 +196,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
    	    String where=TABLE_DATA_COL2+"="+year
    	    		+" AND "+TABLE_DATA_COL3+"="+month
    	    		+" AND "+TABLE_DATA_COL4+"="+day
+   	    		+" AND "+TABLE_DATA_COL14+"="+userid
    	    		+" AND "+TABLE_DATA_COL12 +" IS NOT NULL ;";
    	    Cursor cursor=null;
     	cursor = db.query(TABLE_DATA, null,where,null, null, null, null);
@@ -243,7 +246,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     }
     
     // return all the GL level in a Week,if no GL value exist, return null ArrayList
-    public DateAndGL getWeekGL(Calendar indate){
+    public DateAndGL getWeekGL(Calendar indate,int userid){
     	DateAndGL dateandgl=new DateAndGL();
     	int year=indate.get(Calendar.YEAR);
     	
@@ -254,8 +257,8 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	SQLiteDatabase db = this.getReadableDatabase();
     	
    	    String where=TABLE_DATA_COL2+"="+year
-   	    		
    	    		+" AND "+TABLE_DATA_COL15+"="+weekofyear
+   	    		+" AND "+TABLE_DATA_COL14+"="+userid
    	    		+" AND "+TABLE_DATA_COL12 +" IS NOT NULL ;";
    	    Cursor cursor=null;
     	cursor = db.query(TABLE_DATA, null,where,null, null, null, null);
@@ -302,7 +305,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	
     }
     // return all the GL level in a Month,if no GL value exist, return null ArrayList
-    public DateAndGL getMonthGL(Calendar indate){
+    public DateAndGL getMonthGL(Calendar indate,int userid){
     	DateAndGL dateandgl=new DateAndGL();
     	int year=indate.get(Calendar.YEAR);
     	int month=indate.get(Calendar.MONTH);
@@ -314,7 +317,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	
    	    String where=TABLE_DATA_COL2+"="+year
    	    		+" AND "+TABLE_DATA_COL3+"="+month
-   	    		
+   	    		+" AND "+TABLE_DATA_COL14+"="+userid
    	    		+" AND "+TABLE_DATA_COL12 +" IS NOT NULL ;";
    	    Cursor cursor=null;
     	cursor = db.query(TABLE_DATA, null,where,null, null, null, null);
