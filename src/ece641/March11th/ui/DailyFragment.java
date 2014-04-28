@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import android.app.Activity;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -22,11 +24,18 @@ import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 
+import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.graph.GraphViewHelper;
+
 public class DailyFragment extends Fragment {
 	private GraphView graphView;
 	private GraphViewSeries graphViewSeries;
 	private Calendar date, todayDate;
-	private ImageButton previous, next;
+	private ImageButton previous, next, cal;
+	private ODTDatabaseHelper dbHelper;
+	public GraphViewHelper graphHelper;
+	
+	OnCalSelectedListener calSelectedListener;
 	
 	public DailyFragment() {
 		// TODO Auto-generated constructor stub
@@ -43,6 +52,8 @@ public class DailyFragment extends Fragment {
         next = (ImageButton) view.findViewById(R.id.imageButtonNext);
         previous.setOnClickListener(previousListener);
         next.setOnClickListener(nextListener);
+        cal = (ImageButton) view.findViewById(R.id.imageButtonChooseDay);
+        cal.setOnClickListener(calListener);
         
         // fetch data
         Date d = new Date();
@@ -57,7 +68,7 @@ public class DailyFragment extends Fragment {
         	((TextView) view.findViewById(R.id.textViewDate)).setText(strDate);
         }
         
-        Cursor dataCursor = fetchData(date);
+        
         
         // format data
         GraphViewData [] graphViewData = new GraphViewData[2]; // place holder
@@ -70,31 +81,38 @@ public class DailyFragment extends Fragment {
         graphViewHolder.addView(graphView);
         graphView.setScrollable(true);
 		graphView.setScalable(true);
+		
+
+        dbHelper = new ODTDatabaseHelper(view.getContext());
+        graphHelper = new GraphViewHelper(view, graphViewSeries, dbHelper);
+        graphHelper.changeDate(todayDate);
         return view;
     }
 	
-	private Cursor fetchData(Calendar date) {
-		return null;
-	}
 	
+	
+	@Override
+	public void onAttach(Activity activity) {
+		// TODO Auto-generated method stub
+		
+		super.onAttach(activity);
+		try {
+			calSelectedListener = (OnCalSelectedListener) activity;
+		} catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnArticleSelectedListener");
+		}
+	}
+
+
+
 	private OnClickListener previousListener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			date.roll(Calendar.DATE, false); // test
-			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-	        String strDate = null;
-	        if(date != null) {
-	        	strDate = sdf.format(date.getTime());
-	        	((TextView) getActivity().findViewById(R.id.textViewDate)).setText(strDate);
-	        }
-	        
-			GraphViewData [] graphViewData = new GraphViewData[1];
 			
-			
-			graphViewSeries.resetData(graphViewData); // feed new data to the data series
-			graphView.scrollToEnd(); // scroll to end to animate updating
+			graphHelper.changeDate(date);
 		}
 		
 	};
@@ -110,14 +128,23 @@ public class DailyFragment extends Fragment {
 			}
 			else {
 				date.roll(Calendar.DATE, true);
-				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-		        String strDate = null;
-		        if(date != null) {
-		        	strDate = sdf.format(date.getTime());
-		        	((TextView) getActivity().findViewById(R.id.textViewDate)).setText(strDate);
-		        }
-				//
+				
+		        graphHelper.changeDate(date);
 			}
+		}
+		
+	};
+	
+	private OnClickListener calListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			DialogFragment newFragment = new DatePickerFragment();
+		    newFragment.show(getFragmentManager(), "datePicker");
+		    if(calSelectedListener != null) {
+		    	calSelectedListener.onCalSeleted(1); // 1 for daily
+		    }
 		}
 		
 	};
