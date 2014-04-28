@@ -3,6 +3,7 @@ package ece641.March11th.test;
 import java.util.Calendar;
 
 import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.entities.Contact;
 import ece641.March11th.entities.Data;
 import ece641.March11th.entities.User;
 
@@ -78,6 +79,10 @@ public class BuildTestDatabase {
 		db.addData(data23);
 		db.addData(data24);
 		db.addData(data25);
+	
+		
+		Contact contact1=new Contact("Jim","4128025288","Emergency",adminid);
+		db.addContact(contact1);
 		
 		
 		

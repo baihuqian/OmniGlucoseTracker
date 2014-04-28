@@ -21,15 +21,15 @@ import android.widget.Spinner;
 
 public class CreateAccountDialog extends DialogFragment {
 
-	public String name="df";
-	public String gender="df";
-	public int age=0;
-	public String loginname="df";
-	public String password1="df";
-	public String password2="df";
+	public String name;
+	public String gender;
+	public int age;
+	public String loginname;
+	public String password1;
+	public String password2;
 	
 	public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog);
+        public void onDialogPositiveClick(DialogFragment dialog,String username,int age, String gender,String loginname,String password1,String password2);
         public void onDialogNegativeClick(DialogFragment dialog);
     }
 	
@@ -58,14 +58,31 @@ public class CreateAccountDialog extends DialogFragment {
 	    
 	
        final View layout = inflater.inflate(R.layout.dialog_create_account, null);
+       
+       //define Spinner for gender choice
  	   
- 	   final Spinner genderSpinner=(Spinner) layout.findViewById(R.id.chooseGender);
+ 	  final Spinner genderSpinner=(Spinner) layout.findViewById(R.id.chooseGender);
  	 
  		 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
  		        R.array.gender_array, android.R.layout.simple_spinner_item);
  	 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
  		genderSpinner.setAdapter(adapter);
  		
+    	genderSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent,
+					View view, int position, long id) {
+				// TODO Auto-generated method stub
+				gender = (String) genderSpinner.getSelectedItem();
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				
+			}
+        });
+ 		
+    	
+    	
  		
 	    builder.setView(layout)
 	    .setPositiveButton("Create", new DialogInterface.OnClickListener() {
@@ -78,28 +95,30 @@ public class CreateAccountDialog extends DialogFragment {
             	EditText inname=(EditText) layout.findViewById(R.id.editTextCreateName);
             	EditText inage=(EditText) layout.findViewById(R.id.editTextCreateAge);
             	
-            	
+            	/*
             	genderSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 					@Override
 					public void onItemSelected(AdapterView<?> parent,
 							View view, int position, long id) {
 						// TODO Auto-generated method stub
-						gender = parent.getItemAtPosition(position).toString();
+						gender = (String) genderSpinner.getSelectedItem();
 					}
 					@Override
 					public void onNothingSelected(AdapterView<?> parent) {
-						// TODO Auto-generated method stub
+						
 					}
                 });
-            	
+            	*/
             	loginname=inusername.getText().toString();
             	password1=inpassword1.getText().toString();
-            	password2=inpassword1.getText().toString();
+            	password2=inpassword2.getText().toString();
             	
             	name=inname.getText().toString();
-            	if(inage.getText().length()==0){age=0;}
+            	if(inage.getText().length()==0){}
             	else
             	{age=Integer.parseInt(inage.getText().toString());}
+            	
+            	mListener.onDialogPositiveClick(CreateAccountDialog.this, loginname,age,gender,loginname,password1,password2);
             	
         }
 	    })
@@ -107,8 +126,10 @@ public class CreateAccountDialog extends DialogFragment {
         
         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-              
+            	CreateAccountDialog.this.getDialog().cancel();
             }
+            
+            
         });
 	         
 	    return builder.create();

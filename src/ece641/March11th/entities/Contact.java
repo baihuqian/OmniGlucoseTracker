@@ -1,17 +1,27 @@
 package ece641.March11th.entities;
 
 public class Contact {
-	private String contactid;
+	private int contactid;
 	private String contactname;
-	private int contactnumber;
+	private String contactnumber;
 	private String contacttype;
 	private int userid;
 	
 public Contact(){}
 
+//inout constructor
+public Contact(String contactname,String contactnumber,String contacttype,int userid){
+	
+	this.contactname=contactname;
+	this.contactnumber=contactnumber;
+	this.contacttype=contacttype;
+	this.userid=userid;
+	
+	
+}
 
-
-public Contact(String contactid,String contactname,int contactnumber,String contacttype,int userid){
+//output constructor
+public Contact(int contactid,String contactname,String contactnumber,String contacttype,int userid){
 	this.contactid=contactid;
 	this.contactname=contactname;
 	this.contactnumber=contactnumber;
@@ -21,9 +31,49 @@ public Contact(String contactid,String contactname,int contactnumber,String cont
 	
 }
 
+//get method
+
+public int getContactID(){
+	return this.contactid;
+}
+
+public String getContactName(){
+	return this.contactname;
+}
+
+public String getContactNumber(){
+	return this.contactnumber;
+}
+
+public String getContactType(){
+	return this.contacttype;
+}
+
+public int getUserID(){
+	return this.userid;
+	
+}
 
 
+//set method
+public void setContactID(int contactid){
+	this.contactid=contactid;
+	
+}
 
+public void setContactName(String contactname){
+	this.contactname=contactname;
+}
 
+public void setContactNumber(String contactnumber){
+	this.contactnumber=contactnumber;
+}
 
+public void setContactType(String contacttype){
+	this.contacttype=contacttype;
+}
+
+public void setUserID(int userid){
+	this.userid=userid;
+}
 }

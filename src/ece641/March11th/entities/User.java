@@ -60,6 +60,9 @@ public String getPassword(){
 }
 
 //setters to set or update user information
+public void setUserID(int userid){
+	this.userid=userid;
+}
 public void setUserName(String username){
 	this.username=username;
 }

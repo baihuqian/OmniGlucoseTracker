@@ -39,7 +39,7 @@ public class DatabaseTestActivity extends Activity {
 		int tableRowID = 100;
 		TableLayout	tableLayout = (TableLayout)findViewById(R.id.maintable);
 		Calendar indate=Calendar.getInstance();
-     DateAndGL dateandgl=dbh1.getWeekGL(indate,userid);
+     DateAndGL dateandgl=dbh1.getMonthGL(indate,userid);
 
    ArrayList<Calendar> datelist= dateandgl.getDateList();
    ArrayList<Double> gllist=dateandgl.getGLList();

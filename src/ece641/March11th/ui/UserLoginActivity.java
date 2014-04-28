@@ -3,9 +3,12 @@ package ece641.March11th.ui;
 
 import java.util.Calendar;
 
+
+
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.dblayout.abstractODTDatabaseHelper;
 import ece641.March11th.entities.Data;
+import ece641.March11th.entities.User;
 import ece641.March11th.test.BuildTestDatabase;
 import ece641.March11th.test.DatabaseTestActivity;
 import android.app.Activity;
@@ -14,6 +17,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,12 +31,19 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.os.Build;
 
 public class UserLoginActivity extends FragmentActivity implements CreateAccountDialog.NoticeDialogListener {
 	ODTDatabaseHelper dbh=new ODTDatabaseHelper(this);
 	
-
+private String nametba;
+private int agetba;
+private String gendertba;
+private String loginnametba;
+private String passwordtba1;
+private String passwordtba2;
+private Context context;
 	
 	public void logIn(View view){
 		Intent intentToUserInfoActivity=new Intent(this,DisplayActivity.class);
@@ -41,9 +52,6 @@ public class UserLoginActivity extends FragmentActivity implements CreateAccount
 		EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
 		String userloginname=inputUsername.getText().toString();
 		String password=inputPassword.getText().toString();
-		
-
-		
 		boolean checkloginname=dbh.checkIfLoginNameExist(userloginname);
 	if(checkloginname){ 
 		boolean checkloginnameandpassword=dbh.checkIfLoginNameMatchPassword(userloginname, password);
@@ -101,11 +109,9 @@ public class UserLoginActivity extends FragmentActivity implements CreateAccount
 	public void createAccount(View view){
 		
 		
-		//open the dialoge
 		CreateAccountDialog dialog = new CreateAccountDialog();
 		dialog.show(getFragmentManager(), null);	
-     //   dbh.addUser(dialog.name, dialog.age, dialog.gender, dialog.loginname, dialog.password1);
-
+  
 	}
 	
 	
@@ -122,52 +128,7 @@ public class UserLoginActivity extends FragmentActivity implements CreateAccount
 		
 		BuildTestDatabase bd=new BuildTestDatabase(dbh);
 		bd.buildDatabase();
-		/*
-		//add test database
-			dbh.addUser("admin", 26, "Male", "admin", "admin");
-			dbh.addUser("abc", 12, "Male", "abc11", "abc111");
-			dbh.addUser("abc2", 15, "Female", "abc22", "abc22");
-			dbh.addUser("abc3", 18, "Female", "abc33", "abc333");
-			int adminid=dbh.getUserID("admin");
-			Calendar date1=Calendar.getInstance();
-			Calendar date2=Calendar.getInstance();
-			Calendar date3=Calendar.getInstance();
-			Calendar date4=Calendar.getInstance();
-			Calendar date5=Calendar.getInstance();
-			Calendar date6=Calendar.getInstance();
-			Calendar date7=Calendar.getInstance();
-			
-			//modify the dates to simulate the data base
-			date1.set(Calendar.HOUR_OF_DAY, 6);
-			date2.set(Calendar.HOUR_OF_DAY, 8);
-			date3.set(Calendar.HOUR_OF_DAY, 10);
-			date4.set(Calendar.HOUR_OF_DAY,6);
-			date5.set(Calendar.HOUR_OF_DAY,10);
-			date6.set(Calendar.HOUR_OF_DAY,6);
-			date7.set(Calendar.HOUR_OF_DAY,10);
-			
-			date4.set(Calendar.YEAR, 2013);
-			date5.set(Calendar.YEAR, 2013);
-			int temday=date1.get(Calendar.DAY_OF_MONTH)-1;
-			date6.set(Calendar.DAY_OF_MONTH, temday);
-			date7.set(Calendar.DAY_OF_MONTH, temday);
-			
-			Data data1=new Data(date1,null,0.223,null,1,adminid);
-			Data data2=new Data(date2,null,0.123,null,3,adminid);
-			Data data3=new Data(date3,null,0.333,null,5,adminid);
-			Data data4=new Data(date4,null,0.253,null,5,adminid);
-			Data data5=new Data(date5,null,0.323,null,5,adminid);
-			Data data6=new Data(date6,null,0.133,null,5,adminid);
-			Data data7=new Data(date7,null,0.532,null,5,adminid);
-			dbh.addData(data1);
-			dbh.addData(data2);
-			dbh.addData(data3);
-			dbh.addData(data4);
-			dbh.addData(data5);
-			dbh.addData(data6);
-			dbh.addData(data7);
-			dbh.getDayGL(date1);
-			*/
+		
 	}
 	
 	
@@ -198,7 +159,57 @@ public class UserLoginActivity extends FragmentActivity implements CreateAccount
 
 
 	@Override
-	public void onDialogPositiveClick(DialogFragment dialog) {
+	public void onDialogPositiveClick(DialogFragment dialog,String username,int age, String gender,String loginname,String password1,String password2) {
+	/*
+		nametba=username;
+		agetba=age;
+		 gendertba=gender;
+		 loginnametba=loginname;
+		 passwordtba1=password1;
+		 passwordtba2=password2;
+		 */
+		 if(dbh.checkIfLoginNameExist(loginname)|loginname.equals(null)){
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(UserLoginActivity.this);
+				builder.setMessage("The Login Name Exists! or Login Name is Null!" )
+			       .setTitle("Login Name Exist!");
+				
+				builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {}
+			       });
+
+				
+				AlertDialog dialog1 = builder.create();
+				dialog1.show();	
+				
+			
+				
+			}
+			else{
+				
+				if(password1.equals(password2)){
+					User usertba=new User(username,age,gender, loginname,password1);
+					 dbh.addUser(usertba);
+					 Toast.makeText(UserLoginActivity.this, "New Account is Created!", Toast.LENGTH_LONG).show();
+					}
+			
+			
+			
+			else{
+				AlertDialog.Builder builder = new AlertDialog.Builder(UserLoginActivity.this);
+				builder.setMessage("Password Doesn't Match!" )
+			       .setTitle("Password Doesn't Match!");
+				
+				builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {}
+			       });
+
+				
+				AlertDialog dialog1 = builder.create();
+				dialog1.show();	
+			}}
+		
+		
 		// TODO Auto-generated method stub
 		
 	}

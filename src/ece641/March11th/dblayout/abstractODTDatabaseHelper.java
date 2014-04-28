@@ -60,7 +60,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     
 	public abstractODTDatabaseHelper(Context context) {
 		 super(context, "/mnt/sdcard/test.db", null, DATABASE_VERSION);
-		
+		// super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
 		
 		
@@ -107,7 +107,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 				+" ("
 				+ TABLE_CONTACT_COL1 +" INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ TABLE_CONTACT_COL2 +" TEXT,"
-				+ TABLE_CONTACT_COL3 +" INTEGER,"
+				+ TABLE_CONTACT_COL3 +" TEXT,"
 				+ TABLE_CONTACT_COL4 +" TEXT,"
 				+ TABLE_CONTACT_COL5 +" INTEGER,"
 				+" FOREIGN KEY("+TABLE_CONTACT_COL5+") REFERENCES "+TABLE_USER+"("+TABLE_USER_COL1+")"
@@ -163,7 +163,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     
     
     
-    // all the get methods
+  
     
     //get the user's ID by login name
     public int getUserID(String loginName){
@@ -369,7 +369,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     
     
  //Add USER
-public int addUser(User user){
+public void addUser(User user){
 	
 	//if the user is added, return the ID assigned by database
 	int assignedID=0;
@@ -382,17 +382,23 @@ public int addUser(User user){
 	insertValues.put(TABLE_USER_COL5, user.getLoginName());
 	insertValues.put(TABLE_USER_COL6, user.getPassword());
 	db.insert(TABLE_USER, null, insertValues);
-    	return assignedID;
     }
 
 //Add CONTCT
-public int addContact(Contact contact){
-	int assignedID=0;
+public void addContact(Contact contact){
+
+	
+	
 
 	SQLiteDatabase db = this.getWritableDatabase();
 	ContentValues insertValues = new ContentValues();
-
-	return assignedID;
+	insertValues.put(TABLE_CONTACT_COL2, contact.getContactName());
+	insertValues.put(TABLE_CONTACT_COL3, contact.getContactNumber());
+	insertValues.put(TABLE_CONTACT_COL4, contact.getContactType());
+	insertValues.put(TABLE_CONTACT_COL5, contact.getUserID());
+	
+	db.insert(TABLE_CONTACT, null, insertValues);
+	
 	
 }
 
@@ -430,26 +436,82 @@ public void addData(Data data){
 	
 }
 
-
-
 public User getUser(String loginname){
 	User user=new User();
+	
+	SQLiteDatabase db = this.getReadableDatabase();
+	
+	    String where=TABLE_USER_COL5+"='"+loginname+"';";
+	    Cursor cursor=null;
+	cursor = db.query(TABLE_USER, null,where,null, null, null, null);
+	if(cursor.moveToFirst()){
+		user.setUserID(cursor.getInt(0));
+		user.setUserName(cursor.getString(1));
+		user.setAge(cursor.getInt(2));
+		user.setGender(cursor.getString(3));
+		user.setLoginname(cursor.getString(4));
+		user.setPassword(cursor.getString(5));
+		
+		
+		
+	}
 	return user;
 	
 }
 
+public User getUser(int userid){
+User user=new User();
+	
+	SQLiteDatabase db = this.getReadableDatabase();
+	
+	    String where=TABLE_USER_COL1+"="+userid+";";
+	    Cursor cursor=null;
+	cursor = db.query(TABLE_USER, null,where,null, null, null, null);
+	if(cursor.moveToFirst()){
+		user.setUserID(cursor.getInt(0));
+		user.setUserName(cursor.getString(1));
+		user.setAge(cursor.getInt(2));
+		user.setGender(cursor.getString(3));
+		user.setLoginname(cursor.getString(4));
+		user.setPassword(cursor.getString(5));	
+	}
+	return user;
+	
+}
 
-
-
-public Contact getContact(){
+public Contact getContact(int contactid){
 	Contact contact=new Contact();
+	
+	SQLiteDatabase db = this.getReadableDatabase();
+	
+    String where=TABLE_CONTACT_COL1+"="+contactid+";";
+    Cursor cursor=null;
+cursor = db.query(TABLE_CONTACT, null,where,null, null, null, null);
+if(cursor.moveToFirst()){
+	contact.setContactID(cursor.getInt(0));
+	contact.setContactName(cursor.getString(1));
+	contact.setContactNumber(cursor.getString(2));
+	contact.setContactType(cursor.getString(3));
+	contact.setUserID(cursor.getInt(4));
+
+}
+
 	return contact;
 }
 
-public Data getData(){
+public ArrayList<Contact> getContactList(int userid){
+	ArrayList<Contact> contactlist=new ArrayList<Contact>();
 	
-	Data event =new Data();
-	return event;
+	
+	return contactlist;
+}
+
+public Data getData(int dataid){
+	
+	Data data =new Data();
+	
+	
+	return data;
 	
 }
     

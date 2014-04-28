@@ -10,11 +10,11 @@ import ece641.March11th.entities.Data;
 
 public interface DatabaseRead {
 	public User getUser(String loginname);
-		
-	public Contact getContact();
+	public User getUser(int userid);
+	public Contact getContact(int contactid);
 	
 
-	public Data getData();
+	public Data getData(int dataid);
 	
 	public DateAndGL getDayGL(Calendar indate,int userid);
 	public DateAndGL getWeekGL(Calendar indate,int userid);
