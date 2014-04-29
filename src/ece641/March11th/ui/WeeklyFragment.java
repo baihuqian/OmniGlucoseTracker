@@ -84,7 +84,7 @@ public class WeeklyFragment extends Fragment {
         //graphView.setScrollable(true);
 		//graphView.setScalable(true);
         graphView.setViewPort(0, 1);
-        graphView.setHorizontalLabels(new String[] {"Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"});
+        graphView.setHorizontalLabels(new String[] {"Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", ""});
         dbHelper = new ODTDatabaseHelper(view.getContext());
         graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate);
         graphHelper.changeWeek(todayDate);

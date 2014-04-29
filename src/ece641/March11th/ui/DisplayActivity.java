@@ -14,18 +14,18 @@ import android.view.View;
 
 
 public class DisplayActivity extends Activity 
-			implements OnCalSelectedListener, DatePickerFragment.OnDateSelectedListener{
-	
+implements OnCalSelectedListener, DatePickerFragment.OnDateSelectedListener{
+
 	private int resourceID;
-	
-	
+	private boolean isTablet;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_display);
-		
+
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
 		int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
@@ -34,18 +34,23 @@ public class DisplayActivity extends Activity
 		// status bar is hidden, so hide that too if necessary.
 		ActionBar actionBar = getActionBar();
 		actionBar.hide();
-		
+
+		View userInfoContainer = findViewById(R.id.userinfoContainer);
+		isTablet = userInfoContainer != null && userInfoContainer.getVisibility() == View.VISIBLE;
+
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		
+
 		ButtonFragment buttonFragment = new ButtonFragment();
 		fragmentTransaction.add(R.id.buttonContainer, buttonFragment);
 		DailyFragment dailyFragment = new DailyFragment();
 		fragmentTransaction.add(R.id.maininfoContainer, dailyFragment);
-		UserInfoFragment userinfoFragment = new UserInfoFragment();
-		fragmentTransaction.add(R.id.userinfoContainer, userinfoFragment);
+		if(isTablet) {
+			UserInfoFragment userinfoFragment = new UserInfoFragment();
+			fragmentTransaction.add(R.id.userinfoContainer, userinfoFragment);
+		}
 		fragmentTransaction.commit();
-		
+
 
 	}
 
@@ -77,10 +82,10 @@ public class DisplayActivity extends Activity
 			helper.changeMonth(date);
 			break;
 		}
-		
-		
+
+
 	}
 
 
-	
+
 }

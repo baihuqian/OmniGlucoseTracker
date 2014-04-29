@@ -114,10 +114,11 @@ public class GraphViewHelper {
 	}
 	public void changeMonth(Calendar date) {
 		int dayInMonth = date.getActualMaximum(Calendar.DAY_OF_MONTH);
-		String [] label = new String [dayInMonth];
+		String [] label = new String [dayInMonth + 1];
 		for(int i = 0; i < dayInMonth; i++) {
 			label[i] = Integer.toString(i + 1);
 		}
+		label[dayInMonth] = "";
 		graphView.setHorizontalLabels(label);
 		if(date.get(Calendar.YEAR) > todayDate.get(Calendar.YEAR) || 
 				(date.get(Calendar.YEAR) == todayDate.get(Calendar.YEAR) &&

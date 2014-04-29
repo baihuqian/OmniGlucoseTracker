@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="50dp"
+    android:layout_weight="0.93"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/buttonLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L" />
+
+    <Button
+        android:id="@+id/buttonDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="D" />
+
+    <Button
+        android:id="@+id/buttonWeekly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="W" />
+
+    <Button
+        android:id="@+id/buttonMonthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="M" />
+
+    <ImageButton
+        android:id="@+id/buttonNewActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/ic_action_new" />
+
+    <ImageButton
+        android:id="@+id/buttonNewMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_email" />
+
+</LinearLayout>

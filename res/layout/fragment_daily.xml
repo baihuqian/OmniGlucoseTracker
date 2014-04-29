@@ -16,34 +16,32 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-                 <ImageButton
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <ImageButton
                     android:id="@+id/imageButtonPrevious"
-                    android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:src="@drawable/ic_action_previous_item" />
-                
-            
 
-            <ImageButton
-                android:id="@+id/imageButtonChooseDay"
-                android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="250dp"
-                android:layout_marginRight="250dp"
-                android:src="@drawable/ic_action_go_to_today" />
+                <ImageButton
+                    android:id="@+id/imageButtonChooseDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="220dp"
+                    android:layout_marginRight="220dp"
+                    android:src="@drawable/ic_action_go_to_today" />
 
-            <ImageButton
-                android:id="@+id/imageButtonNext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                
-                android:src="@drawable/ic_action_next_item" />
+                <ImageButton
+                    android:id="@+id/imageButtonNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_action_next_item" />
             </LinearLayout>
-            
         </TableRow>
 
         <TableRow
@@ -57,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="" />
-
         </TableRow>
 
         <TableRow
@@ -70,9 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
-
             </LinearLayout>
-
         </TableRow>
 
         <TableRow

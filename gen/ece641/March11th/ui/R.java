@@ -247,7 +247,7 @@ containing a value of this type.
         public static final int TableLayout1=0x7f05000b;
         public static final int action_settings=0x7f05006f;
         public static final int age=0x7f050057;
-        public static final int buttonContainer=0x7f05000a;
+        public static final int buttonContainer=0x7f050009;
         public static final int buttonCreatAccount=0x7f05006b;
         public static final int buttonDaily=0x7f050040;
         public static final int buttonEmergency=0x7f05005c;
@@ -290,7 +290,7 @@ containing a value of this type.
         public static final int inputPassword=0x7f050020;
         public static final int inputUsername=0x7f05001f;
         public static final int logInButton=0x7f050021;
-        public static final int maininfoContainer=0x7f050009;
+        public static final int maininfoContainer=0x7f050008;
         public static final int maintable=0x7f050006;
         public static final int map=0x7f05004e;
         public static final int monthlyGraphViewHolder=0x7f050050;
@@ -353,7 +353,7 @@ containing a value of this type.
         public static final int userImageView=0x7f050051;
         public static final int userInfoTable=0x7f050052;
         public static final int userName=0x7f050055;
-        public static final int userinfoContainer=0x7f050008;
+        public static final int userinfoContainer=0x7f05000a;
         public static final int weeklyGraphViewHolder=0x7f05006e;
     }
     public static final class integer {
