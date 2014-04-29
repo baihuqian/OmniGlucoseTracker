@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+
+    <TableRow
+        android:id="@+id/tableRowUpdateUsername"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <TextView
+        android:id="@+id/textViewUpdateUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Username:"
+       android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextUpdateUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+        />
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tableRowUpdatePassword"
+          android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textViewUpdatePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Password:"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextUpdatePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            />
+
+    </TableRow>
+    
+     <TableRow
+        android:id="@+id/tableRowCheckUpdatePassword"
+           android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textViewCheckUpdatePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter New Password Again:"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextCheckUpdatePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            />
+
+    </TableRow>
+
+ <TableRow
+        android:id="@+id/tableRowUpdateName"
+           android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textViewUpdateName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name:"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextUpdateName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            />
+        </TableRow>
+        
+         <TableRow
+        android:id="@+id/tableRowUpdateAge"
+          android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:id="@+id/textViewUpdateAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Age:"
+          android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/editTextUpdateAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            />
+    </TableRow>
+    
+ <TableRow   android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+     <TextView
+            android:id="@+id/textViewUpdateGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender:"
+             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+         <Spinner
+             android:id="@+id/updateGender"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" />
+
+ </TableRow>
+ 
+ <TableRow   android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+     <Button
+         android:id="@+id/submitUserUpdate"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:onClick="submitUserUpdate"
+         android:text="Submit" />
+
+ </TableRow>
+ 
+
+</TableLayout>
+
