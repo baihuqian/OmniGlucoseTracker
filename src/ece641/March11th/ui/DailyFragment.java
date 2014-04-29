@@ -72,19 +72,21 @@ public class DailyFragment extends Fragment {
         
         // format data
         GraphViewData [] graphViewData = new GraphViewData[2]; // place holder
-        
+        graphViewData[0] = new GraphViewData(0.2, 0.5);
+        graphViewData[1] = new GraphViewData(0.4, 0.7);
         graphViewSeries = new GraphViewSeries(graphViewData);
         // set up graphView
         graphView = new LineGraphView(view.getContext(), "Daily Glucose Level");
+        graphView.addSeries(graphViewSeries);
         //graphView.addSeries(graphViewSeries);
         LinearLayout graphViewHolder = (LinearLayout) view.findViewById(R.id.dailyGraphViewHolder);
         graphViewHolder.addView(graphView);
-        graphView.setScrollable(true);
-		graphView.setScalable(true);
-		
-
+        //graphView.setScrollable(true);
+		//graphView.setScalable(true);
+        graphView.setViewPort(0, 1);
+        graphView.setHorizontalLabels(new String[] {"0:00", "6:00", "12:00", "18:00", "24:00"});
         dbHelper = new ODTDatabaseHelper(view.getContext());
-        graphHelper = new GraphViewHelper(view, graphViewSeries, dbHelper);
+        graphHelper = new GraphViewHelper(view, graphViewSeries, dbHelper, todayDate);
         graphHelper.changeDate(todayDate);
         return view;
     }

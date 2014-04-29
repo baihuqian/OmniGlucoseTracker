@@ -20,6 +20,9 @@ public final class GlucoseDataConverter {
 			for(int i = 0; i < size; i++) {
 				Calendar date = data.getDateList().get(i);
 				double convertedTime = date.get(Calendar.HOUR) / 24.0 + date.get(Calendar.MINUTE) / (24.0 * 60.0);
+				if(date.get(Calendar.AM_PM) == Calendar.PM) {
+					convertedTime += 0.5;
+				}
 				graphData[i] = new GlucoseGraphData(convertedTime, data.getGLList().get(i));
 			}
 			Arrays.sort(graphData);

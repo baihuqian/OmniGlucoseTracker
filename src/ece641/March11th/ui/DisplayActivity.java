@@ -40,8 +40,8 @@ public class DisplayActivity extends Activity
 		
 		ButtonFragment buttonFragment = new ButtonFragment();
 		fragmentTransaction.add(R.id.buttonContainer, buttonFragment);
-		LocationFragment locationFragment = new LocationFragment();
-		fragmentTransaction.add(R.id.maininfoContainer, locationFragment);
+		DailyFragment dailyFragment = new DailyFragment();
+		fragmentTransaction.add(R.id.maininfoContainer, dailyFragment);
 		UserInfoFragment userinfoFragment = new UserInfoFragment();
 		fragmentTransaction.add(R.id.userinfoContainer, userinfoFragment);
 		fragmentTransaction.commit();
