@@ -358,29 +358,37 @@ containing a value of this type.
         public static final int google_play_services_version=0x7f070000;
     }
     public static final class layout {
-        public static final int activity_add_data=0x7f030000;
-        public static final int activity_database_test=0x7f030001;
-        public static final int activity_display=0x7f030002;
-        public static final int activity_test=0x7f030003;
-        public static final int activity_update_user_info=0x7f030004;
-        public static final int activity_user_log_in=0x7f030005;
-        public static final int dialog_add_activity=0x7f030006;
-        public static final int dialog_create_account=0x7f030007;
-        public static final int fragment_button=0x7f030008;
-        public static final int fragment_daily=0x7f030009;
-        public static final int fragment_location=0x7f03000a;
-        public static final int fragment_monthly=0x7f03000b;
-        public static final int fragment_test=0x7f03000c;
-        public static final int fragment_user_info=0x7f03000d;
-        public static final int fragment_user_log_in=0x7f03000e;
-        public static final int fragment_weekly=0x7f03000f;
+        public static final int activity_add=0x7f030000;
+        public static final int activity_add_contact=0x7f030001;
+        public static final int activity_add_data=0x7f030002;
+        public static final int activity_database_test=0x7f030003;
+        public static final int activity_display=0x7f030004;
+        public static final int activity_test=0x7f030005;
+        public static final int activity_update_user_info=0x7f030006;
+        public static final int activity_user_log_in=0x7f030007;
+        public static final int activity_view_contact=0x7f030008;
+        public static final int activity_view_log=0x7f030009;
+        public static final int dialog_add_activity=0x7f03000a;
+        public static final int dialog_create_account=0x7f03000b;
+        public static final int fragment_button=0x7f03000c;
+        public static final int fragment_daily=0x7f03000d;
+        public static final int fragment_location=0x7f03000e;
+        public static final int fragment_monthly=0x7f03000f;
+        public static final int fragment_test=0x7f030010;
+        public static final int fragment_user_info=0x7f030011;
+        public static final int fragment_user_log_in=0x7f030012;
+        public static final int fragment_weekly=0x7f030013;
     }
     public static final class menu {
-        public static final int database_test=0x7f0b0000;
-        public static final int gpslogger=0x7f0b0001;
-        public static final int show_all_users=0x7f0b0002;
-        public static final int test=0x7f0b0003;
-        public static final int user_log_in=0x7f0b0004;
+        public static final int add=0x7f0b0000;
+        public static final int add_contact=0x7f0b0001;
+        public static final int database_test=0x7f0b0002;
+        public static final int gpslogger=0x7f0b0003;
+        public static final int show_all_users=0x7f0b0004;
+        public static final int test=0x7f0b0005;
+        public static final int user_log_in=0x7f0b0006;
+        public static final int view_contact=0x7f0b0007;
+        public static final int view_log=0x7f0b0008;
     }
     public static final class string {
         public static final int action_settings=0x7f060022;
@@ -488,11 +496,15 @@ containing a value of this type.
         public static final int location_client_powered_by_google=0x7f06001a;
         public static final int mapkey=0x7f060024;
         public static final int submit=0x7f06001e;
+        public static final int title_activity_add=0x7f060028;
+        public static final int title_activity_add_contact=0x7f060029;
         public static final int title_activity_database_test=0x7f060026;
         public static final int title_activity_gpslogger=0x7f060027;
         public static final int title_activity_show_all_users=0x7f060025;
         public static final int title_activity_test=0x7f060023;
         public static final int title_activity_user_log_in=0x7f060020;
+        public static final int title_activity_view_contact=0x7f06002a;
+        public static final int title_activity_view_log=0x7f06002b;
     }
     public static final class style {
         /** 

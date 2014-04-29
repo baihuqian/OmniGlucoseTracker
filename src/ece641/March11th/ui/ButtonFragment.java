@@ -1,9 +1,11 @@
 package ece641.March11th.ui;
 
+import ece641.March11th.IO.AddActivity;
 import ece641.March11th.IO.AddActivityDialogFragment;
 import android.R.color;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -117,8 +119,8 @@ public class ButtonFragment extends Fragment {
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			AddActivityDialogFragment dialog = new AddActivityDialogFragment();
-			dialog.show(getFragmentManager(), null);
+			Intent intentoAdd= new Intent(getActivity(),AddActivity.class);
+			startActivity(intentoAdd);
 		}
 		
 	};

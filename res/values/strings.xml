@@ -20,5 +20,9 @@
     <string name="title_activity_show_all_users">ShowAllUsersActivity</string>
     <string name="title_activity_database_test">DatabaseTestActivity</string>
     <string name="title_activity_gpslogger">GPSLoggerActivity</string>
+    <string name="title_activity_add">AddActivity</string>
+    <string name="title_activity_add_contact">AddContactActivity</string>
+    <string name="title_activity_view_contact">ViewContactActivity</string>
+    <string name="title_activity_view_log">ViewLogActivity</string>
 
 </resources>
