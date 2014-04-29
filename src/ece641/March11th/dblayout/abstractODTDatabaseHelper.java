@@ -371,8 +371,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
  //Add USER
 public void addUser(User user){
 	
-	//if the user is added, return the ID assigned by database
-	int assignedID=0;
+	
 	
 	SQLiteDatabase db = this.getWritableDatabase();
 	ContentValues insertValues = new ContentValues();
@@ -500,6 +499,7 @@ if(cursor.moveToFirst()){
 }
 
 public ArrayList<Contact> getContactList(int userid){
+
 	ArrayList<Contact> contactlist=new ArrayList<Contact>();
 	
 	
@@ -515,5 +515,33 @@ public Data getData(int dataid){
 	
 }
     
+
+public void updateUser(User user) {
+	
+	int userid=user.getUserID();
+	String username=user.getUserName();
+	int age=user.getAge();
+	String loginname=user.getLoginName();
+	String password=user.getPassword();
+	String gender=user.getGender();
+	
+	SQLiteDatabase db = this.getWritableDatabase();
+	ContentValues insertValues = new ContentValues();
+	if(username.equals(null)){}
+	else{insertValues.put(TABLE_USER_COL2,username);	
+	}
+	if(age==-1){}
+	else{insertValues.put(TABLE_USER_COL3,age);	
+	}
+	insertValues.put(TABLE_USER_COL4, gender);
+	insertValues.put(TABLE_USER_COL5, loginname);
+	insertValues.put(TABLE_USER_COL6, password);
+	
+	String where=TABLE_USER_COL1+"="+userid+";";
+	db.update(TABLE_USER, insertValues, where, null);
+	
+	
+	
+}
 }  
 

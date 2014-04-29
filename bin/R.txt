@@ -103,9 +103,9 @@ int id editTextCreatePassword 0x7f050034
 int id editTextCreateUsername 0x7f050031
 int id editTextNote 0x7f05002f
 int id editTextUpdateAge 0x7f05001a
+int id editTextUpdateLoginName 0x7f05000e
 int id editTextUpdateName 0x7f050017
 int id editTextUpdatePassword 0x7f050011
-int id editTextUpdateUsername 0x7f05000e
 int id fatherMessage 0x7f050062
 int id fatherMessageNumber 0x7f050063
 int id friendMessage 0x7f050068
@@ -150,9 +150,9 @@ int id tableRowMotherMessage 0x7f050064
 int id tableRowName 0x7f050053
 int id tableRowNavigation 0x7f050045
 int id tableRowUpdateAge 0x7f050018
+int id tableRowUpdateLoginName 0x7f05000c
 int id tableRowUpdateName 0x7f050015
 int id tableRowUpdatePassword 0x7f05000f
-int id tableRowUpdateUsername 0x7f05000c
 int id terrain 0x7f050003
 int id textViewAddActivity 0x7f05002b
 int id textViewAddDate 0x7f050025
@@ -170,9 +170,9 @@ int id textViewName 0x7f05006c
 int id textViewUnreadMessage 0x7f05005d
 int id textViewUpdateAge 0x7f050019
 int id textViewUpdateGender 0x7f05001b
+int id textViewUpdateLoginName 0x7f05000d
 int id textViewUpdateName 0x7f050016
 int id textViewUpdatePassword 0x7f050010
-int id textViewUpdateUsername 0x7f05000d
 int id titleView 0x7f05001e
 int id updateGender 0x7f05001c
 int id userAge 0x7f050058

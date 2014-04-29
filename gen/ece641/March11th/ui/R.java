@@ -275,9 +275,9 @@ containing a value of this type.
         public static final int editTextCreateUsername=0x7f050031;
         public static final int editTextNote=0x7f05002f;
         public static final int editTextUpdateAge=0x7f05001a;
+        public static final int editTextUpdateLoginName=0x7f05000e;
         public static final int editTextUpdateName=0x7f050017;
         public static final int editTextUpdatePassword=0x7f050011;
-        public static final int editTextUpdateUsername=0x7f05000e;
         public static final int fatherMessage=0x7f050062;
         public static final int fatherMessageNumber=0x7f050063;
         public static final int friendMessage=0x7f050068;
@@ -322,9 +322,9 @@ containing a value of this type.
         public static final int tableRowName=0x7f050053;
         public static final int tableRowNavigation=0x7f050045;
         public static final int tableRowUpdateAge=0x7f050018;
+        public static final int tableRowUpdateLoginName=0x7f05000c;
         public static final int tableRowUpdateName=0x7f050015;
         public static final int tableRowUpdatePassword=0x7f05000f;
-        public static final int tableRowUpdateUsername=0x7f05000c;
         public static final int terrain=0x7f050003;
         public static final int textViewAddActivity=0x7f05002b;
         public static final int textViewAddDate=0x7f050025;
@@ -342,9 +342,9 @@ containing a value of this type.
         public static final int textViewUnreadMessage=0x7f05005d;
         public static final int textViewUpdateAge=0x7f050019;
         public static final int textViewUpdateGender=0x7f05001b;
+        public static final int textViewUpdateLoginName=0x7f05000d;
         public static final int textViewUpdateName=0x7f050016;
         public static final int textViewUpdatePassword=0x7f050010;
-        public static final int textViewUpdateUsername=0x7f05000d;
         public static final int titleView=0x7f05001e;
         public static final int updateGender=0x7f05001c;
         public static final int userAge=0x7f050058;
