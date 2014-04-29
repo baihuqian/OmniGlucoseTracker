@@ -19,25 +19,27 @@ import ece641.March11th.ui.R;
 
 public class GraphViewHelper {
 	private View view;
+	private GraphView graphView;
 	private final Calendar todayDate;
 	private GraphViewSeries graphViewSeries;
 	private ODTDatabaseHelper dbHelper;
 	private Calendar dateToChange;
 	private int userid;
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-	public GraphViewHelper(View view, GraphViewSeries graphViewSeries, ODTDatabaseHelper dbHelper, Calendar todayDate) {
+	public GraphViewHelper(View view, GraphView graphView, GraphViewSeries graphViewSeries, ODTDatabaseHelper dbHelper, Calendar todayDate) {
 		this.view = view;
 		this.graphViewSeries = graphViewSeries;
 		this.dbHelper = dbHelper;
 		this.todayDate = todayDate;
+		this.graphView = graphView;
 	}
 
 	public void changeDate(Calendar date) {
 		if(date.get(Calendar.YEAR) > todayDate.get(Calendar.YEAR) || 
 				(date.get(Calendar.YEAR) == todayDate.get(Calendar.YEAR) &&
 				(date.get(Calendar.MONTH) > todayDate.get(Calendar.MONTH) ||
-				(date.get(Calendar.MONTH) == todayDate.get(Calendar.MONTH) && 
-				date.get(Calendar.DATE) > todayDate.get(Calendar.DATE))))) {
+						(date.get(Calendar.MONTH) == todayDate.get(Calendar.MONTH) && 
+						date.get(Calendar.DATE) > todayDate.get(Calendar.DATE))))) {
 			Toast.makeText(view.getContext(), "Most recent date!", Toast.LENGTH_LONG).show();
 		}
 		else {
@@ -71,9 +73,87 @@ public class GraphViewHelper {
 		}
 	}
 	public void changeWeek(Calendar date) {
+		if(date.get(Calendar.YEAR) > todayDate.get(Calendar.YEAR) || 
+				(date.get(Calendar.YEAR) == todayDate.get(Calendar.YEAR) &&
+				(date.get(Calendar.MONTH) > todayDate.get(Calendar.MONTH) ||
+						(date.get(Calendar.MONTH) == todayDate.get(Calendar.MONTH) && 
+						date.get(Calendar.DATE) > todayDate.get(Calendar.DATE))))) {
+			Toast.makeText(view.getContext(), "Most recent date!", Toast.LENGTH_LONG).show();
+		}
+		else {
+			AsyncTask<Calendar, Void, GraphViewData[] > task = new AsyncTask<Calendar, Void, GraphViewData[] >() {
+
+				@Override
+				protected GraphViewData [] doInBackground(Calendar... date) {
+					// TODO Auto-generated method stub
+					dateToChange = date[0];
+
+					userid = dbHelper.getUserID("admin");
+					DateAndGL data = dbHelper.getWeekGL(dateToChange, userid);
+
+					return GlucoseDataConverter.convertWeekly(data);
+				}
+
+				@Override
+				protected void onPostExecute(GraphViewData[] result) {
+					// TODO Auto-generated method stub
+					super.onPostExecute(result);
+
+					String strDate= sdf.format(dateToChange.getTime());
+					((TextView) view.findViewById(R.id.textViewWeekly)).setText(strDate);
+
+					graphViewSeries.resetData(result);
+				}
+
+
+			};
+			task.execute(date);
+		}
+
 
 	}
 	public void changeMonth(Calendar date) {
+		int dayInMonth = date.getActualMaximum(Calendar.DAY_OF_MONTH);
+		String [] label = new String [dayInMonth];
+		for(int i = 0; i < dayInMonth; i++) {
+			label[i] = Integer.toString(i + 1);
+		}
+		graphView.setHorizontalLabels(label);
+		if(date.get(Calendar.YEAR) > todayDate.get(Calendar.YEAR) || 
+				(date.get(Calendar.YEAR) == todayDate.get(Calendar.YEAR) &&
+				(date.get(Calendar.MONTH) > todayDate.get(Calendar.MONTH) ||
+						(date.get(Calendar.MONTH) == todayDate.get(Calendar.MONTH) && 
+						date.get(Calendar.DATE) > todayDate.get(Calendar.DATE))))) {
+			Toast.makeText(view.getContext(), "Most recent date!", Toast.LENGTH_LONG).show();
+		}
+		else {
+			AsyncTask<Calendar, Void, GraphViewData[] > task = new AsyncTask<Calendar, Void, GraphViewData[] >() {
 
+				@Override
+				protected GraphViewData [] doInBackground(Calendar... date) {
+					// TODO Auto-generated method stub
+					dateToChange = date[0];
+
+					userid = dbHelper.getUserID("admin");
+					DateAndGL data = dbHelper.getMonthGL(dateToChange, userid);
+
+					return GlucoseDataConverter.convertMonthly(data);
+				}
+
+				@Override
+				protected void onPostExecute(GraphViewData[] result) {
+					// TODO Auto-generated method stub
+					super.onPostExecute(result);
+
+					String strDate= sdf.format(dateToChange.getTime());
+					((TextView) view.findViewById(R.id.textViewMonthly)).setText(strDate);
+
+					graphViewSeries.resetData(result);
+				}
+
+
+			};
+			task.execute(date);
+		}
 	}
 }

@@ -245,7 +245,7 @@ containing a value of this type.
     public static final class id {
         public static final int LinearLayout=0x7f050007;
         public static final int TableLayout1=0x7f05000b;
-        public static final int action_settings=0x7f05006d;
+        public static final int action_settings=0x7f05006f;
         public static final int age=0x7f050057;
         public static final int buttonContainer=0x7f05000a;
         public static final int buttonCreatAccount=0x7f05006b;
@@ -287,13 +287,13 @@ containing a value of this type.
         public static final int imageButtonChooseDay=0x7f050047;
         public static final int imageButtonNext=0x7f050048;
         public static final int imageButtonPrevious=0x7f050046;
-        public static final int imageView1=0x7f050050;
         public static final int inputPassword=0x7f050020;
         public static final int inputUsername=0x7f05001f;
         public static final int logInButton=0x7f050021;
         public static final int maininfoContainer=0x7f050009;
         public static final int maintable=0x7f050006;
         public static final int map=0x7f05004e;
+        public static final int monthlyGraphViewHolder=0x7f050050;
         public static final int motherMessage=0x7f050065;
         public static final int motherMessageNumber=0x7f050066;
         public static final int name=0x7f050054;
@@ -336,8 +336,8 @@ containing a value of this type.
         public static final int textViewCreateName=0x7f050039;
         public static final int textViewCreatePassword=0x7f050033;
         public static final int textViewCreateUsername=0x7f050030;
-        public static final int textViewDaily=0x7f05004f;
         public static final int textViewDate=0x7f05004a;
+        public static final int textViewMonthly=0x7f05004f;
         public static final int textViewName=0x7f05006c;
         public static final int textViewUnreadMessage=0x7f05005d;
         public static final int textViewUpdateAge=0x7f050019;
@@ -345,6 +345,7 @@ containing a value of this type.
         public static final int textViewUpdateLoginName=0x7f05000d;
         public static final int textViewUpdateName=0x7f050016;
         public static final int textViewUpdatePassword=0x7f050010;
+        public static final int textViewWeekly=0x7f05006d;
         public static final int titleView=0x7f05001e;
         public static final int updateGender=0x7f05001c;
         public static final int userAge=0x7f050058;
@@ -353,6 +354,7 @@ containing a value of this type.
         public static final int userInfoTable=0x7f050052;
         public static final int userName=0x7f050055;
         public static final int userinfoContainer=0x7f050008;
+        public static final int weeklyGraphViewHolder=0x7f05006e;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;

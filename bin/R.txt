@@ -73,7 +73,7 @@ int drawable ic_plusone_standard_off_client 0x7f020024
 int drawable ic_plusone_tall_off_client 0x7f020025
 int id LinearLayout 0x7f050007
 int id TableLayout1 0x7f05000b
-int id action_settings 0x7f05006d
+int id action_settings 0x7f05006f
 int id age 0x7f050057
 int id buttonContainer 0x7f05000a
 int id buttonCreatAccount 0x7f05006b
@@ -115,13 +115,13 @@ int id hybrid 0x7f050004
 int id imageButtonChooseDay 0x7f050047
 int id imageButtonNext 0x7f050048
 int id imageButtonPrevious 0x7f050046
-int id imageView1 0x7f050050
 int id inputPassword 0x7f050020
 int id inputUsername 0x7f05001f
 int id logInButton 0x7f050021
 int id maininfoContainer 0x7f050009
 int id maintable 0x7f050006
 int id map 0x7f05004e
+int id monthlyGraphViewHolder 0x7f050050
 int id motherMessage 0x7f050065
 int id motherMessageNumber 0x7f050066
 int id name 0x7f050054
@@ -164,8 +164,8 @@ int id textViewCreateAge 0x7f05003c
 int id textViewCreateName 0x7f050039
 int id textViewCreatePassword 0x7f050033
 int id textViewCreateUsername 0x7f050030
-int id textViewDaily 0x7f05004f
 int id textViewDate 0x7f05004a
+int id textViewMonthly 0x7f05004f
 int id textViewName 0x7f05006c
 int id textViewUnreadMessage 0x7f05005d
 int id textViewUpdateAge 0x7f050019
@@ -173,6 +173,7 @@ int id textViewUpdateGender 0x7f05001b
 int id textViewUpdateLoginName 0x7f05000d
 int id textViewUpdateName 0x7f050016
 int id textViewUpdatePassword 0x7f050010
+int id textViewWeekly 0x7f05006d
 int id titleView 0x7f05001e
 int id updateGender 0x7f05001c
 int id userAge 0x7f050058
@@ -181,6 +182,7 @@ int id userImageView 0x7f050051
 int id userInfoTable 0x7f050052
 int id userName 0x7f050055
 int id userinfoContainer 0x7f050008
+int id weeklyGraphViewHolder 0x7f05006e
 int integer google_play_services_version 0x7f070000
 int layout activity_add 0x7f030000
 int layout activity_add_contact 0x7f030001

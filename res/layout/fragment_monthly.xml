@@ -52,7 +52,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textViewDaily"
+                android:id="@+id/textViewMonthly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -65,13 +65,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/drawable_glucose_graph" />
-
         </TableRow>
+
+        <LinearLayout
+            android:id="@+id/monthlyGraphViewHolder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+        </LinearLayout>
 
         <TableRow
             android:id="@+id/tableRow4"

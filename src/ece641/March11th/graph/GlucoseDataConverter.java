@@ -59,4 +59,27 @@ public final class GlucoseDataConverter {
 		}
 	}
 	
+	public static GraphViewData [] convertMonthly(DateAndGL data) {
+		int size = data.getDateList().size();
+		if(size == data.getGLList().size()) {
+			GraphViewData [] graphViewData = new GraphViewData[size];
+			GlucoseGraphData [] graphData = new GlucoseGraphData[size];
+			for(int i = 0; i < size; i++) {
+				Calendar date = data.getDateList().get(i);
+				int dayInMonth = date.getActualMaximum(Calendar.DAY_OF_MONTH);
+				double convertedTime = date.get(Calendar.DATE) / (double) dayInMonth + 
+						date.get(Calendar.HOUR) / (dayInMonth * 24.0) + 
+						date.get(Calendar.MINUTE) / (dayInMonth * 24.0 * 60.0);
+				graphData[i] = new GlucoseGraphData(convertedTime, data.getGLList().get(i));
+			}
+			Arrays.sort(graphData);
+			for(int i = 0; i < size; i++) {
+				graphViewData[i] = new GraphViewData(graphData[i].time, graphData[i].glucose);
+			}
+			return graphViewData;
+		}
+		else {
+			return null;
+		}
+	}
 }

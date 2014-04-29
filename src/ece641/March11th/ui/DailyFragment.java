@@ -86,7 +86,7 @@ public class DailyFragment extends Fragment {
         graphView.setViewPort(0, 1);
         graphView.setHorizontalLabels(new String[] {"0:00", "6:00", "12:00", "18:00", "24:00"});
         dbHelper = new ODTDatabaseHelper(view.getContext());
-        graphHelper = new GraphViewHelper(view, graphViewSeries, dbHelper, todayDate);
+        graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate);
         graphHelper.changeDate(todayDate);
         return view;
     }
