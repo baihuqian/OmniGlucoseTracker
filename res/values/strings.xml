@@ -19,5 +19,6 @@
     <string name="mapkey" />
     <string name="title_activity_show_all_users">ShowAllUsersActivity</string>
     <string name="title_activity_database_test">DatabaseTestActivity</string>
+    <string name="title_activity_gpslogger">GPSLoggerActivity</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package ece641.March11th.ui;
 
+import ece641.March11th.IO.AddActivityDialogFragment;
 import android.R.color;
 import android.app.Fragment;
 import android.app.FragmentManager;

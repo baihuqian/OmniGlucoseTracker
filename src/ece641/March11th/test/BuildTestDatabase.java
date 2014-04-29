@@ -29,12 +29,18 @@ public class BuildTestDatabase {
 		Calendar date13=Calendar.getInstance();
 		Calendar date14=Calendar.getInstance();
 		Calendar date15=Calendar.getInstance();
+		Calendar date16=Calendar.getInstance();
+		Calendar date17=Calendar.getInstance();
+		Calendar date18=Calendar.getInstance();
 		
 		Calendar date21=Calendar.getInstance();
 		Calendar date22=Calendar.getInstance();
 		Calendar date23=Calendar.getInstance();
 		Calendar date24=Calendar.getInstance();
 		Calendar date25=Calendar.getInstance();
+		Calendar date26=Calendar.getInstance();
+		Calendar date27=Calendar.getInstance();
+		Calendar date28=Calendar.getInstance();
 		
 		//modify the dates to simulate the data base
 		date11.set(Calendar.HOUR_OF_DAY, 8);
@@ -42,6 +48,9 @@ public class BuildTestDatabase {
 		date13.set(Calendar.HOUR_OF_DAY, 12);
 		date14.set(Calendar.HOUR_OF_DAY, 14);
 		date15.set(Calendar.HOUR_OF_DAY, 16);
+		date16.set(Calendar.HOUR_OF_DAY, 18);
+		date17.set(Calendar.HOUR_OF_DAY, 20);
+		date18.set(Calendar.HOUR_OF_DAY, 22);
 		
 		date21.set(Calendar.HOUR_OF_DAY,8);
 		date22.set(Calendar.HOUR_OF_DAY,10);

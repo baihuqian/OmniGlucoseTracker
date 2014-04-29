@@ -1,5 +1,8 @@
-package ece641.March11th.ui;
+package ece641.March11th.IO;
 
+import ece641.March11th.ui.R;
+import ece641.March11th.ui.R.layout;
+import ece641.March11th.ui.R.string;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;

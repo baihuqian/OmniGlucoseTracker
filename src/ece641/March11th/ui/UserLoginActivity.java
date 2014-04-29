@@ -5,14 +5,22 @@ import java.util.Calendar;
 
 
 
+
+
+
+
+import ece641.March11th.IO.CreateAccountDialog;
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.dblayout.abstractODTDatabaseHelper;
 import ece641.March11th.entities.Data;
 import ece641.March11th.entities.User;
+import ece641.March11th.map.LocationLoggerService;
 import ece641.March11th.test.BuildTestDatabase;
 import ece641.March11th.test.DatabaseTestActivity;
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -58,6 +66,20 @@ private Context context;
 		if(checkloginnameandpassword){
 			int userID=dbh.getUserID(userloginname);
 		intentToUserInfoActivity.putExtra("userID", userID);
+		
+		// Find and stop the gps logger service, and start a new service for current user!
+		
+		  ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+		  for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+	            if (LocationLoggerService.class.getName().equals(service.service.getClassName())) {
+	            	stopService(new Intent(UserLoginActivity.this, LocationLoggerService.class));
+	            	
+	            }
+	        }
+		  
+		  Intent intentforservice=new Intent(this,LocationLoggerService.class);
+		  
+		
 		startActivity(intentToUserInfoActivity);}
 		
 		else{

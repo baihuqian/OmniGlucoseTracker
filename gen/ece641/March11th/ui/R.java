@@ -377,9 +377,10 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int database_test=0x7f0b0000;
-        public static final int show_all_users=0x7f0b0001;
-        public static final int test=0x7f0b0002;
-        public static final int user_log_in=0x7f0b0003;
+        public static final int gpslogger=0x7f0b0001;
+        public static final int show_all_users=0x7f0b0002;
+        public static final int test=0x7f0b0003;
+        public static final int user_log_in=0x7f0b0004;
     }
     public static final class string {
         public static final int action_settings=0x7f060022;
@@ -488,6 +489,7 @@ containing a value of this type.
         public static final int mapkey=0x7f060024;
         public static final int submit=0x7f06001e;
         public static final int title_activity_database_test=0x7f060026;
+        public static final int title_activity_gpslogger=0x7f060027;
         public static final int title_activity_show_all_users=0x7f060025;
         public static final int title_activity_test=0x7f060023;
         public static final int title_activity_user_log_in=0x7f060020;

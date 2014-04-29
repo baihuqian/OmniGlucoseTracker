@@ -1,7 +1,11 @@
-package ece641.March11th.ui;
+package ece641.March11th.IO;
 
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.User;
+import ece641.March11th.ui.R;
+import ece641.March11th.ui.R.array;
+import ece641.March11th.ui.R.id;
+import ece641.March11th.ui.R.layout;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.AlertDialog;

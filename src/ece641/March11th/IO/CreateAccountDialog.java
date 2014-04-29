@@ -1,8 +1,12 @@
-package ece641.March11th.ui;
+package ece641.March11th.IO;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ece641.March11th.ui.R;
+import ece641.March11th.ui.R.array;
+import ece641.March11th.ui.R.id;
+import ece641.March11th.ui.R.layout;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
