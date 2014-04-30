@@ -31,9 +31,11 @@ public class CreateAccountDialog extends DialogFragment {
 	public String loginname;
 	public String password1;
 	public String password2;
+	public double height;
+	public double weight;
 	
 	public interface NoticeDialogListener {
-        public void onDialogPositiveClick(DialogFragment dialog,String username,int age, String gender,String loginname,String password1,String password2);
+        public void onDialogPositiveClick(DialogFragment dialog,String username,int age, String gender,String loginname,String password1,String password2,double height,double weight);
         public void onDialogNegativeClick(DialogFragment dialog);
     }
 	
@@ -98,6 +100,8 @@ public class CreateAccountDialog extends DialogFragment {
             	EditText inpassword2=(EditText) layout.findViewById(R.id.editTextCheckCreatePassword);
             	EditText inname=(EditText) layout.findViewById(R.id.editTextCreateName);
             	EditText inage=(EditText) layout.findViewById(R.id.editTextCreateAge);
+            	EditText inheight=(EditText) layout.findViewById(R.id.editTextHeight);
+            	EditText inweight=(EditText) layout.findViewById(R.id.editTextWeight);
             	
             	/*
             	genderSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -118,11 +122,18 @@ public class CreateAccountDialog extends DialogFragment {
             	password2=inpassword2.getText().toString();
             	
             	name=inname.getText().toString();
+            	if(inheight.getText().length()==0){}
+            	else
+            	{height=Double.parseDouble(inheight.getText().toString());}
+            	if(inweight.getText().length()==0){}
+            	else
+            	{weight=Double.parseDouble(inweight.getText().toString());}
+            	
             	if(inage.getText().length()==0){}
             	else
             	{age=Integer.parseInt(inage.getText().toString());}
             	
-            	mListener.onDialogPositiveClick(CreateAccountDialog.this, loginname,age,gender,loginname,password1,password2);
+            	mListener.onDialogPositiveClick(CreateAccountDialog.this, loginname,age,gender,loginname,password1,password2,height,weight);
             	
         }
 	    })

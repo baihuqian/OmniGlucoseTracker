@@ -30,6 +30,8 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 	public static final String TABLE_USER_COL4="User_Gender";
     public static final String TABLE_USER_COL5="User_LoginName";
     public static final String TABLE_USER_COL6="User_Password";
+    public static final String TABLE_USER_COL7="Height";
+    public static final String TABLE_USER_COL8="Weight";
 	
     //define table location
     public static final String TABLE_DATA_COL1="Event_ID";
@@ -76,7 +78,9 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 				+ TABLE_USER_COL3 +" INTEGER, " 
 				+ TABLE_USER_COL4 +" TEXT, "
 				+ TABLE_USER_COL5 +" TEXT, "
-				+ TABLE_USER_COL6 +" TEXT "		
+				+ TABLE_USER_COL6 +" TEXT, "	
+				+ TABLE_USER_COL7 +" REAL, "	
+				+ TABLE_USER_COL8 +" REAL "	
 				+ " )";
 	
 		String CREATE_TABLE_DATA="CREATE TABLE "+TABLE_DATA
@@ -380,6 +384,8 @@ public void addUser(User user){
 	insertValues.put(TABLE_USER_COL4, user.getGender());
 	insertValues.put(TABLE_USER_COL5, user.getLoginName());
 	insertValues.put(TABLE_USER_COL6, user.getPassword());
+	insertValues.put(TABLE_USER_COL7, user.getHeight());
+	insertValues.put(TABLE_USER_COL8, user.getWeight());
 	db.insert(TABLE_USER, null, insertValues);
     }
 
@@ -450,7 +456,8 @@ public User getUser(String loginname){
 		user.setGender(cursor.getString(3));
 		user.setLoginname(cursor.getString(4));
 		user.setPassword(cursor.getString(5));
-		
+		user.setHeight(cursor.getDouble(6));	
+		user.setWeight(cursor.getDouble(7));
 		
 		
 	}
@@ -473,6 +480,8 @@ User user=new User();
 		user.setGender(cursor.getString(3));
 		user.setLoginname(cursor.getString(4));
 		user.setPassword(cursor.getString(5));	
+		user.setHeight(cursor.getDouble(6));	
+		user.setWeight(cursor.getDouble(7));
 	}
 	return user;
 	
@@ -536,6 +545,8 @@ public void updateUser(User user) {
 	insertValues.put(TABLE_USER_COL4, gender);
 	insertValues.put(TABLE_USER_COL5, loginname);
 	insertValues.put(TABLE_USER_COL6, password);
+	insertValues.put(TABLE_USER_COL7, user.getHeight());
+	insertValues.put(TABLE_USER_COL8, user.getWeight());
 	
 	String where=TABLE_USER_COL1+"="+userid+";";
 	db.update(TABLE_USER, insertValues, where, null);
@@ -543,5 +554,8 @@ public void updateUser(User user) {
 	
 	
 }
+
+public void updateContact(Contact Contact){};
+public void updateData(Data data){};
 }  
 

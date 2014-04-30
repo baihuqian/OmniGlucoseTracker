@@ -34,6 +34,8 @@ public class UpdateUserInfoActivity extends Activity {
 	private String	updateloginname;
 	private  String	updatepassword1;
 	private  String	updatepassword2;
+	private double height;
+	private double weight;
 	ODTDatabaseHelper dbh=new ODTDatabaseHelper(this);
 
 	@Override
@@ -45,8 +47,27 @@ public class UpdateUserInfoActivity extends Activity {
 		userid=intent.getIntExtra("userID", 1);
 		
 		User user=dbh.getUser(userid);
-
+		final Spinner genderSpinner=(Spinner) findViewById(R.id.updateGender);
+	 	 
+		 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+		        R.array.gender_array, android.R.layout.simple_spinner_item);
+	 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		genderSpinner.setAdapter(adapter);
 		
+   	genderSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent,
+					View view, int position, long id) {
+				// TODO Auto-generated method stub
+				updategender = (String) genderSpinner.getSelectedItem();
+			}
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				
+			}
+       });
+
+		/*
 		
 		EditText updateUsername = (EditText) findViewById(R.id.editTextUpdateLoginName);
 		EditText updatePassword1 = (EditText) findViewById(R.id.editTextUpdatePassword);
@@ -56,28 +77,8 @@ public class UpdateUserInfoActivity extends Activity {
 		updateUsername.setHint(user.getLoginName());
 		updateAge.setHint(user.getAge());
 		updateName.setHint(user.getUserName());
-		
-		   Spinner genderSpinner=(Spinner)findViewById(R.id.chooseGender);
-		 	 
-	 		 ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-	 		        R.array.gender_array, android.R.layout.simple_spinner_item);
-	 	 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	 		genderSpinner.setAdapter(adapter);
-	 		int spinnerPosition = adapter.getPosition(user.getGender());
-	 		genderSpinner.setSelection(spinnerPosition);
-	 		
-	 		genderSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-				@Override
-				public void onItemSelected(AdapterView<?> parent,
-						View view, int position, long id) {
-					// TODO Auto-generated method stub
-					updategender = parent.getItemAtPosition(position).toString();
-				}
-				@Override
-				public void onNothingSelected(AdapterView<?> parent) {
-					// TODO Auto-generated method stub
-				}
-            });
+		*/
+		  
 		    
 	}
 		
@@ -90,9 +91,9 @@ public class UpdateUserInfoActivity extends Activity {
 		EditText updateName = (EditText) findViewById(R.id.editTextUpdateName);
 		EditText updateAge = (EditText) findViewById(R.id.editTextUpdateAge);
 		
-		updateloginname=updateUsername.getText().toString();
-    	updatepassword1=updatePassword1.getText().toString();
-    	updatepassword2=updatePassword2.getText().toString();
+		updateloginname=updateUsername.getText().toString().trim();
+    	updatepassword1=updatePassword1.getText().toString().trim();
+    	updatepassword2=updatePassword2.getText().toString().trim();
     	
     	updatename=updateName.getText().toString();
 		
@@ -118,7 +119,7 @@ public class UpdateUserInfoActivity extends Activity {
 		
 	}
     else if(updatepassword1.equals(updatepassword2)){
-		User usertba=new User(userid,updatename,updateage,updategender,updateloginname,updatepassword1);
+		User usertba=new User(userid,updatename,updateage,updategender,updateloginname,updatepassword1,height,weight);
 		 dbh.updateUser(usertba);
 		 Toast.makeText(UpdateUserInfoActivity.this, "User Information is Updated!", Toast.LENGTH_LONG).show();
 		}

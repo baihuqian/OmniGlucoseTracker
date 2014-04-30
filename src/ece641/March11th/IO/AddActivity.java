@@ -7,6 +7,8 @@ import ece641.March11th.ui.R.menu;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +24,25 @@ public class AddActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add);
 
+	
+	}
+	
+public void jumpToAddData(View view){
+		
+		Intent intentToAddData=new Intent(this,AddDataActivity.class);
+		
+		startActivity(intentToAddData);
+		
 		
 	}
+	public void jumpToAddContact(View view){
+		
+		Intent intentToAddContact=new Intent(this,AddContactActivity.class);
+		
+		startActivity(intentToAddContact);
+		
+		
+	}
+	
 
 }

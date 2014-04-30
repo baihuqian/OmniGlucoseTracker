@@ -7,6 +7,8 @@ public class User {
 	private String gender;
 	private String loginname;
 	private String password;
+	private double height;
+	private double weight;
 	
 
 
@@ -14,23 +16,27 @@ public User() {
 	// TODO Auto-generated constructor stub
 }
 //constructor	for input user, without userid
-public User(String username,int age,String gender,String loginname,String password){
+public User(String username,int age,String gender,String loginname,String password,double height,double weight){
 	
 	this.username=username;
 	this.age=age;
 	this.gender=gender;
 	this.loginname=loginname;
 	this.password=password;	
+	this.weight=weight;
+	this.height=height;
 }
 
 
-public User(int userid,String username,int age,String gender,String loginname,String password){
+public User(int userid,String username,int age,String gender,String loginname,String password,double height,double weight){
 	this.userid=userid;
 	this.username=username;
 	this.age=age;
 	this.gender=gender;
 	this.loginname=loginname;
 	this.password=password;	
+	this.weight=weight;
+	this.height=height;
 }
 
 //getters to get user information
@@ -58,6 +64,12 @@ public String getLoginName(){
 public String getPassword(){
 	return this.password;
 }
+public double getWeight(){
+	return this.weight;
+}
+public double getHeight(){
+	return this.height;
+}
 
 //setters to set or update user information
 public void setUserID(int userid){
@@ -83,4 +95,10 @@ public void setPassword(String password){
 	this.password=password;
 }
 
+public void setHeight(double height){
+	this.height=height;
+}
+public void setWeight(double weight){
+	this.weight=weight;
+}
 }

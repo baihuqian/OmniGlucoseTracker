@@ -1,8 +1,11 @@
 package ece641.March11th.ui;
 
+import ece641.March11th.IO.AddContactActivity;
+import ece641.March11th.IO.UpdateUserInfoActivity;
 import ece641.March11th.entities.UserInfoConstants;
 import ece641.March11th.graph.GraphDisplayConstants;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -56,6 +59,10 @@ public class NavigationFragment extends Fragment
 		@Override
 		public void onClick(View view) {
 			// TODO Auto-generated method stub
+			Context context=getActivity().getApplicationContext();
+			// TODO Auto-generated method stub
+			Intent intent=new Intent(context,UpdateUserInfoActivity.class);
+			startActivity(intent);
 			
 		}
 		
@@ -65,8 +72,10 @@ public class NavigationFragment extends Fragment
 
 		@Override
 		public void onClick(View view) {
+			Context context=getActivity().getApplicationContext();
 			// TODO Auto-generated method stub
-			
+			Intent intent=new Intent(context,AddContactActivity.class);
+			startActivity(intent);
 		}
 		
 	};

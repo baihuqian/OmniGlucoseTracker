@@ -1,8 +1,20 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="ece641.March11th.IO.AddActivity"
-    tools:ignore="MergeRootFrame" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
+    <ImageButton
+        android:id="@+id/imageButtonAdd1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="jumpToAddContact"
+        android:src="@drawable/ic_action_person" />
+
+    <ImageButton
+        android:id="@+id/imageButtonAdd2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+           android:onClick="jumpToAddData"
+        android:src="@drawable/ic_action_event" />
+
+</LinearLayout>

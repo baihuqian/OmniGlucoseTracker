@@ -9,6 +9,8 @@ import java.util.Calendar;
 
 
 
+
+import ece641.March11th.IO.AddActivity;
 import ece641.March11th.IO.CreateAccountDialog;
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.dblayout.abstractODTDatabaseHelper;
@@ -54,6 +56,8 @@ public class UserLoginActivity extends FragmentActivity
 	private String passwordtba1;
 	private String passwordtba2;
 	private Context context;
+	private double height;
+	private double weight;
 
 	public void logIn(View view){
 		Intent intentToUserInfoActivity=new Intent(this,WelcomeActivity.class);
@@ -150,7 +154,7 @@ public class UserLoginActivity extends FragmentActivity
 		if(	dbh.checkIfLoginNameExist("admin")){}
 		else{
 
-			BuildTestDatabase bd=new BuildTestDatabase(dbh);
+		BuildTestDatabase bd=new BuildTestDatabase(dbh);
 			bd.buildDatabase();
 
 		}
@@ -185,7 +189,7 @@ public class UserLoginActivity extends FragmentActivity
 
 
 	@Override
-	public void onDialogPositiveClick(DialogFragment dialog,String username,int age, String gender,String loginname,String password1,String password2) {
+	public void onDialogPositiveClick(DialogFragment dialog,String username,int age, String gender,String loginname,String password1,String password2,double height,double weight) {
 		/*
 		nametba=username;
 		agetba=age;
@@ -194,7 +198,7 @@ public class UserLoginActivity extends FragmentActivity
 		 passwordtba1=password1;
 		 passwordtba2=password2;
 		 */
-		if(dbh.checkIfLoginNameExist(loginname)|loginname.equals(null)){
+		if(dbh.checkIfLoginNameExist(loginname)|loginname.length()==0){
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(UserLoginActivity.this);
 			builder.setMessage("The Login Name Exists! or Login Name is Null!" )
@@ -214,7 +218,7 @@ public class UserLoginActivity extends FragmentActivity
 		else{
 
 			if(password1.equals(password2)){
-				User usertba=new User(username,age,gender, loginname,password1);
+				User usertba=new User(username,age,gender, loginname,password1,height,weight);
 				dbh.addUser(usertba);
 				Toast.makeText(UserLoginActivity.this, "New Account is Created!", Toast.LENGTH_LONG).show();
 			}
@@ -242,7 +246,7 @@ public class UserLoginActivity extends FragmentActivity
 
 
 	public void returnTest(View view){
-		Intent intentToDatabaseTestActivity=new Intent(this,DatabaseTestActivity.class);
+		Intent intentToDatabaseTestActivity=new Intent(this,AddActivity.class);
 		startActivity(intentToDatabaseTestActivity);
 
 	}	

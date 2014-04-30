@@ -30,7 +30,7 @@ public class WelcomeActivity extends Activity implements UserInfoConstants{
 		setContentView(R.layout.activity_welcome);
 
 		Intent intent = getIntent();
-		userID = intent.getIntExtra(USERID, -1);
+		userID = intent.getIntExtra(USERID, 1);
 		
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
