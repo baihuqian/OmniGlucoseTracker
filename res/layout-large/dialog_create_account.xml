@@ -18,6 +18,7 @@
             android:id="@+id/editTextCreateUsername"
            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:ems="10"
         />
 
@@ -70,6 +71,7 @@
             android:id="@+id/editTextCreateName"
           android:layout_width="match_parent"
             android:layout_height="wrap_content"
+             android:singleLine="true"
             android:ems="10"
             />
        
