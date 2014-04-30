@@ -5,8 +5,15 @@
 
     <Button
         android:id="@+id/buttonAddContact"
-        android:layout_width="wrap_content"
+       android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Add" />
+        android:onClick="addContact"
+        android:text="Add New Contact" />
+
+    <Button
+        android:id="@+id/buttonRefreshContact"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Refresh Contact List" />
 
 </LinearLayout>

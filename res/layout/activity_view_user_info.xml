@@ -75,9 +75,16 @@
 
     <Button
         android:id="@+id/buttonEditUser"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:onClick="updateUserInfo"
         android:text="Edit" />
+
+    <Button
+        android:id="@+id/buttonRefreshUserInfo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:onClick="refreshUserInfo"
+        android:text="Refresh User Information" />
 
 </LinearLayout>

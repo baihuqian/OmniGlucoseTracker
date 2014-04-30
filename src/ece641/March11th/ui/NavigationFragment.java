@@ -7,6 +7,7 @@ import ece641.March11th.IO.ViewLogActivity;
 import ece641.March11th.IO.ViewUserInfoActivity;
 import ece641.March11th.entities.UserInfoConstants;
 import ece641.March11th.graph.GraphDisplayConstants;
+import ece641.March11th.map.ViewOnMapActivity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -90,9 +91,10 @@ public class NavigationFragment extends Fragment
 		@Override
 		public void onClick(View view) {
 			// TODO Auto-generated method stub
-			Intent intent = new Intent(getActivity(), DisplayActivity.class);
-			intent.putExtra(LAUNCH_TYPE, DISPLAY_LOCATION);
-			intent.putExtra(USERID, userID);
+			Context context=getActivity().getApplicationContext();
+			// TODO Auto-generated method stub
+		Intent intent=new Intent(context,ViewOnMapActivity.class);
+			intent.putExtra("userid", 1);
 			startActivity(intent);
 		}
 		

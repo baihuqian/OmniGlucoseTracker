@@ -25,12 +25,22 @@
         <item>Female</item>
     </string-array>
     <string-array name="sample_situation_array">
-        <item>Male</item>
-        <item>Female</item>
+        <item>Wake Up</item>
+        <item>Before Breakfast</item>
+        <item>After Breakfast</item>
+        <item>Before Lunch</item>
+        <item>After Lunch</item>
+         <item>Before Dinner</item>
+        <item>After Dinner</item> 
+         <item>Before Medicine</item>
+         <item>After Medicine</item>
+         <item>Before Exercise</item>
+         <item>After Exercise</item>
+         <item>Before Sleep</item>
     </string-array>
     <string-array name="contact_type_array">
-        <item>Male</item>
-        <item>Female</item>
+        <item>Emergency</item>
+        <item>Doctor</item>
     </string-array>
 
     <string name="title_activity_add_data">AddDataActivity</string>

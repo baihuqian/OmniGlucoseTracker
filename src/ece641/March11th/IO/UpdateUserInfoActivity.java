@@ -34,8 +34,8 @@ public class UpdateUserInfoActivity extends Activity {
 	private String	updateloginname;
 	private  String	updatepassword1;
 	private  String	updatepassword2;
-	private double height;
-	private double weight;
+	private double updateheight;
+	private double updateweight;
 	ODTDatabaseHelper dbh=new ODTDatabaseHelper(this);
 
 	@Override
@@ -44,7 +44,7 @@ public class UpdateUserInfoActivity extends Activity {
 
 		setContentView(R.layout.activity_update_user_info);
 		Intent intent = getIntent();
-		userid=intent.getIntExtra("userID", 1);
+		userid=intent.getIntExtra("userid", 1);
 		
 		User user=dbh.getUser(userid);
 		final Spinner genderSpinner=(Spinner) findViewById(R.id.updateGender);
@@ -53,7 +53,10 @@ public class UpdateUserInfoActivity extends Activity {
 		        R.array.gender_array, android.R.layout.simple_spinner_item);
 	 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		genderSpinner.setAdapter(adapter);
-		
+		int spinnerPosition = adapter.getPosition(user.getGender());
+
+		//set the default according to value
+		genderSpinner.setSelection(spinnerPosition);
    	genderSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> parent,
@@ -67,17 +70,21 @@ public class UpdateUserInfoActivity extends Activity {
 			}
        });
 
-		/*
+		
 		
 		EditText updateUsername = (EditText) findViewById(R.id.editTextUpdateLoginName);
 		EditText updatePassword1 = (EditText) findViewById(R.id.editTextUpdatePassword);
 		EditText updatePassword2 = (EditText) findViewById(R.id.editTextCheckUpdatePassword);
 		EditText updateName = (EditText) findViewById(R.id.editTextUpdateName);
 		EditText updateAge = (EditText) findViewById(R.id.editTextUpdateAge);
+		EditText updateHeight = (EditText) findViewById(R.id.editTextUpdateHeight);
+		EditText updateWeight = (EditText) findViewById(R.id.editTextUpdateWeight);
 		updateUsername.setHint(user.getLoginName());
-		updateAge.setHint(user.getAge());
+	
 		updateName.setHint(user.getUserName());
-		*/
+		updateAge.setHint(Integer.toString(user.getAge()));
+		updateHeight.setHint(Double.toString(user.getHeight()));
+		updateWeight.setHint(Double.toString(user.getWeight()));
 		  
 		    
 	}
@@ -90,22 +97,34 @@ public class UpdateUserInfoActivity extends Activity {
 		EditText updatePassword2 = (EditText) findViewById(R.id.editTextCheckUpdatePassword);
 		EditText updateName = (EditText) findViewById(R.id.editTextUpdateName);
 		EditText updateAge = (EditText) findViewById(R.id.editTextUpdateAge);
-		
+		EditText updateHeight = (EditText) findViewById(R.id.editTextUpdateHeight);
+		EditText updateWeight = (EditText) findViewById(R.id.editTextUpdateWeight);
 		updateloginname=updateUsername.getText().toString().trim();
     	updatepassword1=updatePassword1.getText().toString().trim();
     	updatepassword2=updatePassword2.getText().toString().trim();
     	
-    	updatename=updateName.getText().toString();
+    	
+    	updatename=updateName.getText().toString().trim();
 		
-    if(updateAge.getText().length()==0){updateage=-1;}
+    if(updateAge.getText().toString().trim().length()==0){}
 	else
-	{updateage=Integer.parseInt(updateAge.getText().toString());}
+	{updateage=Integer.parseInt(updateAge.getText().toString().trim());}
     
-    if(dbh.checkIfLoginNameExist(updateloginname)|updateloginname.equals(null)){
+    
+    if(updateHeight.getText().toString().trim().length()==0){}
+  	else
+  	{updateheight=Double.parseDouble(updateHeight.getText().toString().trim());}
+    
+    
+    if(updateWeight.getText().toString().trim().length()==0){}
+  	else
+  	{updateweight=Double.parseDouble(updateWeight.getText().toString().trim());}
+    
+    if(dbh.checkIfLoginNameExist(updateloginname)){
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(UpdateUserInfoActivity.this);
-		builder.setMessage("The Login Name Exists! or Login Name is Null!" )
-	       .setTitle("Login Name Exist!");
+		builder.setMessage("The Login Name Exists!" )
+	       .setTitle("Login Name Problem!");
 		
 		builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {}
@@ -119,7 +138,7 @@ public class UpdateUserInfoActivity extends Activity {
 		
 	}
     else if(updatepassword1.equals(updatepassword2)){
-		User usertba=new User(userid,updatename,updateage,updategender,updateloginname,updatepassword1,height,weight);
+		User usertba=new User(userid,updatename,updateage,updategender,updateloginname,updatepassword1,updateheight,updateweight);
 		 dbh.updateUser(usertba);
 		 Toast.makeText(UpdateUserInfoActivity.this, "User Information is Updated!", Toast.LENGTH_LONG).show();
 		}
