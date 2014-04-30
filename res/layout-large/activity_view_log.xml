@@ -5,8 +5,15 @@
 
     <Button
         android:id="@+id/buttonAddData"
-        android:layout_width="wrap_content"
+       android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Add" />
+        android:onClick="addData"
+        android:text="Add New Data" />
+
+    <Button
+        android:id="@+id/buttonfRresheData"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Rfresh Data Log" />
 
 </LinearLayout>

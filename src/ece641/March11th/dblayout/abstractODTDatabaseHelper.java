@@ -510,9 +510,31 @@ if(cursor.moveToFirst()){
 public ArrayList<Contact> getContactList(int userid){
 
 	ArrayList<Contact> contactlist=new ArrayList<Contact>();
+
 	
+	SQLiteDatabase db = this.getReadableDatabase();
 	
+    String where=TABLE_CONTACT_COL5+"="+userid+";";
+    Cursor cursor=null;
+cursor = db.query(TABLE_CONTACT, null,where,null, null, null, null);
+if(cursor.moveToFirst()){
+	do{
+	
+	Contact contact=new Contact();
+	contact.setContactID(cursor.getInt(0));
+	contact.setContactName(cursor.getString(1));
+	contact.setContactNumber(cursor.getString(2));
+	contact.setContactType(cursor.getString(3));
+	contact.setUserID(cursor.getInt(4));
+	contactlist.add(contact);
+	}
+	while (cursor.moveToNext());
+}
+
 	return contactlist;
+	
+	
+	
 }
 
 public Data getData(int dataid){
@@ -533,20 +555,38 @@ public void updateUser(User user) {
 	String loginname=user.getLoginName();
 	String password=user.getPassword();
 	String gender=user.getGender();
+	double height=user.getHeight();
+	double weight=user.getWeight();
 	
 	SQLiteDatabase db = this.getWritableDatabase();
 	ContentValues insertValues = new ContentValues();
-	if(username.equals(null)){}
+	if(username.length()==0){}
 	else{insertValues.put(TABLE_USER_COL2,username);	
 	}
-	if(age==-1){}
+	if(age==0){}
 	else{insertValues.put(TABLE_USER_COL3,age);	
 	}
+	
+	if(gender.length()==0){}
+	else{
 	insertValues.put(TABLE_USER_COL4, gender);
-	insertValues.put(TABLE_USER_COL5, loginname);
-	insertValues.put(TABLE_USER_COL6, password);
-	insertValues.put(TABLE_USER_COL7, user.getHeight());
-	insertValues.put(TABLE_USER_COL8, user.getWeight());
+	}
+	if(loginname.length()==0){}
+	else{
+		insertValues.put(TABLE_USER_COL5, loginname);
+	}
+	if(password.length()==0){}
+	else{
+		insertValues.put(TABLE_USER_COL6, password);
+	}
+	if(height==0){}
+	else{insertValues.put(TABLE_USER_COL7, user.getHeight());
+	}
+	if(weight==0){}
+	else{insertValues.put(TABLE_USER_COL8, user.getWeight());
+	}
+	
+
 	
 	String where=TABLE_USER_COL1+"="+userid+";";
 	db.update(TABLE_USER, insertValues, where, null);
