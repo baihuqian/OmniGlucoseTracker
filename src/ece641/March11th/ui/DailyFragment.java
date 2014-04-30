@@ -8,7 +8,6 @@ import java.util.GregorianCalendar;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,9 +24,10 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.LineGraphView;
 
 import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.graph.GraphDisplayConstants;
 import ece641.March11th.graph.GraphViewHelper;
 
-public class DailyFragment extends Fragment {
+public class DailyFragment extends Fragment implements GraphDisplayConstants {
 	private GraphView graphView;
 	private GraphViewSeries graphViewSeries;
 	private Calendar date, todayDate;
@@ -47,6 +47,7 @@ public class DailyFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_daily, container, false);
         
+        int userID = ((DisplayActivity) getActivity()).getUserID();
         // initialize widgets
         previous = (ImageButton) view.findViewById(R.id.imageButtonPrevious);
         next = (ImageButton) view.findViewById(R.id.imageButtonNext);
@@ -86,7 +87,7 @@ public class DailyFragment extends Fragment {
         graphView.setViewPort(0, 1);
         graphView.setHorizontalLabels(new String[] {"0:00", "3:00", "6:00", "9:00", "12:00", "15:00", "18:00", "21:00", "24:00"});
         dbHelper = new ODTDatabaseHelper(view.getContext());
-        graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate);
+        graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate, userID);
         graphHelper.changeDate(todayDate);
         return view;
     }
@@ -145,7 +146,7 @@ public class DailyFragment extends Fragment {
 			DialogFragment newFragment = new DatePickerFragment();
 		    newFragment.show(getFragmentManager(), "datePicker");
 		    if(calSelectedListener != null) {
-		    	calSelectedListener.onCalSeleted(1); // 1 for daily
+		    	calSelectedListener.onCalSeleted(DISPLAY_DAILY); // 1 for daily
 		    }
 		}
 		

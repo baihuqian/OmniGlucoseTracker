@@ -1,10 +1,12 @@
 package ece641.March11th.ui;
 
+import ece641.March11th.entities.UserInfoConstants;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,13 +15,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
 
-public class WeicomeActivity extends Activity {
+public class WelcomeActivity extends Activity implements UserInfoConstants{
 	private boolean isTablet;
+	private int userID;
+	
+	public int getUserID() {
+		return userID;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_weicome);
+		setContentView(R.layout.activity_welcome);
 
+		Intent intent = getIntent();
+		userID = intent.getIntExtra(USERID, -1);
+		
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.
 		int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;

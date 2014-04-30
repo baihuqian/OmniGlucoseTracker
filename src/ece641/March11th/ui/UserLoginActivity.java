@@ -14,6 +14,7 @@ import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.dblayout.abstractODTDatabaseHelper;
 import ece641.March11th.entities.Data;
 import ece641.March11th.entities.User;
+import ece641.March11th.entities.UserInfoConstants;
 import ece641.March11th.map.LocationLoggerService;
 import ece641.March11th.test.BuildTestDatabase;
 import ece641.March11th.test.DatabaseTestActivity;
@@ -42,7 +43,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class UserLoginActivity extends FragmentActivity implements CreateAccountDialog.NoticeDialogListener {
+public class UserLoginActivity extends FragmentActivity
+			implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 	ODTDatabaseHelper dbh=new ODTDatabaseHelper(this);
 
 	private String nametba;
@@ -54,7 +56,7 @@ public class UserLoginActivity extends FragmentActivity implements CreateAccount
 	private Context context;
 
 	public void logIn(View view){
-		Intent intentToUserInfoActivity=new Intent(this,DisplayActivity.class);
+		Intent intentToUserInfoActivity=new Intent(this,WelcomeActivity.class);
 		//get input loginname and password
 		EditText inputUsername = (EditText) findViewById(R.id.inputUsername);
 		EditText inputPassword = (EditText) findViewById(R.id.inputPassword);
@@ -65,7 +67,7 @@ public class UserLoginActivity extends FragmentActivity implements CreateAccount
 			boolean checkloginnameandpassword=dbh.checkIfLoginNameMatchPassword(userloginname, password);
 			if(checkloginnameandpassword){
 				int userID=dbh.getUserID(userloginname);
-				intentToUserInfoActivity.putExtra("userID", userID);
+				intentToUserInfoActivity.putExtra(USERID, userID);
 
 				// Find and stop the gps logger service, and start a new service for current user!
 

@@ -5,27 +5,29 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-
-import ece641.March11th.dblayout.ODTDatabaseHelper;
-import ece641.March11th.graph.GraphViewHelper;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class WeeklyFragment extends Fragment {
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.LineGraphView;
+
+import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.graph.GraphDisplayConstants;
+import ece641.March11th.graph.GraphViewHelper;
+
+public class WeeklyFragment extends Fragment implements GraphDisplayConstants{
 	private GraphView graphView;
 	private GraphViewSeries graphViewSeries;
 	private Calendar date, todayDate;
@@ -46,7 +48,7 @@ public class WeeklyFragment extends Fragment {
 			
 		
         View view = inflater.inflate(R.layout.fragment_weekly, container, false);
-        
+        int userID = ((DisplayActivity) getActivity()).getUserID();
      // initialize widgets
         previous = (ImageButton) view.findViewById(R.id.imageButtonPrevious);
         next = (ImageButton) view.findViewById(R.id.imageButtonNext);
@@ -86,7 +88,7 @@ public class WeeklyFragment extends Fragment {
         graphView.setViewPort(0, 1);
         graphView.setHorizontalLabels(new String[] {"Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", ""});
         dbHelper = new ODTDatabaseHelper(view.getContext());
-        graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate);
+        graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate, userID);
         graphHelper.changeWeek(todayDate);
         
         return view;
@@ -144,7 +146,7 @@ public class WeeklyFragment extends Fragment {
 			DialogFragment newFragment = new DatePickerFragment();
 		    newFragment.show(getFragmentManager(), "datePicker");
 		    if(calSelectedListener != null) {
-		    	calSelectedListener.onCalSeleted(2); // 1 for weekly
+		    	calSelectedListener.onCalSeleted(DISPLAY_WEEKLY); 
 		    }
 		}
 		

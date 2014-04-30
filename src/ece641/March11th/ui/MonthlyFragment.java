@@ -11,6 +11,7 @@ import com.jjoe64.graphview.LineGraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 
 import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.graph.GraphDisplayConstants;
 import ece641.March11th.graph.GraphViewHelper;
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -25,7 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MonthlyFragment extends Fragment {
+public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
 	private GraphView graphView;
 	private GraphViewSeries graphViewSeries;
 	private Calendar date, todayDate;
@@ -44,7 +45,7 @@ public class MonthlyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_monthly, container, false);
-        
+        int userID = ((DisplayActivity) getActivity()).getUserID();
      // initialize widgets
         previous = (ImageButton) view.findViewById(R.id.imageButtonPrevious);
         next = (ImageButton) view.findViewById(R.id.imageButtonNext);
@@ -85,7 +86,7 @@ public class MonthlyFragment extends Fragment {
         
         
         dbHelper = new ODTDatabaseHelper(view.getContext());
-        graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate);
+        graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate, userID);
         graphHelper.changeMonth(todayDate);
         
         return view;
@@ -143,7 +144,7 @@ public class MonthlyFragment extends Fragment {
 			DialogFragment newFragment = new DatePickerFragment();
 		    newFragment.show(getFragmentManager(), "datePicker");
 		    if(calSelectedListener != null) {
-		    	calSelectedListener.onCalSeleted(3); // 1 for weekly
+		    	calSelectedListener.onCalSeleted(DISPLAY_MONTHLY); 
 		    }
 		}
 		

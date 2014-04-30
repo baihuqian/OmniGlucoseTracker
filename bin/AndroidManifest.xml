@@ -78,7 +78,7 @@
             android:value="AIzaSyAqKMpgK6h6wmHLY9XCYU-caoqIWXnoY1Q" />
 
         <activity
-            android:name="ece641.March11th.ui.WeicomeActivity"
+            android:name="ece641.March11th.ui.WelcomeActivity"
             android:label="@string/title_activity_weicome" >
         </activity>
     </application>

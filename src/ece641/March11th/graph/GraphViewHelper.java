@@ -2,7 +2,6 @@ package ece641.March11th.graph;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.os.AsyncTask;
 import android.view.View;
@@ -24,14 +23,16 @@ public class GraphViewHelper {
 	private GraphViewSeries graphViewSeries;
 	private ODTDatabaseHelper dbHelper;
 	private Calendar dateToChange;
-	private int userid;
+	private int userID;
 	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-	public GraphViewHelper(View view, GraphView graphView, GraphViewSeries graphViewSeries, ODTDatabaseHelper dbHelper, Calendar todayDate) {
+	public GraphViewHelper(View view, GraphView graphView, GraphViewSeries graphViewSeries, 
+			ODTDatabaseHelper dbHelper, Calendar todayDate, int userID) {
 		this.view = view;
 		this.graphViewSeries = graphViewSeries;
 		this.dbHelper = dbHelper;
 		this.todayDate = todayDate;
 		this.graphView = graphView;
+		this.userID = userID;
 	}
 
 	public void changeDate(Calendar date) {
@@ -50,8 +51,8 @@ public class GraphViewHelper {
 					// TODO Auto-generated method stub
 					dateToChange = date[0];
 
-					userid = dbHelper.getUserID("admin");
-					DateAndGL data = dbHelper.getDayGL(dateToChange, userid);
+					//userID = dbHelper.getUserID("admin");
+					DateAndGL data = dbHelper.getDayGL(dateToChange, userID);
 
 					return GlucoseDataConverter.convertDaily(data);
 				}
@@ -88,8 +89,8 @@ public class GraphViewHelper {
 					// TODO Auto-generated method stub
 					dateToChange = date[0];
 
-					userid = dbHelper.getUserID("admin");
-					DateAndGL data = dbHelper.getWeekGL(dateToChange, userid);
+					//userID = dbHelper.getUserID("admin");
+					DateAndGL data = dbHelper.getWeekGL(dateToChange, userID);
 
 					return GlucoseDataConverter.convertWeekly(data);
 				}
@@ -113,6 +114,7 @@ public class GraphViewHelper {
 
 	}
 	public void changeMonth(Calendar date) {
+		// initialize labels
 		int dayInMonth = date.getActualMaximum(Calendar.DAY_OF_MONTH);
 		String [] label = new String [dayInMonth + 1];
 		for(int i = 0; i < dayInMonth; i++) {
@@ -120,6 +122,8 @@ public class GraphViewHelper {
 		}
 		label[dayInMonth] = "";
 		graphView.setHorizontalLabels(label);
+		
+		
 		if(date.get(Calendar.YEAR) > todayDate.get(Calendar.YEAR) || 
 				(date.get(Calendar.YEAR) == todayDate.get(Calendar.YEAR) &&
 				(date.get(Calendar.MONTH) > todayDate.get(Calendar.MONTH) ||
@@ -135,8 +139,8 @@ public class GraphViewHelper {
 					// TODO Auto-generated method stub
 					dateToChange = date[0];
 
-					userid = dbHelper.getUserID("admin");
-					DateAndGL data = dbHelper.getMonthGL(dateToChange, userid);
+					//userID = dbHelper.getUserID("admin");
+					DateAndGL data = dbHelper.getMonthGL(dateToChange, userID);
 
 					return GlucoseDataConverter.convertMonthly(data);
 				}
