@@ -25,6 +25,7 @@ public class GraphViewHelper implements GraphDisplayConstants{
 	private ODTDatabaseHelper dbHelper;
 	private Calendar dateToChange;
 	private int userID;
+	private DateAndGL data;
 
 	private TextView num, max, min, avg;
 
@@ -60,8 +61,8 @@ public class GraphViewHelper implements GraphDisplayConstants{
 					dateToChange = date[0];
 
 					//userID = dbHelper.getUserID("admin");
-					DateAndGL data = dbHelper.getDayGL(dateToChange, userID);
-					setStatistics(data);
+					data = dbHelper.getDayGL(dateToChange, userID);
+
 					return GlucoseDataConverter.convertDaily(data);
 				}
 
@@ -79,6 +80,11 @@ public class GraphViewHelper implements GraphDisplayConstants{
 
 			};
 			task.execute(date);
+			while(data == null) {}
+			if(data != null) {
+				setStatistics(data);
+				data = null;
+			}
 		}
 	}
 	public void changeWeek(Calendar date) {
@@ -98,8 +104,8 @@ public class GraphViewHelper implements GraphDisplayConstants{
 					dateToChange = date[0];
 
 					//userID = dbHelper.getUserID("admin");
-					DateAndGL data = dbHelper.getWeekGL(dateToChange, userID);
-					setStatistics(data);
+					data = dbHelper.getWeekGL(dateToChange, userID);
+
 					return GlucoseDataConverter.convertWeekly(data);
 				}
 
@@ -117,6 +123,11 @@ public class GraphViewHelper implements GraphDisplayConstants{
 
 			};
 			task.execute(date);
+			while(data == null) {}
+			if(data != null) {
+				setStatistics(data);
+				data = null;
+			}
 		}
 
 
@@ -148,8 +159,7 @@ public class GraphViewHelper implements GraphDisplayConstants{
 					dateToChange = date[0];
 
 					//userID = dbHelper.getUserID("admin");
-					DateAndGL data = dbHelper.getMonthGL(dateToChange, userID);
-					setStatistics(data);
+					data = dbHelper.getMonthGL(dateToChange, userID);
 					return GlucoseDataConverter.convertMonthly(data);
 				}
 
@@ -167,6 +177,11 @@ public class GraphViewHelper implements GraphDisplayConstants{
 
 			};
 			task.execute(date);
+			while(data == null) {}
+			if(data != null) {
+				setStatistics(data);
+				data = null;
+			}
 		}
 	}
 
@@ -211,6 +226,10 @@ public class GraphViewHelper implements GraphDisplayConstants{
 	public void setStatistics(DateAndGL data) {
 		ArrayList<Double> glucoseData = data.getGLList();
 		if(glucoseData == null) {
+			num.setText("");
+			max.setText("");
+			min.setText("");
+			avg.setText("");
 			return;
 		} else {
 			int dataSize = glucoseData.size();
@@ -224,9 +243,17 @@ public class GraphViewHelper implements GraphDisplayConstants{
 				}
 				avgValue /= dataSize;
 
-				max.setText(String.format(".2f", maxValue));
-				min.setText(String.format(".2f", minValue));
-				avg.setText(String.format(".2f", avgValue));
+				max.setText(String.format("%.2f", maxValue));
+				min.setText(String.format("%.2f", minValue));
+				avg.setText(String.format("%.2f", avgValue));
+				return;
+			}
+			else {
+				num.setText("");
+				max.setText("");
+				min.setText("");
+				avg.setText("");
+				return;
 			}
 		}
 	}

@@ -114,8 +114,21 @@ public class WeeklyFragment extends Fragment implements GraphDisplayConstants{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			for(int i = 0; i < 7; i++) {
-				date.roll(Calendar.DATE, false); // next week
+			for(int i = 0; i < 7; i++) {// next week
+				if(date.get(Calendar.DAY_OF_MONTH) == 1) {
+					if(date.get(Calendar.MONTH) == Calendar.JANUARY) {
+						date.roll(Calendar.YEAR, false);
+						date.set(Calendar.MONTH, Calendar.DECEMBER);
+						date.set(Calendar.DATE, date.getActualMaximum(Calendar.DAY_OF_MONTH));
+					}
+					else {
+						date.roll(Calendar.MONTH, false);
+						date.set(Calendar.DATE, date.getActualMaximum(Calendar.DAY_OF_MONTH));
+					}
+				}
+				else {
+					date.roll(Calendar.DATE, false); 
+				}
 			}
 			graphHelper.changeWeek(date);
 		}
@@ -133,7 +146,20 @@ public class WeeklyFragment extends Fragment implements GraphDisplayConstants{
 			}
 			else {
 				for(int i = 0; i < 7; i++) {
-					date.roll(Calendar.DATE, true);
+					if(date.get(Calendar.DAY_OF_MONTH) == date.getActualMaximum(Calendar.DAY_OF_MONTH)) {
+						if(date.get(Calendar.MONTH) == Calendar.DECEMBER) {
+							date.roll(Calendar.YEAR, true);
+							date.set(Calendar.MONTH, Calendar.JANUARY);
+							date.set(Calendar.DATE, date.getActualMinimum(Calendar.DAY_OF_MONTH));
+						}
+						else {
+							date.roll(Calendar.MONTH, true);
+							date.set(Calendar.DATE, date.getActualMinimum(Calendar.DAY_OF_MONTH));
+						}
+					}
+					else {
+						date.roll(Calendar.DATE, true); 
+					}
 				}
 		        graphHelper.changeWeek(date);
 			}
