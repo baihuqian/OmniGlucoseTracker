@@ -71,7 +71,7 @@
             <LinearLayout
                 android:id="@+id/dailyGraphViewHolder"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="400dp"
                 android:orientation="vertical" >
             </LinearLayout>
         </TableRow>

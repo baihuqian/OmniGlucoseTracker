@@ -73,7 +73,7 @@
         <LinearLayout
             android:id="@+id/monthlyGraphViewHolder"
             android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:layout_height="400dp"
             android:orientation="vertical" >
         </LinearLayout>
 

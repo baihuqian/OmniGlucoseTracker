@@ -17,14 +17,14 @@
     <FrameLayout
         android:layout_width="0dp"
         android:id="@+id/maininfoContainer"
-        android:layout_height="match_parent" android:layout_weight="0.73">
+        android:layout_height="match_parent" android:layout_weight="0.78">
     </FrameLayout>
     
     <FrameLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:id="@+id/buttonContainer"
-        android:layout_weight="0.05" >
+        android:layout_weight="0" >
     </FrameLayout>
 
 </LinearLayout>
