@@ -287,7 +287,7 @@ int string title_activity_test 0x7f060023
 int string title_activity_user_log_in 0x7f060020
 int string title_activity_view_contact 0x7f06002a
 int string title_activity_view_log 0x7f06002b
-int string title_activity_weicome 0x7f06002c
+int string title_activity_welcome 0x7f06002c
 int style AppBaseTheme 0x7f0a0000
 int style AppTheme 0x7f0a0001
 int style ButtonBar 0x7f0a0003

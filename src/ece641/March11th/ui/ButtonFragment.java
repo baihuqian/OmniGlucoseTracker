@@ -2,6 +2,7 @@ package ece641.March11th.ui;
 
 import ece641.March11th.IO.AddActivity;
 import ece641.March11th.IO.AddActivityDialogFragment;
+import ece641.March11th.graph.GraphDisplayConstants;
 import android.R.color;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -15,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class ButtonFragment extends Fragment {
+public class ButtonFragment extends Fragment implements GraphDisplayConstants{
 	private Button daily, monthly, weekly, location;
 	private Drawable buttonDefaultBackground;
 	private ImageButton add;
@@ -42,8 +43,21 @@ public class ButtonFragment extends Fragment {
         location.setOnClickListener(locationOnclick);
         add.setOnClickListener(addOnclick);
         buttonDefaultBackground = daily.getBackground();
-        // default fragment is location
-        location.setBackgroundColor(color.holo_blue_bright);
+        switch(((DisplayActivity) getActivity()).getLaunchType()) {
+        case DISPLAY_LOCATION:
+        	location.setBackgroundColor(color.holo_blue_bright);
+        	break;
+        case DISPLAY_DAILY:
+        	daily.setBackgroundColor(color.holo_blue_bright);
+        	break;
+        case DISPLAY_WEEKLY:
+        	weekly.setBackgroundColor(color.holo_blue_bright);
+        	break;
+        case DISPLAY_MONTHLY:
+        	monthly.setBackgroundColor(color.holo_blue_bright);
+        	break;
+        }
+        
         return view;
     }
 	

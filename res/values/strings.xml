@@ -24,6 +24,6 @@
     <string name="title_activity_add_contact">AddContactActivity</string>
     <string name="title_activity_view_contact">ViewContactActivity</string>
     <string name="title_activity_view_log">ViewLogActivity</string>
-    <string name="title_activity_weicome">Weicome</string>
+    <string name="title_activity_welcome">Welcome</string>
 
 </resources>

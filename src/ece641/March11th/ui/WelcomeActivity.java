@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -42,7 +43,9 @@ public class WelcomeActivity extends Activity implements UserInfoConstants{
 
 		View userInfoContainer = findViewById(R.id.userinfoContainer);
 		isTablet = userInfoContainer != null && userInfoContainer.getVisibility() == View.VISIBLE;
-		
+		if(isTablet) {
+			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		}
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		

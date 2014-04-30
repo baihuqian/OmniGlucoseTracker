@@ -537,7 +537,7 @@ containing a value of this type.
         public static final int title_activity_user_log_in=0x7f060020;
         public static final int title_activity_view_contact=0x7f06002a;
         public static final int title_activity_view_log=0x7f06002b;
-        public static final int title_activity_weicome=0x7f06002c;
+        public static final int title_activity_welcome=0x7f06002c;
     }
     public static final class style {
         /** 

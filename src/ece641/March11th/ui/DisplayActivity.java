@@ -17,18 +17,20 @@ import android.view.View;
 
 
 public class DisplayActivity extends Activity 
-				implements OnCalSelectedListener, DatePickerFragment.OnDateSelectedListener, 
-						   GraphDisplayConstants, UserInfoConstants{
+implements OnCalSelectedListener, DatePickerFragment.OnDateSelectedListener, 
+GraphDisplayConstants, UserInfoConstants{
 
 	private int resourceID;
 	private boolean isTablet;
 	private int userID;
+	private int launchType;
+	public int getLaunchType() {
+		return launchType;
+	}
 
 	public int getUserID() {
 		return userID;
 	}
-
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,39 +51,45 @@ public class DisplayActivity extends Activity
 		isTablet = userInfoContainer != null && userInfoContainer.getVisibility() == View.VISIBLE;
 
 		Intent intent = getIntent();
-		int launchType = intent.getIntExtra(LAUNCH_TYPE, -1);
+		launchType = intent.getIntExtra(LAUNCH_TYPE, -1);
 		int userID = intent.getIntExtra(USERID, -1);
 
-		FragmentManager fragmentManager = getFragmentManager();
-		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-		/*
+		if(!isFinishing()) {
+			FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+			/*
 		ButtonFragment buttonFragment = new ButtonFragment();
 		fragmentTransaction.add(R.id.buttonContainer, buttonFragment);
-		 */
-		switch(launchType) {
-		case DISPLAY_DAILY:
-			DailyFragment dailyFragment = new DailyFragment();
-			fragmentTransaction.add(R.id.maininfoContainer, dailyFragment);
-			break;
-		case DISPLAY_WEEKLY:
-			WeeklyFragment weeklyFragment = new WeeklyFragment();
-			fragmentTransaction.add(R.id.maininfoContainer, weeklyFragment);
-			break;
-		case DISPLAY_MONTHLY:
-			MonthlyFragment monthlyFragment = new MonthlyFragment();
-			fragmentTransaction.add(R.id.maininfoContainer, monthlyFragment);
-			break;
-		default:
-			return;
+			 */
+			switch(launchType) {
+			case DISPLAY_DAILY:
+				DailyFragment dailyFragment = new DailyFragment();
+				fragmentTransaction.add(R.id.maininfoContainer, dailyFragment);
+				break;
+			case DISPLAY_WEEKLY:
+				WeeklyFragment weeklyFragment = new WeeklyFragment();
+				fragmentTransaction.add(R.id.maininfoContainer, weeklyFragment);
+				break;
+			case DISPLAY_MONTHLY:
+				MonthlyFragment monthlyFragment = new MonthlyFragment();
+				fragmentTransaction.add(R.id.maininfoContainer, monthlyFragment);
+				break;
+			case DISPLAY_LOCATION:
+				LocationFragment locationFragment = new LocationFragment();
+				fragmentTransaction.add(R.id.maininfoContainer, locationFragment);
+				break;
+			default:
+				break;
+			}
+
+			if(isTablet) {
+				UserInfoFragment userinfoFragment = new UserInfoFragment();
+				fragmentTransaction.add(R.id.userinfoContainer, userinfoFragment);
+				ButtonFragment buttonFragment = new ButtonFragment();
+				fragmentTransaction.add(R.id.buttonContainer, buttonFragment);
+			}
+			fragmentTransaction.commit();
+
 		}
-
-		if(isTablet) {
-			UserInfoFragment userinfoFragment = new UserInfoFragment();
-			fragmentTransaction.add(R.id.userinfoContainer, userinfoFragment);
-		}
-		fragmentTransaction.commit();
-
-
 	}
 
 
