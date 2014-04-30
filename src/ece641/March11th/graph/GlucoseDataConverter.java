@@ -67,7 +67,7 @@ public final class GlucoseDataConverter {
 			for(int i = 0; i < size; i++) {
 				Calendar date = data.getDateList().get(i);
 				int dayInMonth = date.getActualMaximum(Calendar.DAY_OF_MONTH);
-				double convertedTime = date.get(Calendar.DATE) / (double) dayInMonth + 
+				double convertedTime = (date.get(Calendar.DATE) - 1) / (double) dayInMonth + 
 						date.get(Calendar.HOUR) / (dayInMonth * 24.0) + 
 						date.get(Calendar.MINUTE) / (dayInMonth * 24.0 * 60.0);
 				graphData[i] = new GlucoseGraphData(convertedTime, data.getGLList().get(i));

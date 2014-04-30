@@ -1,7 +1,8 @@
 package ece641.March11th.graph;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 import android.os.AsyncTask;
 import android.view.View;
@@ -16,7 +17,7 @@ import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.DateAndGL;
 import ece641.March11th.ui.R;
 
-public class GraphViewHelper {
+public class GraphViewHelper implements GraphDisplayConstants{
 	private View view;
 	private GraphView graphView;
 	private final Calendar todayDate;
@@ -24,7 +25,9 @@ public class GraphViewHelper {
 	private ODTDatabaseHelper dbHelper;
 	private Calendar dateToChange;
 	private int userID;
-	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+
+	private TextView num, max, min, avg;
+
 	public GraphViewHelper(View view, GraphView graphView, GraphViewSeries graphViewSeries, 
 			ODTDatabaseHelper dbHelper, Calendar todayDate, int userID) {
 		this.view = view;
@@ -33,6 +36,11 @@ public class GraphViewHelper {
 		this.todayDate = todayDate;
 		this.graphView = graphView;
 		this.userID = userID;
+
+		num = (TextView) view.findViewById(R.id.textViewNumDataPoints);
+		max = (TextView) view.findViewById(R.id.textViewMax);
+		min = (TextView) view.findViewById(R.id.textViewMin);
+		avg = (TextView) view.findViewById(R.id.textViewAvg);
 	}
 
 	public void changeDate(Calendar date) {
@@ -53,7 +61,7 @@ public class GraphViewHelper {
 
 					//userID = dbHelper.getUserID("admin");
 					DateAndGL data = dbHelper.getDayGL(dateToChange, userID);
-
+					setStatistics(data);
 					return GlucoseDataConverter.convertDaily(data);
 				}
 
@@ -91,7 +99,7 @@ public class GraphViewHelper {
 
 					//userID = dbHelper.getUserID("admin");
 					DateAndGL data = dbHelper.getWeekGL(dateToChange, userID);
-
+					setStatistics(data);
 					return GlucoseDataConverter.convertWeekly(data);
 				}
 
@@ -122,8 +130,8 @@ public class GraphViewHelper {
 		}
 		label[dayInMonth] = "";
 		graphView.setHorizontalLabels(label);
-		
-		
+
+
 		if(date.get(Calendar.YEAR) > todayDate.get(Calendar.YEAR) || 
 				(date.get(Calendar.YEAR) == todayDate.get(Calendar.YEAR) &&
 				(date.get(Calendar.MONTH) > todayDate.get(Calendar.MONTH) ||
@@ -141,7 +149,7 @@ public class GraphViewHelper {
 
 					//userID = dbHelper.getUserID("admin");
 					DateAndGL data = dbHelper.getMonthGL(dateToChange, userID);
-
+					setStatistics(data);
 					return GlucoseDataConverter.convertMonthly(data);
 				}
 
@@ -159,6 +167,67 @@ public class GraphViewHelper {
 
 			};
 			task.execute(date);
+		}
+	}
+
+	public void setThreshold() {
+
+		GraphViewData[] very_high_data = new GraphViewData[2];
+		very_high_data[0] = new GraphViewData(0, VERY_HIGH);
+		very_high_data[1] = new GraphViewData(1, VERY_HIGH);
+		GraphViewSeries very_high = new GraphViewSeries("Very high" , very_threshold, very_high_data);
+
+		GraphViewData[] very_low_data = new GraphViewData[2];
+		very_low_data[0] = new GraphViewData(0, VERY_LOW);
+		very_low_data[1] = new GraphViewData(1, VERY_LOW);
+		GraphViewSeries very_low = new GraphViewSeries("Very low" , very_threshold, very_low_data);
+
+		GraphViewData[] high_data = new GraphViewData[2];
+		high_data[0] = new GraphViewData(0, HIGH);
+		high_data[1] = new GraphViewData(1, HIGH);
+		GraphViewSeries high = new GraphViewSeries("High", threshold, high_data);
+
+		GraphViewData[] low_data = new GraphViewData[2];
+		low_data[0] = new GraphViewData(0, LOW);
+		low_data[1] = new GraphViewData(1, LOW);
+		GraphViewSeries low = new GraphViewSeries("Low", threshold, low_data);
+
+		GraphViewData[] target_data = new GraphViewData[2];
+		target_data[0] = new GraphViewData(0, TARGET);
+		target_data[1] = new GraphViewData(1, TARGET);
+		GraphViewSeries target = new GraphViewSeries("Target", target_style, target_data);
+
+		graphView.addSeries(very_high);
+		graphView.addSeries(very_low);
+		graphView.addSeries(high);
+		graphView.addSeries(low);
+		graphView.addSeries(target);
+		graphView.setManualYAxisBounds(350, 0);
+		graphView.setShowLegend(true);
+		graphView.setLegendWidth(180);
+
+	}
+
+	public void setStatistics(DateAndGL data) {
+		ArrayList<Double> glucoseData = data.getGLList();
+		if(glucoseData == null) {
+			return;
+		} else {
+			int dataSize = glucoseData.size();
+			if(dataSize != 0) {
+				num.setText(Integer.toString(dataSize));
+				double maxValue = Collections.max(glucoseData);
+				double minValue = Collections.min(glucoseData);
+				double avgValue = 0;
+				for(Double g : glucoseData) {
+					avgValue += g;
+				}
+				avgValue /= dataSize;
+
+				max.setText(String.format(".2f", maxValue));
+				min.setText(String.format(".2f", minValue));
+				avg.setText(String.format(".2f", avgValue));
+			}
 		}
 	}
 }

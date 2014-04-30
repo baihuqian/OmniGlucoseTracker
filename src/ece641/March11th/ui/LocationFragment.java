@@ -74,7 +74,7 @@ public class LocationFragment extends Fragment {
 	public void onDestroyView() 
 	{
 	        super.onDestroyView(); 
-	        Fragment fragment = (getFragmentManager().findFragmentById(R.id.map));  
+	        Fragment fragment = (getFragmentManager().findFragmentById(R.id.maininfoContainer));  
 	        FragmentTransaction ft = getActivity().getFragmentManager().beginTransaction();
 	        ft.remove(fragment);
 	        ft.commit();

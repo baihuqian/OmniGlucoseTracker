@@ -46,7 +46,7 @@ import android.widget.Toast;
 import android.os.Build;
 
 public class UserLoginActivity extends FragmentActivity
-			implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
+implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 	ODTDatabaseHelper dbh=new ODTDatabaseHelper(this);
 
 	private String nametba;
@@ -72,7 +72,7 @@ public class UserLoginActivity extends FragmentActivity
 			if(checkloginnameandpassword){
 				int userid=dbh.getUserID(userloginname);
 				intentToUserInfoActivity.putExtra(USERID, userid);
-				intentToUserInfoActivity.putExtra("userid", userid);
+
 
 				// Find and stop the gps logger service, and start a new service for current user!
 
@@ -155,12 +155,12 @@ public class UserLoginActivity extends FragmentActivity
 		if(	dbh.checkIfLoginNameExist("admin")){}
 		else{
 
-		BuildTestDatabase bd=new BuildTestDatabase(dbh);
+			BuildTestDatabase bd=new BuildTestDatabase(dbh);
 			bd.buildDatabase();
 
 		}
 		// set default username and password for testing
-		
+
 		((EditText) findViewById(R.id.inputUsername)).setText("admin");
 		((EditText) findViewById(R.id.inputPassword)).setText("admin");
 

@@ -1,30 +1,30 @@
 package ece641.March11th.ui;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-
-import ece641.March11th.dblayout.ODTDatabaseHelper;
-import ece641.March11th.graph.GraphDisplayConstants;
-import ece641.March11th.graph.GraphViewHelper;
 import android.app.Activity;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.LineGraphView;
+
+import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.graph.GraphDisplayConstants;
+import ece641.March11th.graph.GraphViewHelper;
 
 public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
 	private GraphView graphView;
@@ -36,6 +36,9 @@ public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
 	
 	OnCalSelectedListener calSelectedListener;
 	
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
 	public MonthlyFragment() {
 		// TODO Auto-generated constructor stub
 	}
@@ -60,7 +63,6 @@ public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
         date = new GregorianCalendar();
         todayDate.setTime(d);
         date.setTime(d);// store date of today
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = null;
         if(date != null) {
         	strDate = sdf.format(date.getTime());
@@ -73,7 +75,7 @@ public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
         GraphViewData [] graphViewData = new GraphViewData[2]; // place holder
         graphViewData[0] = new GraphViewData(0.2, 0.5);
         graphViewData[1] = new GraphViewData(0.4, 0.7);
-        graphViewSeries = new GraphViewSeries(graphViewData);
+        graphViewSeries = new GraphViewSeries("Data", data_style, graphViewData);
         // set up graphView
         graphView = new LineGraphView(view.getContext(), "Monthly Glucose Level");
         graphView.addSeries(graphViewSeries);
@@ -87,6 +89,7 @@ public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
         
         dbHelper = new ODTDatabaseHelper(view.getContext());
         graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate, userID);
+        graphHelper.setThreshold();
         graphHelper.changeMonth(todayDate);
         
         return view;

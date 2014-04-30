@@ -37,6 +37,9 @@ public class WeeklyFragment extends Fragment implements GraphDisplayConstants{
 	
 	OnCalSelectedListener calSelectedListener;
 	
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
 	public WeeklyFragment() {
 		// TODO Auto-generated constructor stub
 	}
@@ -63,7 +66,6 @@ public class WeeklyFragment extends Fragment implements GraphDisplayConstants{
         date = new GregorianCalendar();
         todayDate.setTime(d);
         date.setTime(d);// store date of today
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = null;
         if(date != null) {
         	strDate = sdf.format(date.getTime());
@@ -76,7 +78,7 @@ public class WeeklyFragment extends Fragment implements GraphDisplayConstants{
         GraphViewData [] graphViewData = new GraphViewData[2]; // place holder
         graphViewData[0] = new GraphViewData(0.2, 0.5);
         graphViewData[1] = new GraphViewData(0.4, 0.7);
-        graphViewSeries = new GraphViewSeries(graphViewData);
+        graphViewSeries = new GraphViewSeries("Data", data_style, graphViewData);
         // set up graphView
         graphView = new LineGraphView(view.getContext(), "Weekly Glucose Level");
         graphView.addSeries(graphViewSeries);
@@ -89,6 +91,7 @@ public class WeeklyFragment extends Fragment implements GraphDisplayConstants{
         graphView.setHorizontalLabels(new String[] {"Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", ""});
         dbHelper = new ODTDatabaseHelper(view.getContext());
         graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate, userID);
+        graphHelper.setThreshold();
         graphHelper.changeWeek(todayDate);
         
         return view;

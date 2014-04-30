@@ -1,6 +1,5 @@
 package ece641.March11th.ui;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -35,6 +34,9 @@ public class DailyFragment extends Fragment implements GraphDisplayConstants {
 	private ODTDatabaseHelper dbHelper;
 	public GraphViewHelper graphHelper;
 	
+	public void setDate(Calendar date) {
+		this.date = date;
+	}
 	OnCalSelectedListener calSelectedListener;
 	
 	public DailyFragment() {
@@ -62,7 +64,6 @@ public class DailyFragment extends Fragment implements GraphDisplayConstants {
         date = new GregorianCalendar();
         todayDate.setTime(d);
         date.setTime(d);// store date of today
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String strDate = null;
         if(date != null) {
         	strDate = sdf.format(date.getTime());
@@ -75,7 +76,7 @@ public class DailyFragment extends Fragment implements GraphDisplayConstants {
         GraphViewData [] graphViewData = new GraphViewData[2]; // place holder
         graphViewData[0] = new GraphViewData(0.2, 0.5);
         graphViewData[1] = new GraphViewData(0.4, 0.7);
-        graphViewSeries = new GraphViewSeries(graphViewData);
+        graphViewSeries = new GraphViewSeries("Data", data_style, graphViewData);
         // set up graphView
         graphView = new LineGraphView(view.getContext(), "Daily Glucose Level");
         graphView.addSeries(graphViewSeries);
@@ -88,6 +89,7 @@ public class DailyFragment extends Fragment implements GraphDisplayConstants {
         graphView.setHorizontalLabels(new String[] {"0:00", "3:00", "6:00", "9:00", "12:00", "15:00", "18:00", "21:00", "24:00"});
         dbHelper = new ODTDatabaseHelper(view.getContext());
         graphHelper = new GraphViewHelper(view, graphView, graphViewSeries, dbHelper, todayDate, userID);
+        graphHelper.setThreshold();
         graphHelper.changeDate(todayDate);
         return view;
     }

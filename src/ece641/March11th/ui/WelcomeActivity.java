@@ -1,25 +1,21 @@
 package ece641.March11th.ui;
 
-import ece641.March11th.entities.UserInfoConstants;
-import android.app.Activity;
 import android.app.ActionBar;
-import android.app.Fragment;
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
+import ece641.March11th.entities.UserInfoConstants;
 
 public class WelcomeActivity extends Activity implements UserInfoConstants{
 	private boolean isTablet;
 	private int userID;
-	private int userid;
+	
 	
 	public int getUserID() {
 		return userID;
@@ -29,10 +25,10 @@ public class WelcomeActivity extends Activity implements UserInfoConstants{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
-
+		// retrieve payloads in intent
 		Intent intent = getIntent();
 		userID = intent.getIntExtra(USERID, 1);
-		userid = intent.getIntExtra("userid", 1);
+		
 		
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.

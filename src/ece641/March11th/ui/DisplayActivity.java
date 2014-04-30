@@ -52,7 +52,7 @@ GraphDisplayConstants, UserInfoConstants{
 
 		Intent intent = getIntent();
 		launchType = intent.getIntExtra(LAUNCH_TYPE, -1);
-		int userID = intent.getIntExtra(USERID, -1);
+		userID = intent.getIntExtra(USERID, -1);
 
 		if(!isFinishing()) {
 			FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
@@ -108,14 +108,17 @@ GraphDisplayConstants, UserInfoConstants{
 		GraphViewHelper helper;
 		switch(resourceID) {
 		case DISPLAY_DAILY: 
+			((DailyFragment) getFragmentManager().findFragmentById(R.id.maininfoContainer)).setDate(date);
 			helper = ((DailyFragment) getFragmentManager().findFragmentById(R.id.maininfoContainer)).graphHelper;
 			helper.changeDate(date);
 			break;
 		case DISPLAY_WEEKLY:
+			((WeeklyFragment) getFragmentManager().findFragmentById(R.id.maininfoContainer)).setDate(date);
 			helper = ((WeeklyFragment) getFragmentManager().findFragmentById(R.id.maininfoContainer)).graphHelper;
 			helper.changeWeek(date);
 			break;
 		case DISPLAY_MONTHLY:
+			((MonthlyFragment) getFragmentManager().findFragmentById(R.id.maininfoContainer)).setDate(date);
 			helper = ((MonthlyFragment) getFragmentManager().findFragmentById(R.id.maininfoContainer)).graphHelper;
 			helper.changeMonth(date);
 			break;
