@@ -117,23 +117,24 @@ public class CreateAccountDialog extends DialogFragment {
 					}
                 });
             	*/
-            	loginname=inusername.getText().toString();
-            	password1=inpassword1.getText().toString();
-            	password2=inpassword2.getText().toString();
+            	loginname=inusername.getText().toString().trim();
+            	password1=inpassword1.getText().toString().trim();
+            	password2=inpassword2.getText().toString().trim();
             	
-            	name=inname.getText().toString();
-            	if(inheight.getText().length()==0){}
+            	name=inname.getText().toString().trim();
+            	if(inheight.getText().toString().trim().length()==0){}
             	else
-            	{height=Double.parseDouble(inheight.getText().toString());}
-            	if(inweight.getText().length()==0){}
-            	else
-            	{weight=Double.parseDouble(inweight.getText().toString());}
+            	{height=Double.parseDouble(inheight.getText().toString().trim());}
             	
-            	if(inage.getText().length()==0){}
+            	if(inweight.getText().toString().trim().length()==0){}
             	else
-            	{age=Integer.parseInt(inage.getText().toString());}
+            	{weight=Double.parseDouble(inweight.getText().toString().trim());}
             	
-            	mListener.onDialogPositiveClick(CreateAccountDialog.this, loginname,age,gender,loginname,password1,password2,height,weight);
+            	if(inage.getText().toString().trim().length()==0){}
+            	else
+            	{age=Integer.parseInt(inage.getText().toString().trim());}
+            	
+            	mListener.onDialogPositiveClick(CreateAccountDialog.this, name,age,gender,loginname,password1,password2,height,weight);
             	
         }
 	    })

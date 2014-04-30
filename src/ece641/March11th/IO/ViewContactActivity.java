@@ -7,6 +7,8 @@ import ece641.March11th.ui.R.menu;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -25,4 +27,10 @@ public class ViewContactActivity extends Activity {
 		
 	}
 
+	public void addContact(View view){
+		
+		Intent intent=new Intent(this,AddContactActivity.class);
+		startActivity(intent);
+	}
+	
 }

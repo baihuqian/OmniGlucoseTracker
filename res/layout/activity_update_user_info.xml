@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Username:"
-       android:textAppearance="?android:attr/textAppearanceMedium" />
+       android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/editTextUpdateLoginName"
@@ -32,7 +32,7 @@
               android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="New Password:"
-           android:textAppearance="?android:attr/textAppearanceMedium" />
+           android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/editTextUpdatePassword"
@@ -49,7 +49,7 @@
              android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Enter New Password Again:"
-             android:textAppearance="?android:attr/textAppearanceMedium" />
+             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/editTextCheckUpdatePassword"
@@ -66,7 +66,7 @@
               android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Name:"
-             android:textAppearance="?android:attr/textAppearanceMedium" />
+             android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/editTextUpdateName"
@@ -81,7 +81,7 @@
               android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Age:"
-          android:textAppearance="?android:attr/textAppearanceMedium" />
+          android:textAppearance="?android:attr/textAppearanceSmall" />
 
         <EditText
             android:id="@+id/editTextUpdateAge"
@@ -97,7 +97,7 @@
            android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:text="Height:"
-         android:textAppearance="?android:attr/textAppearanceMedium" />
+         android:textAppearance="?android:attr/textAppearanceSmall" />
 
      <EditText
          android:id="@+id/editTextUpdateHeight"
@@ -113,7 +113,7 @@
            android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:text="Weight:"
-         android:textAppearance="?android:attr/textAppearanceMedium" />
+         android:textAppearance="?android:attr/textAppearanceSmall" />
      <EditText
          android:id="@+id/editTextUpdateWeight"
          android:layout_width="match_parent"
@@ -125,7 +125,7 @@
               android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Gender:"
-             android:textAppearance="?android:attr/textAppearanceMedium" />
+             android:textAppearance="?android:attr/textAppearanceSmall" />
 
          <Spinner
              android:id="@+id/updateGender"

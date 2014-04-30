@@ -36,5 +36,6 @@
     <string name="title_activity_add_data">AddDataActivity</string>
     <string name="title_activity_update_user_info">UpdateUserInfoActivity</string>
     <string name="title_activity_view_user_info">ViewUserInfoActivity</string>
+    <string name="title_activity_view_on_map">ViewOnMapActivity</string>
 
 </resources>

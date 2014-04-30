@@ -7,6 +7,8 @@ import ece641.March11th.ui.R.menu;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,4 +26,10 @@ public class ViewLogActivity extends Activity {
 
 	}
 
+	
+	public void addData(View view){
+	
+		Intent intent=new Intent(this,AddDataActivity.class);
+		startActivity(intent);
+	}
 }

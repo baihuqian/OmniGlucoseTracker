@@ -202,7 +202,7 @@ public class UserLoginActivity extends FragmentActivity
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(UserLoginActivity.this);
 			builder.setMessage("The Login Name Exists! or Login Name is Null!" )
-			.setTitle("Login Name Exist!");
+			.setTitle("Login Name Problem!");
 
 			builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {}
@@ -217,7 +217,7 @@ public class UserLoginActivity extends FragmentActivity
 		}
 		else{
 
-			if(password1.equals(password2)){
+			if(password1.equals(password2)&&(password1.length()!=0)){
 				User usertba=new User(username,age,gender, loginname,password1,height,weight);
 				dbh.addUser(usertba);
 				Toast.makeText(UserLoginActivity.this, "New Account is Created!", Toast.LENGTH_LONG).show();
@@ -227,8 +227,8 @@ public class UserLoginActivity extends FragmentActivity
 
 			else{
 				AlertDialog.Builder builder = new AlertDialog.Builder(UserLoginActivity.this);
-				builder.setMessage("Password Doesn't Match!" )
-				.setTitle("Password Doesn't Match!");
+				builder.setMessage("Password Doesn't Match!Or PassWord is Null!" )
+				.setTitle("Password Problem");
 
 				builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {}
