@@ -190,14 +190,9 @@ int id tableRowName 0x7f050087
 int id tableRowNavigation 0x7f050066
 int id terrain 0x7f050003
 int id textView1 0x7f050017
-int id textView10 0x7f050043
-int id textView2 0x7f05001a
 int id textView3 0x7f05003c
-int id textView4 0x7f05003d
 int id textView5 0x7f05003e
-int id textView6 0x7f05003f
 int id textView7 0x7f050040
-int id textView8 0x7f050041
 int id textView9 0x7f050042
 int id textViewAddActivity 0x7f05004e
 int id textViewAddContact1 0x7f050007
@@ -207,6 +202,7 @@ int id textViewAddContact4 0x7f05000d
 int id textViewAddDate 0x7f050048
 int id textViewAddNote 0x7f050051
 int id textViewAddTime 0x7f05004b
+int id textViewAge 0x7f05003d
 int id textViewCheckCreatePassword 0x7f050057
 int id textViewCheckUpdatePassword 0x7f050027
 int id textViewChooseDate 0x7f050011
@@ -216,6 +212,8 @@ int id textViewCreateName 0x7f050059
 int id textViewCreatePassword 0x7f050055
 int id textViewCreateUsername 0x7f050053
 int id textViewDate 0x7f05006b
+int id textViewGender 0x7f05003f
+int id textViewHeight 0x7f050041
 int id textViewMonthly 0x7f050070
 int id textViewName 0x7f0500a0
 int id textViewNavigationAnalysis 0x7f050078
@@ -236,7 +234,9 @@ int id textViewUpdateLoginName 0x7f050023
 int id textViewUpdateName 0x7f050029
 int id textViewUpdatePassword 0x7f050025
 int id textViewUpdateWeight 0x7f05002f
+int id textViewUserName 0x7f05001a
 int id textViewWeekly 0x7f0500a1
+int id textViewWeight 0x7f050043
 int id titleView 0x7f050034
 int id updateGender 0x7f050032
 int id userAge 0x7f05008c

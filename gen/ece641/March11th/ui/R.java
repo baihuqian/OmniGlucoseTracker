@@ -362,14 +362,9 @@ containing a value of this type.
         public static final int tableRowNavigation=0x7f050066;
         public static final int terrain=0x7f050003;
         public static final int textView1=0x7f050017;
-        public static final int textView10=0x7f050043;
-        public static final int textView2=0x7f05001a;
         public static final int textView3=0x7f05003c;
-        public static final int textView4=0x7f05003d;
         public static final int textView5=0x7f05003e;
-        public static final int textView6=0x7f05003f;
         public static final int textView7=0x7f050040;
-        public static final int textView8=0x7f050041;
         public static final int textView9=0x7f050042;
         public static final int textViewAddActivity=0x7f05004e;
         public static final int textViewAddContact1=0x7f050007;
@@ -379,6 +374,7 @@ containing a value of this type.
         public static final int textViewAddDate=0x7f050048;
         public static final int textViewAddNote=0x7f050051;
         public static final int textViewAddTime=0x7f05004b;
+        public static final int textViewAge=0x7f05003d;
         public static final int textViewCheckCreatePassword=0x7f050057;
         public static final int textViewCheckUpdatePassword=0x7f050027;
         public static final int textViewChooseDate=0x7f050011;
@@ -388,6 +384,8 @@ containing a value of this type.
         public static final int textViewCreatePassword=0x7f050055;
         public static final int textViewCreateUsername=0x7f050053;
         public static final int textViewDate=0x7f05006b;
+        public static final int textViewGender=0x7f05003f;
+        public static final int textViewHeight=0x7f050041;
         public static final int textViewMonthly=0x7f050070;
         public static final int textViewName=0x7f0500a0;
         public static final int textViewNavigationAnalysis=0x7f050078;
@@ -408,7 +406,9 @@ containing a value of this type.
         public static final int textViewUpdateName=0x7f050029;
         public static final int textViewUpdatePassword=0x7f050025;
         public static final int textViewUpdateWeight=0x7f05002f;
+        public static final int textViewUserName=0x7f05001a;
         public static final int textViewWeekly=0x7f0500a1;
+        public static final int textViewWeight=0x7f050043;
         public static final int titleView=0x7f050034;
         public static final int updateGender=0x7f050032;
         public static final int userAge=0x7f05008c;

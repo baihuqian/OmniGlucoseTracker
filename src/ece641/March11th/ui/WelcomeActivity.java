@@ -19,6 +19,7 @@ import android.os.Build;
 public class WelcomeActivity extends Activity implements UserInfoConstants{
 	private boolean isTablet;
 	private int userID;
+	private int userid;
 	
 	public int getUserID() {
 		return userID;
@@ -31,6 +32,7 @@ public class WelcomeActivity extends Activity implements UserInfoConstants{
 
 		Intent intent = getIntent();
 		userID = intent.getIntExtra(USERID, 1);
+		userid = intent.getIntExtra("userid", 1);
 		
 		View decorView = getWindow().getDecorView();
 		// Hide the status bar.

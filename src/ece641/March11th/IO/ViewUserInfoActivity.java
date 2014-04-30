@@ -18,11 +18,14 @@ import android.view.ViewGroup;
 import android.os.Build;
 
 public class ViewUserInfoActivity extends Activity {
-
+private int userid;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_user_info);
+		
+		Intent intent=getIntent();
+		userid=intent.getIntExtra("userid", 1);
 
 	}
 

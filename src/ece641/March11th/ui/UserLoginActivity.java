@@ -70,8 +70,9 @@ public class UserLoginActivity extends FragmentActivity
 		if(checkloginname){ 
 			boolean checkloginnameandpassword=dbh.checkIfLoginNameMatchPassword(userloginname, password);
 			if(checkloginnameandpassword){
-				int userID=dbh.getUserID(userloginname);
-				intentToUserInfoActivity.putExtra(USERID, userID);
+				int userid=dbh.getUserID(userloginname);
+				intentToUserInfoActivity.putExtra(USERID, userid);
+				intentToUserInfoActivity.putExtra("userid", userid);
 
 				// Find and stop the gps logger service, and start a new service for current user!
 

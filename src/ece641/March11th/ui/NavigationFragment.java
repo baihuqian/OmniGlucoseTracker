@@ -25,6 +25,7 @@ public class NavigationFragment extends Fragment
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
+		
 		// TODO Auto-generated method stub
 		view = inflater.inflate(R.layout.fragment_navigation, container, false);
 		
@@ -65,6 +66,7 @@ public class NavigationFragment extends Fragment
 			Context context=getActivity().getApplicationContext();
 			// TODO Auto-generated method stub
 			Intent intent=new Intent(context,ViewUserInfoActivity.class);
+			intent.putExtra("userid", 1);
 			startActivity(intent);
 			
 		}
@@ -152,6 +154,7 @@ public class NavigationFragment extends Fragment
 			// TODO Auto-generated method stub
 			Context context=getActivity().getApplicationContext();
 			// TODO Auto-generated method stub
+			
 			Intent intent=new Intent(context,ViewLogActivity.class);
 			startActivity(intent);
 			
