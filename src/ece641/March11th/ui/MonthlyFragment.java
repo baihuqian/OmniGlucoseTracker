@@ -112,9 +112,13 @@ public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			
-				date.roll(Calendar.MONTH, false); // next week
-			
+			if(date.get(Calendar.MONTH) != Calendar.JANUARY) {
+				date.roll(Calendar.MONTH, false); 
+			}
+			else {
+				date.roll(Calendar.YEAR, false);
+				date.set(Calendar.MONTH, Calendar.DECEMBER);
+			}
 			graphHelper.changeMonth(date);
 		}
 		
@@ -124,14 +128,23 @@ public class MonthlyFragment extends Fragment implements GraphDisplayConstants{
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			if(date.get(Calendar.MONTH) > todayDate.get(Calendar.MONTH) ||
+			if(date.get(Calendar.YEAR) > todayDate.get(Calendar.YEAR) ||
+					(date.get(Calendar.YEAR) == todayDate.get(Calendar.YEAR) && 
+					(date.get(Calendar.MONTH) > todayDate.get(Calendar.MONTH) ||
 					(date.get(Calendar.MONTH) == todayDate.get(Calendar.MONTH) && 
-							date.get(Calendar.DATE) >= todayDate.get(Calendar.DATE))) {
+					 date.get(Calendar.DATE) >= todayDate.get(Calendar.DATE))))) {
 				Toast.makeText(getActivity(), "Most recent date!", Toast.LENGTH_LONG).show();
 			}
 			else {
-				
+				if(date.get(Calendar.MONTH) == Calendar.DECEMBER) {
+					date.roll(Calendar.YEAR, true);
+					date.set(Calendar.MONTH, Calendar.JANUARY);
+				}
+				else {
 					date.roll(Calendar.MONTH, true);
+					
+				}
+					
 				
 		        graphHelper.changeMonth(date);
 			}
