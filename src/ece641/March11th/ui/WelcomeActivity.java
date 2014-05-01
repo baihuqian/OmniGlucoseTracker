@@ -10,9 +10,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import ece641.March11th.entities.UserIDInterface;
 import ece641.March11th.entities.UserInfoConstants;
 
-public class WelcomeActivity extends Activity implements UserInfoConstants{
+public class WelcomeActivity extends Activity implements UserInfoConstants, UserIDInterface{
 	private boolean isTablet;
 	private int userID;
 	

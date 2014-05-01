@@ -30,13 +30,13 @@
         <item>After Breakfast</item>
         <item>Before Lunch</item>
         <item>After Lunch</item>
-         <item>Before Dinner</item>
-        <item>After Dinner</item> 
-         <item>Before Medicine</item>
-         <item>After Medicine</item>
-         <item>Before Exercise</item>
-         <item>After Exercise</item>
-         <item>Before Sleep</item>
+        <item>Before Dinner</item>
+        <item>After Dinner</item>
+        <item>Before Medicine</item>
+        <item>After Medicine</item>
+        <item>Before Exercise</item>
+        <item>After Exercise</item>
+        <item>Before Sleep</item>
     </string-array>
     <string-array name="contact_type_array">
         <item>Emergency</item>
@@ -47,5 +47,6 @@
     <string name="title_activity_update_user_info">UpdateUserInfoActivity</string>
     <string name="title_activity_view_user_info">ViewUserInfoActivity</string>
     <string name="title_activity_view_on_map">ViewOnMapActivity</string>
+    <string name="title_activity_analysis">Analysis</string>
 
 </resources>

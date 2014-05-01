@@ -2,6 +2,7 @@ package ece641.March11th.ui;
 
 import java.util.Calendar;
 
+import ece641.March11th.entities.UserIDInterface;
 import ece641.March11th.entities.UserInfoConstants;
 import ece641.March11th.graph.GraphDisplayConstants;
 import ece641.March11th.graph.GraphViewHelper;
@@ -18,7 +19,7 @@ import android.view.View;
 
 public class DisplayActivity extends Activity 
 implements OnCalSelectedListener, DatePickerFragment.OnDateSelectedListener, 
-GraphDisplayConstants, UserInfoConstants{
+GraphDisplayConstants, UserInfoConstants, UserIDInterface{
 
 	private int resourceID;
 	private boolean isTablet;

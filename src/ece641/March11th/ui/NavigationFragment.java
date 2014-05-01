@@ -151,7 +151,9 @@ public class NavigationFragment extends Fragment
 		@Override
 		public void onClick(View view) {
 			// TODO Auto-generated method stub
-			
+			Intent intent = new Intent(getActivity(), AnalysisActivity.class);
+			intent.putExtra(USERID, userID);
+			startActivity(intent);
 		}
 		
 	};
