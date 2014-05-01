@@ -46,7 +46,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_DATA_COL10="Latitude";
     public static final String TABLE_DATA_COL11="Activity";
     public static final String TABLE_DATA_COL12="GL_Value";
-    public static final String TABLE_DATA_COL13="Step";
+    public static final String TABLE_DATA_COL13="Sample_Situation";
     public static final String TABLE_DATA_COL14="user_id";
     public static final String TABLE_DATA_COL15="WeekofYear";
    
@@ -57,12 +57,13 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_CONTACT_COL3="Contact_Number";
     public static final String TABLE_CONTACT_COL4="Contact_Type";
     public static final String TABLE_CONTACT_COL5="user_id";
+    public static final String TABLE_CONTACT_COL6="Contact_Email";
     
     
     
 	public abstractODTDatabaseHelper(Context context) {
 		// super(context, "/mnt/sdcard/test.db", null, DATABASE_VERSION);
-		 super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
 		
 		
@@ -114,6 +115,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 				+ TABLE_CONTACT_COL3 +" TEXT,"
 				+ TABLE_CONTACT_COL4 +" TEXT,"
 				+ TABLE_CONTACT_COL5 +" INTEGER,"
+				+ TABLE_CONTACT_COL6 +" TEXT,"
 				+" FOREIGN KEY("+TABLE_CONTACT_COL5+") REFERENCES "+TABLE_USER+"("+TABLE_USER_COL1+")"
 				+" )"
 				;
@@ -329,6 +331,8 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	
 
 
+    	
+
     	if(cursor.moveToFirst()){
     		
     		do{
@@ -401,6 +405,7 @@ public void addContact(Contact contact){
 	insertValues.put(TABLE_CONTACT_COL3, contact.getContactNumber());
 	insertValues.put(TABLE_CONTACT_COL4, contact.getContactType());
 	insertValues.put(TABLE_CONTACT_COL5, contact.getUserID());
+	insertValues.put(TABLE_CONTACT_COL6, contact.getContactEmail());
 	
 	db.insert(TABLE_CONTACT, null, insertValues);
 	
@@ -422,14 +427,25 @@ public void addData(Data data){
 	insertValues.put(TABLE_DATA_COL6, indate.get(Calendar.HOUR_OF_DAY));
 	insertValues.put(TABLE_DATA_COL7, indate.get(Calendar.MINUTE));
 	insertValues.put(TABLE_DATA_COL8, indate.get(Calendar.SECOND));
+	
+	
 	if ((data.getLongtitude()!=1000)&&(data.getLatitude()!=1000)){
-	insertValues.put(TABLE_DATA_COL9, data.getLongtitude());
-	insertValues.put(TABLE_DATA_COL10, data.getLatitude());}
+	insertValues.put(TABLE_DATA_COL9,data.getLongtitude());
+	insertValues.put(TABLE_DATA_COL10,data.getLatitude());}
 	else{}
 	
-	insertValues.put(TABLE_DATA_COL11, data.getActivity());
-	insertValues.put(TABLE_DATA_COL12, data.getGL());
-	insertValues.put(TABLE_DATA_COL13, data.getStep());
+	if(data.getActivity()==null){}
+	else{
+
+		insertValues.put(TABLE_DATA_COL11, data.getActivity());
+		
+	}
+	
+	if(data.getGL()==-1000){}
+	else{insertValues.put(TABLE_DATA_COL12, data.getGL());
+	insertValues.put(TABLE_DATA_COL13, data.getSampleType());}
+	
+	
 	insertValues.put(TABLE_DATA_COL14, data.getUserID());
 	insertValues.put(TABLE_DATA_COL15, indate.get(Calendar.WEEK_OF_YEAR));
 		
@@ -501,6 +517,7 @@ if(cursor.moveToFirst()){
 	contact.setContactNumber(cursor.getString(2));
 	contact.setContactType(cursor.getString(3));
 	contact.setUserID(cursor.getInt(4));
+	contact.setContactEmail(cursor.getString(5));
 
 }
 
@@ -514,9 +531,9 @@ public ArrayList<Contact> getContactList(int userid){
 	
 	SQLiteDatabase db = this.getReadableDatabase();
 	
-    String where=TABLE_CONTACT_COL5+"="+userid+";";
+    String where=TABLE_CONTACT_COL5+"="+userid;
     Cursor cursor=null;
-cursor = db.query(TABLE_CONTACT, null,where,null, null, null, null);
+cursor = db.query(TABLE_CONTACT,null,where,null, null, null, null);
 if(cursor.moveToFirst()){
 	do{
 	
@@ -526,7 +543,9 @@ if(cursor.moveToFirst()){
 	contact.setContactNumber(cursor.getString(2));
 	contact.setContactType(cursor.getString(3));
 	contact.setUserID(cursor.getInt(4));
+	contact.setContactEmail(cursor.getString(5));
 	contactlist.add(contact);
+	
 	}
 	while (cursor.moveToNext());
 }
@@ -543,6 +562,115 @@ public Data getData(int dataid){
 	
 	
 	return data;
+	
+}
+public ArrayList<Data> getDataListSortByTimeForMap(Calendar calendar,int userid){
+	int year=calendar.get(Calendar.YEAR);
+	int month=calendar.get(Calendar.MONTH);
+	int dayofmonth=calendar.get(Calendar.DAY_OF_MONTH);
+	ArrayList<Data> datalist=new ArrayList<Data>();
+	
+SQLiteDatabase db = this.getReadableDatabase();
+	
+    String where=TABLE_DATA_COL2+"="+year
+	    		+" AND "+TABLE_DATA_COL3+"="+month
+	    		+" AND "+TABLE_DATA_COL4+"="+ dayofmonth
+	    		+" AND "+TABLE_DATA_COL14+"="+userid
+	    		+" AND "+TABLE_DATA_COL9 +" IS NOT NULL";
+    
+    String orderby=TABLE_DATA_COL2+","+TABLE_DATA_COL3+","+TABLE_DATA_COL4+","+TABLE_DATA_COL6+","+TABLE_DATA_COL7+" ASC";
+    Cursor cursor=null;
+cursor = db.query(TABLE_DATA,null,where,null, null, null, orderby);
+if(cursor.moveToFirst()){
+	do{
+		int tmpyear=cursor.getInt(1);
+		int tmpmonth=cursor.getInt(2);
+		int tmpdayofmonth=cursor.getInt(3);
+		int tmpdayofweek=cursor.getInt(4);
+		int tmphour=cursor.getInt(5);
+		int tmpminute=cursor.getInt(6);
+		int tmpsecond=cursor.getInt(7);
+		int tmpweekofyear=cursor.getInt(14);
+		
+		
+		
+		Calendar tmpdate=Calendar.getInstance();
+		
+	tmpdate.set(Calendar.YEAR, tmpyear);
+	tmpdate.set(Calendar.MONTH, tmpmonth);
+	tmpdate.set(Calendar.DAY_OF_MONTH, tmpdayofmonth);
+	tmpdate.set(Calendar.DAY_OF_WEEK, tmpdayofweek);
+	tmpdate.set(Calendar.HOUR_OF_DAY, tmphour);
+	tmpdate.set(Calendar.MINUTE, tmpminute);
+	tmpdate.set(Calendar.SECOND, tmpsecond);
+	tmpdate.set(Calendar.WEEK_OF_YEAR,tmpweekofyear);
+		
+		Data data=new Data(cursor.getInt(0),tmpdate,cursor.getDouble(8),cursor.getDouble(9),cursor.getDouble(11),cursor.getString(10),cursor.getInt(12),cursor.getInt(13));
+	
+		datalist.add(data);
+	
+	}
+	while (cursor.moveToNext());
+}
+
+	
+	
+	return datalist;
+	
+}
+
+public ArrayList<Data> getDataListSortByTimeForView(Calendar calendar,int userid){
+	int year=calendar.get(Calendar.YEAR);
+	int month=calendar.get(Calendar.MONTH);
+	int dayofmonth=calendar.get(Calendar.DAY_OF_MONTH);
+	ArrayList<Data> datalist=new ArrayList<Data>();
+	
+SQLiteDatabase db = this.getReadableDatabase();
+	
+    String where=TABLE_DATA_COL2+"="+year
+	    		+" AND "+TABLE_DATA_COL3+"="+month
+	    		+" AND "+TABLE_DATA_COL4+"="+dayofmonth
+	    		+" AND "+TABLE_DATA_COL14+"="+userid
+	    		;
+    
+    String orderby=TABLE_DATA_COL2+","+TABLE_DATA_COL3+","+TABLE_DATA_COL4+","+TABLE_DATA_COL6+","+TABLE_DATA_COL7+" ASC";
+    Cursor cursor=null;
+cursor = db.query(TABLE_DATA,null,where,null, null, null, orderby);
+if(cursor.moveToFirst()){
+	do{
+		int tmpyear=cursor.getInt(1);
+		int tmpmonth=cursor.getInt(2);
+		int tmpdayofmonth=cursor.getInt(3);
+		int tmpdayofweek=cursor.getInt(4);
+		int tmphour=cursor.getInt(5);
+		int tmpminute=cursor.getInt(6);
+		int tmpsecond=cursor.getInt(7);
+		int tmpweekofyear=cursor.getInt(14);
+		
+		
+		
+		Calendar tmpdate=Calendar.getInstance();
+		
+	tmpdate.set(Calendar.YEAR, tmpyear);
+	tmpdate.set(Calendar.MONTH, tmpmonth);
+	tmpdate.set(Calendar.DAY_OF_MONTH, tmpdayofmonth);
+	tmpdate.set(Calendar.DAY_OF_WEEK, tmpdayofweek);
+	tmpdate.set(Calendar.HOUR_OF_DAY, tmphour);
+	tmpdate.set(Calendar.MINUTE, tmpminute);
+	tmpdate.set(Calendar.SECOND, tmpsecond);
+	tmpdate.set(Calendar.WEEK_OF_YEAR,tmpweekofyear);
+		
+		Data data=new Data(cursor.getInt(0),tmpdate,cursor.getDouble(8),cursor.getDouble(9),cursor.getDouble(11),cursor.getString(10),cursor.getInt(12),cursor.getInt(13));
+	
+		datalist.add(data);
+	
+	}
+	while (cursor.moveToNext());
+}
+
+	
+	
+	return datalist;
 	
 }
     

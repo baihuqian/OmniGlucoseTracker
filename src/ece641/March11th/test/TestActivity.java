@@ -24,7 +24,7 @@ public class TestActivity extends Activity {
 
 		if (savedInstanceState == null) {
 			getFragmentManager().beginTransaction()
-					.add(R.id.analysisGraphContainer, new PlaceholderFragment()).commit();
+					.add(R.id.container, new PlaceholderFragment()).commit();
 		}
 	}
 

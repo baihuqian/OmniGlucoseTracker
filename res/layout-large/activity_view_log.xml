@@ -16,4 +16,10 @@
         android:layout_height="wrap_content"
         android:text="Rfresh Data Log" />
 
+    <ListView
+        android:id="@+id/listViewLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
 </LinearLayout>

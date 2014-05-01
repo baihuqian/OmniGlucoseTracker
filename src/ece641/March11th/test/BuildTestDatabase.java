@@ -2,14 +2,21 @@ package ece641.March11th.test;
 
 import java.util.Calendar;
 
+import android.content.Context;
+import android.location.Location;
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.Contact;
 import ece641.March11th.entities.Data;
 import ece641.March11th.entities.User;
+import ece641.March11th.map.LocationHelper;
 
 public class BuildTestDatabase {
 	private ODTDatabaseHelper db;
-	public BuildTestDatabase(ODTDatabaseHelper db){this.db=db;}
+	Context context;
+	 public  BuildTestDatabase(Context context,ODTDatabaseHelper db){
+	       this.context = context;
+	       this.db=db;
+	  }
 	
 	public void buildDatabase(){
 		User user1=new User("admin", 26, "Male", "admin", "admin",175,60);
@@ -57,10 +64,11 @@ public class BuildTestDatabase {
 		date23.set(Calendar.HOUR_OF_DAY,12);
 		date24.set(Calendar.HOUR_OF_DAY,14);
 		date25.set(Calendar.HOUR_OF_DAY,16);
-		date26.set(Calendar.HOUR_OF_DAY, 18);
-		date27.set(Calendar.HOUR_OF_DAY, 20);
-		date28.set(Calendar.HOUR_OF_DAY, 22);
+		date26.set(Calendar.HOUR_OF_DAY,18);
+		date27.set(Calendar.HOUR_OF_DAY,20);
+		date28.set(Calendar.HOUR_OF_DAY,22);
 		int temday=date11.get(Calendar.DAY_OF_MONTH)-1;
+		
 		date21.set(Calendar.DAY_OF_MONTH,temday);
 		date22.set(Calendar.DAY_OF_MONTH,temday);
 		date23.set(Calendar.DAY_OF_MONTH,temday);
@@ -69,27 +77,106 @@ public class BuildTestDatabase {
 		date26.set(Calendar.DAY_OF_MONTH,temday);
 		date27.set(Calendar.DAY_OF_MONTH,temday);
 		date28.set(Calendar.DAY_OF_MONTH,temday);
+		
+		
+		
+	
+		LocationHelper lh=new LocationHelper(context);
+		double tlo=lh.getBestCurrentLocation().getLongitude();
+		double tla=lh.getBestCurrentLocation().getLatitude();
+		
+		Location l11=lh.getBestCurrentLocation();
+		Location l12=lh.getBestCurrentLocation();
+		Location l13=lh.getBestCurrentLocation();
+		Location l14=lh.getBestCurrentLocation();
+		Location l15=lh.getBestCurrentLocation();
+		Location l16=lh.getBestCurrentLocation();
+		Location l17=lh.getBestCurrentLocation();
+		Location l18=lh.getBestCurrentLocation();
 	
 		
+		Location l21=lh.getBestCurrentLocation();
+		Location l22=lh.getBestCurrentLocation();
+		Location l23=lh.getBestCurrentLocation();
+		Location l24=lh.getBestCurrentLocation();
+		Location l25=lh.getBestCurrentLocation();
+		Location l26=lh.getBestCurrentLocation();
+		Location l27=lh.getBestCurrentLocation();
+		Location l28=lh.getBestCurrentLocation();
 		
 		
-		Data data11=new Data(date11,null,130,null,1,adminid);
-		Data data12=new Data(date12,null,125,null,3,adminid);
-		Data data13=new Data(date13,null,167,null,5,adminid);
-		Data data14=new Data(date14,null,98,null,5,adminid);
-		Data data15=new Data(date15,null,130,null,5,adminid);
-		Data data16=new Data(date16,null,158,null,5,adminid);
-		Data data17=new Data(date17,null,88,null,5,adminid);
-		Data data18=new Data(date18,null,75,null,5,adminid);
+		l11.setLongitude(tlo-0.0001);
+		l11.setLatitude(tla-0.0001);
 		
-		Data data21=new Data(date21,null,110,null,1,adminid);
-		Data data22=new Data(date22,null,152,null,3,adminid);
-		Data data23=new Data(date23,null,148,null,5,adminid);
-		Data data24=new Data(date24,null,122,null,5,adminid);
-		Data data25=new Data(date25,null,105,null,5,adminid);
-		Data data26=new Data(date23,null,148,null,5,adminid);
-		Data data27=new Data(date24,null,112,null,5,adminid);
-		Data data28=new Data(date25,null,79,null,5,adminid);
+		l12.setLongitude(tlo-0.0002);
+		l12.setLatitude(tla-0.0002);
+		
+		l13.setLongitude(tlo+0.0001);
+		l13.setLatitude(tla+0.0001);
+		
+		l14.setLongitude(tlo+0.0002);
+		l14.setLatitude(tla+0.0002);
+		
+		l15.setLongitude(tlo-0.0003);
+		l15.setLatitude(tla-0.0003);
+		
+		l16.setLongitude(tlo+0.0003);
+		l16.setLatitude(tla+0.0003);
+		
+		l17.setLongitude(tlo-0.0004);
+		l17.setLatitude(tla-0.0004);
+		
+		l18.setLongitude(tlo+0.0004);
+		l18.setLatitude(tla+0.0004);
+		
+		l21.setLongitude(tlo-0.0001);
+		l21.setLatitude(tla-0.0001);
+		
+		l22.setLongitude(tlo-0.0002);
+		l22.setLatitude(tla-0.0002);
+		
+		l23.setLongitude(tlo+0.0001);
+		l23.setLatitude(tla+0.0001);
+		
+		l24.setLongitude(tlo+0.0002);
+		l24.setLatitude(tla+0.0002);
+		
+		l25.setLongitude(tlo-0.0003);
+		l25.setLatitude(tla-0.0003);
+		
+		l26.setLongitude(tlo+0.0003);
+		l26.setLatitude(tla+0.0003);
+		
+		l27.setLongitude(tlo-0.0004);
+		l27.setLatitude(tla-0.0004);
+		
+		l28.setLongitude(tlo+0.0004);
+		l28.setLatitude(tla+0.0004);
+		
+		
+
+	
+		
+		Data data11=new Data(date11,l11,130,null,1,adminid);
+		Data data12=new Data(date12,l12,125,null,3,adminid);
+		Data data13=new Data(date13,l13,167,null,5,adminid);
+		Data data14=new Data(date14,l14,98,null,5,adminid);
+		Data data15=new Data(date15,l15,130,null,5,adminid);
+		Data data16=new Data(date16,l16,158,null,5,adminid);
+		Data data17=new Data(date17,l17,88,null,5,adminid);
+		Data data18=new Data(date18,l18,75,null,5,adminid);
+		
+		Data data21=new Data(date21,l21,110,null,1,adminid);
+		Data data22=new Data(date22,l22,152,null,3,adminid);
+		Data data23=new Data(date23,l23,148,null,5,adminid);
+		Data data24=new Data(date24,l24,122,null,5,adminid);
+		Data data25=new Data(date25,l25,105,null,5,adminid);
+		Data data26=new Data(date26,l26,148,null,5,adminid);
+		Data data27=new Data(date27,l27,112,null,5,adminid);
+		Data data28=new Data(date28,l28,79,null,5,adminid);
+		
+		
+		
 		
 		db.addData(data11);
 		db.addData(data12);
@@ -100,7 +187,6 @@ public class BuildTestDatabase {
 		db.addData(data17);
 		db.addData(data18);
 	
-		
 		db.addData(data21);
 		db.addData(data22);
 		db.addData(data23);
@@ -109,10 +195,14 @@ public class BuildTestDatabase {
 		db.addData(data26);
 		db.addData(data27);
 		db.addData(data28);
+		
+	
 	
 		
-		Contact contact1=new Contact("Jim","4128025288","Emergency",adminid);
-		Contact contact2=new Contact("Tom","0000000000","Doctor",adminid);
+	
+		
+		Contact contact1=new Contact("Jim","4128025288","daizhengkun@gmail.com","Emergency",adminid);
+		Contact contact2=new Contact("Tom","0000000000","daizhengkun@gmail.com","Doctor",adminid);
 		db.addContact(contact1);
 		db.addContact(contact2);
 		

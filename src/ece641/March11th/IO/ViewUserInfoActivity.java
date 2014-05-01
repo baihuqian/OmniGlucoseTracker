@@ -21,61 +21,61 @@ import android.widget.TextView;
 import android.os.Build;
 
 public class ViewUserInfoActivity extends Activity {
-	private int userid;
-	private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
+private int userid;
+private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		
 		setContentView(R.layout.activity_view_user_info);
-
+		
 		Intent intent=getIntent();
 		userid=intent.getIntExtra("userid", 1);
-
+	
 		User user=db.getUser(userid);
-
+		
 		TextView name=(TextView) findViewById(R.id.textViewUserName);
 		TextView age=(TextView) findViewById(R.id.textViewAge);
 		TextView gender=(TextView) findViewById(R.id.textViewGender);
 		TextView height=(TextView) findViewById(R.id.textViewHeight);
 		TextView weight=(TextView) findViewById(R.id.textViewWeight);
-
+		
 		name.setText(user.getUserName());
-
+		
 		age.setText(Integer.toString(user.getAge()));
 		gender.setText(user.getGender());
 		height.setText(Double.toString(user.getHeight()));
 		weight.setText(Double.toString(user.getWeight()));
-
-
-
+	
+		
+		
 
 	}
 
 	public void updateUserInfo(View view){
-
+		
 		Intent intent=new Intent(this,UpdateUserInfoActivity.class);
 		intent.putExtra("userid",userid);
 		startActivity(intent);
-
-
+		
+		
 	}
-
+	
 	public void	refreshUserInfo(View view){
-		User user=db.getUser(userid);
-
+User user=db.getUser(userid);
+		
 		TextView name=(TextView) findViewById(R.id.textViewUserName);
 		TextView age=(TextView) findViewById(R.id.textViewAge);
 		TextView gender=(TextView) findViewById(R.id.textViewGender);
 		TextView height=(TextView) findViewById(R.id.textViewHeight);
 		TextView weight=(TextView) findViewById(R.id.textViewWeight);
-
+		
 		name.setText(user.getUserName());
-
+		
 		age.setText(Integer.toString(user.getAge()));
 		gender.setText(user.getGender());
 		height.setText(Double.toString(user.getHeight()));
 		weight.setText(Double.toString(user.getWeight()));
-
+		
 	}
 }

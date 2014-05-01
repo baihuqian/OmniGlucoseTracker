@@ -59,6 +59,7 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 	private double height;
 	private double weight;
 
+
 	public void logIn(View view){
 		Intent intentToUserInfoActivity=new Intent(this,WelcomeActivity.class);
 		//get input loginname and password
@@ -152,10 +153,11 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_log_in);
 		// the following is hard code for database checking	
+		context=getApplicationContext();
 		if(	dbh.checkIfLoginNameExist("admin")){}
 		else{
 
-			BuildTestDatabase bd=new BuildTestDatabase(dbh);
+			BuildTestDatabase bd=new BuildTestDatabase(context,dbh);
 			bd.buildDatabase();
 
 		}

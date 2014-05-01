@@ -19,7 +19,7 @@ public class Data {
 	private	double latitude;
 	private	double GL;
 	private	String activity;
-	private	int step;
+	private	int sampletype;
 	private	int userid;
 	private	int weekofyear;
 	
@@ -27,7 +27,7 @@ public class Data {
     
     
     //constructor for input data,without eventid,must have the correct userid!!!
-    public Data(Calendar date,Location location,double gl,String activity,int step,int userid){
+    public Data(Calendar date,Location location,double gl,String activity,int sampletype,int userid){
     	this.year=date.get(Calendar.YEAR);
     	this.month=date.get(Calendar.MONTH);
     	this.dayofmonth=date.get(Calendar.DAY_OF_MONTH);
@@ -46,14 +46,14 @@ public class Data {
     	
     	this.GL=gl;
     	this.activity=activity;
-    	this.step=step;
+    	this.sampletype=sampletype;
     	this.userid=userid;   	
     }
     
     
   
     //constructor for output data,with eventid
-    public Data(int eventid,Calendar date,double longtitude,double latitude ,double gl,String activity,int step,int userid){
+    public Data(int eventid,Calendar date,double longtitude,double latitude ,double gl,String activity,int sampletype,int userid){
     	this.eventid=eventid;
     	this.year=date.get(Calendar.YEAR);
     	this.month=date.get(Calendar.MONTH);
@@ -64,7 +64,7 @@ public class Data {
     	this.second=date.get(Calendar.SECOND);
     	this.longtitude=longtitude;
     	this.latitude=latitude;
-    	this.step=step;
+    	this.sampletype=sampletype;
     	this.userid=userid; 
     	this.weekofyear=date.get(Calendar.WEEK_OF_YEAR);
       	
@@ -98,6 +98,12 @@ public class Data {
 		
 		return this.userid;
 	}
+	
+	public int getDataID() {
+		// TODO Auto-generated method stub
+		
+		return this.eventid;
+	}
 
 
 	public double getLongtitude() {
@@ -114,9 +120,9 @@ public class Data {
 		// TODO Auto-generated method stub
 		return this.activity;
 	}
-	public int getStep() {
+	public int getSampleType() {
 		// TODO Auto-generated method stub
-		return this.step;
+		return this.sampletype;
 	}
 
 	

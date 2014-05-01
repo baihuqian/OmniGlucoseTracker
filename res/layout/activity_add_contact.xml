@@ -11,7 +11,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editTextAddContact1"
+        android:id="@+id/editTextAddContactName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
          android:singleLine="true"
@@ -28,7 +28,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editTextAddContact2"
+        android:id="@+id/editTextAddContactNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -42,7 +42,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
-        android:id="@+id/editTextAddContact3"
+        android:id="@+id/editTextAddContactEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -56,14 +56,15 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Spinner
-        android:id="@+id/spinnerAddContact1"
+        android:id="@+id/spinnerAddContactType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/buttonAddContact1"
+        android:id="@+id/buttonAddContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="addContact"
         android:text="Submit" />
 
 </LinearLayout>
