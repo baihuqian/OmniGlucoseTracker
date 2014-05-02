@@ -2,10 +2,15 @@ package ece641.March11th.ui;
 
 
 
+import java.util.ArrayList;
+
+import ece641.March11th.IO.EmergencyContactHandler;
 import ece641.March11th.IO.UpdateUserInfoActivity;
 import ece641.March11th.IO.ViewContactActivity;
 import ece641.March11th.IO.ViewLogActivity;
 import ece641.March11th.IO.ViewUserInfoActivity;
+import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.entities.Contact;
 import ece641.March11th.entities.UserInfoConstants;
 import ece641.March11th.graph.GraphDisplayConstants;
 import ece641.March11th.map.ViewOnMapActivity;
@@ -183,7 +188,21 @@ public class NavigationFragment extends Fragment
 		@Override
 		public void onClick(View view) {
 			// TODO Auto-generated method stub
+			ODTDatabaseHelper dbHelper = new ODTDatabaseHelper(view.getContext());
+			ArrayList<Contact> contactSet = dbHelper.getContactList(userID);
+			String [] phone = new String [contactSet.size()];
+			String [] email = new String [contactSet.size()];
+			for(int i = 0; i < contactSet.size(); i++) {
+				Contact c = contactSet.get(i);
+				phone[i] = c.getContactNumber();
+				email[i] = c.getContactEmail();
+			}
 			
+			String text = "Name: " + dbHelper.getUser(userID).getUserName() + "\n" +
+					"Glucose Level: " + dbHelper.getLatestGL(userID) + "\n";
+			String subject = dbHelper.getUser(userID).getUserName() + " in emergency";
+			EmergencyContactHandler handler = new EmergencyContactHandler(getActivity(), phone, email, text, text, subject);
+			handler.sendEmergency();
 		}
 		
 	};
