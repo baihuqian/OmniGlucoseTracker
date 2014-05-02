@@ -225,9 +225,24 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 		else{
 
 			if(password1.equals(password2)&&(password1.length()!=0)){
+				if(username.equals("")){
+					AlertDialog.Builder builder = new AlertDialog.Builder(UserLoginActivity.this);
+					builder.setMessage("Username is Empty!" )
+					.setTitle("Username is Empty!");
+
+					builder.setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {}
+					});
+
+
+					AlertDialog dialog1 = builder.create();
+					dialog1.show();	
+					
+				}
+				else{
 				User usertba=new User(username,age,gender, loginname,password1,height,weight);
 				dbh.addUser(usertba);
-				Toast.makeText(UserLoginActivity.this, "New Account is Created!", Toast.LENGTH_LONG).show();
+				Toast.makeText(UserLoginActivity.this, "New Account is Created!", Toast.LENGTH_LONG).show();}
 			}
 
 

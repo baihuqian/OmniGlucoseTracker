@@ -58,13 +58,4 @@
         android:layout_gravity="center"
         android:text="Create Account" />
 
-    <Button
-        android:id="@+id/databaseTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:onClick="returnTest"
-        android:text="Database Test" />
-
 </LinearLayout>
