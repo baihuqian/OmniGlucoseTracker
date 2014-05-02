@@ -109,6 +109,22 @@
             android:label="@string/title_activity_analysis"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name="ece641.March11th.ui.DataEditorActivity"
+            android:label="@string/title_activity_data_editor" >
+        </activity>
+        <activity
+            android:name="ece641.March11th.IO.EditDataActivity"
+            android:label="@string/title_activity_edit_data" >
+        </activity>
+        <activity
+            android:name="ece641.March11th.IO.EditContactActivity"
+            android:label="@string/title_activity_edit_contact" >
+        </activity>
+        <activity
+            android:name="ece641.March11th.IO.ViewLogActivity"
+            android:label="@string/title_activity_view_log" >
+        </activity>
     </application>
 
     <uses-feature

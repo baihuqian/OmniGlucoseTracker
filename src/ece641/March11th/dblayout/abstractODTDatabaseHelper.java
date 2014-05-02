@@ -62,8 +62,8 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     
     
 	public abstractODTDatabaseHelper(Context context) {
-		// super(context, "/mnt/sdcard/test.db", null, DATABASE_VERSION);
-	super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		super(context, "/mnt/sdcard/test.db", null, DATABASE_VERSION);
+		// super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
 		
 		
@@ -86,7 +86,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 	
 		String CREATE_TABLE_DATA="CREATE TABLE "+TABLE_DATA
 				+" ("
-				+ TABLE_DATA +" INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ TABLE_DATA_COL1 +" INTEGER PRIMARY KEY AUTOINCREMENT,"
 				+ TABLE_DATA_COL2 +" INTEGER,"
 				+ TABLE_DATA_COL3 +" INTEGER,"
 				+ TABLE_DATA_COL4 +" INTEGER,"
@@ -94,11 +94,11 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 				+ TABLE_DATA_COL6 +" INTEGER,"
 				+ TABLE_DATA_COL7 +" INTEGER,"
 				+ TABLE_DATA_COL8 +" INTEGER,"
-				+ TABLE_DATA_COL9 +" REAL,"
-				+ TABLE_DATA_COL10 +" REAL,"
+				+ TABLE_DATA_COL9 +" TEXT,"
+				+ TABLE_DATA_COL10 +" TEXT,"
 				+ TABLE_DATA_COL11 +" TEXT,"
-				+ TABLE_DATA_COL12 +" REAL,"
-				+ TABLE_DATA_COL13 +" INTEGER,"
+				+ TABLE_DATA_COL12 +" TEXT,"
+				+ TABLE_DATA_COL13 +" TEXT,"
 				+ TABLE_DATA_COL14 +" INTEGER,"
 				+TABLE_DATA_COL15 +" INTEGER,"
 				+" FOREIGN KEY ("+TABLE_DATA_COL14+") REFERENCES "+ TABLE_USER+"("+TABLE_USER_COL1+")"
@@ -146,6 +146,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
    	    String where=TABLE_USER_COL5+"='"+loginName+"';";
    	    Cursor cursor=null;
     	cursor = db.query(TABLE_USER, null,where,null, null, null, null);
+    
     	if(cursor.moveToFirst()){return true;}
     	else{return false;}
     	
@@ -161,6 +162,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	
     	cursor.moveToFirst();
     	String passwordindb=cursor.getString(0);
+    	
     	if(passwordindb.equals(passWord)){return true;}
     	else{return false;}
     	
@@ -182,6 +184,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     		cursor.moveToFirst();
     	userID=cursor.getInt(0);}
     	else{userID=0;}
+    	
     	return userID;
     }
    
@@ -203,7 +206,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
    	    		+" AND "+TABLE_DATA_COL3+"="+month
    	    		+" AND "+TABLE_DATA_COL4+"="+day
    	    		+" AND "+TABLE_DATA_COL14+"="+userid
-   	    		+" AND "+TABLE_DATA_COL12 +" IS NOT NULL ;";
+   	    		+" AND "+TABLE_DATA_COL12 +"!='no';";
    	    Cursor cursor=null;
     	cursor = db.query(TABLE_DATA, null,where,null, null, null, null);
     	
@@ -244,6 +247,8 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	
     	dateandgl.setDateList(datelist);
     	dateandgl.setGLList(gllist);
+    	
+    	
     	return dateandgl;
     	
     
@@ -307,6 +312,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	
     	dateandgl.setDateList(datelist);
     	dateandgl.setGLList(gllist);
+    	
     	return dateandgl;
     	
     }
@@ -369,6 +375,7 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
     	
     	dateandgl.setDateList(datelist);
     	dateandgl.setGLList(gllist);
+    	
     	return dateandgl;
     }
     
@@ -391,6 +398,7 @@ public void addUser(User user){
 	insertValues.put(TABLE_USER_COL7, user.getHeight());
 	insertValues.put(TABLE_USER_COL8, user.getWeight());
 	db.insert(TABLE_USER, null, insertValues);
+	
     }
 
 //Add CONTCT
@@ -427,25 +435,12 @@ public void addData(Data data){
 	insertValues.put(TABLE_DATA_COL6, indate.get(Calendar.HOUR_OF_DAY));
 	insertValues.put(TABLE_DATA_COL7, indate.get(Calendar.MINUTE));
 	insertValues.put(TABLE_DATA_COL8, indate.get(Calendar.SECOND));
-	
-	
-	if ((data.getLongtitude()!=1000)&&(data.getLatitude()!=1000)){
-	insertValues.put(TABLE_DATA_COL9,data.getLongtitude());
-	insertValues.put(TABLE_DATA_COL10,data.getLatitude());}
-	else{}
-	
-	if(data.getActivity()==null){}
-	else{
 
-		insertValues.put(TABLE_DATA_COL11, data.getActivity());
-		
-	}
-	
-	if(data.getGL()==-1000){}
-	else{insertValues.put(TABLE_DATA_COL12, data.getGL());
-	insertValues.put(TABLE_DATA_COL13, data.getSampleType());}
-	
-	
+	 insertValues.put(TABLE_DATA_COL9,data.getLongtitude());
+	 insertValues.put(TABLE_DATA_COL10,data.getLatitude());
+	 insertValues.put(TABLE_DATA_COL11, data.getNote());
+	insertValues.put(TABLE_DATA_COL12, data.getGL());
+	insertValues.put(TABLE_DATA_COL13, data.getSampleType());
 	insertValues.put(TABLE_DATA_COL14, data.getUserID());
 	insertValues.put(TABLE_DATA_COL15, indate.get(Calendar.WEEK_OF_YEAR));
 		
@@ -477,6 +472,7 @@ public User getUser(String loginname){
 		
 		
 	}
+	
 	return user;
 	
 }
@@ -499,6 +495,7 @@ User user=new User();
 		user.setHeight(cursor.getDouble(6));	
 		user.setWeight(cursor.getDouble(7));
 	}
+	
 	return user;
 	
 }
@@ -559,6 +556,45 @@ if(cursor.moveToFirst()){
 public Data getData(int dataid){
 	
 	Data data =new Data();
+SQLiteDatabase db = this.getReadableDatabase();
+	
+    String where=TABLE_DATA_COL1+"="+dataid;
+    
+    
+    Cursor cursor=null;
+cursor = db.query(TABLE_DATA,null,where,null, null, null, null);
+if(cursor.moveToFirst()){
+	
+		int tmpyear=cursor.getInt(1);
+		int tmpmonth=cursor.getInt(2);
+		int tmpdayofmonth=cursor.getInt(3);
+		int tmpdayofweek=cursor.getInt(4);
+		int tmphour=cursor.getInt(5);
+		int tmpminute=cursor.getInt(6);
+		int tmpsecond=cursor.getInt(7);
+		int tmpweekofyear=cursor.getInt(14);
+		
+		
+		
+		Calendar tmpdate=Calendar.getInstance();
+		
+	tmpdate.set(Calendar.YEAR, tmpyear);
+	tmpdate.set(Calendar.MONTH, tmpmonth);
+	tmpdate.set(Calendar.DAY_OF_MONTH, tmpdayofmonth);
+	tmpdate.set(Calendar.DAY_OF_WEEK, tmpdayofweek);
+	tmpdate.set(Calendar.HOUR_OF_DAY, tmphour);
+	tmpdate.set(Calendar.MINUTE, tmpminute);
+	tmpdate.set(Calendar.SECOND, tmpsecond);
+	tmpdate.set(Calendar.WEEK_OF_YEAR,tmpweekofyear);
+		
+		 data=new Data(cursor.getInt(0),tmpdate,cursor.getString(8),cursor.getString(9),cursor.getString(11),cursor.getString(10),cursor.getString(12),cursor.getInt(13));
+	
+}
+	
+
+
+
+	
 	
 	
 	return data;
@@ -576,9 +612,9 @@ SQLiteDatabase db = this.getReadableDatabase();
 	    		+" AND "+TABLE_DATA_COL3+"="+month
 	    		+" AND "+TABLE_DATA_COL4+"="+ dayofmonth
 	    		+" AND "+TABLE_DATA_COL14+"="+userid
-	    		+" AND "+TABLE_DATA_COL9 +" IS NOT NULL";
+	    		+" AND "+TABLE_DATA_COL9 +" !='no';";
     
-    String orderby=TABLE_DATA_COL2+","+TABLE_DATA_COL3+","+TABLE_DATA_COL4+","+TABLE_DATA_COL6+","+TABLE_DATA_COL7+" ASC";
+    String orderby=TABLE_DATA_COL2+" DESC ,"+TABLE_DATA_COL3+" DESC ,"+TABLE_DATA_COL4+" DESC ,"+TABLE_DATA_COL6+" DESC ,"+TABLE_DATA_COL7+" DESC ;";
     Cursor cursor=null;
 cursor = db.query(TABLE_DATA,null,where,null, null, null, orderby);
 if(cursor.moveToFirst()){
@@ -605,7 +641,7 @@ if(cursor.moveToFirst()){
 	tmpdate.set(Calendar.SECOND, tmpsecond);
 	tmpdate.set(Calendar.WEEK_OF_YEAR,tmpweekofyear);
 		
-		Data data=new Data(cursor.getInt(0),tmpdate,cursor.getDouble(8),cursor.getDouble(9),cursor.getDouble(11),cursor.getString(10),cursor.getInt(12),cursor.getInt(13));
+		Data data=new Data(cursor.getInt(0),tmpdate,cursor.getString(8),cursor.getString(9),cursor.getString(11),cursor.getString(10),cursor.getString(12),cursor.getInt(13));
 	
 		datalist.add(data);
 	
@@ -613,7 +649,7 @@ if(cursor.moveToFirst()){
 	while (cursor.moveToNext());
 }
 
-	
+
 	
 	return datalist;
 	
@@ -623,6 +659,7 @@ public ArrayList<Data> getDataListSortByTimeForView(Calendar calendar,int userid
 	int year=calendar.get(Calendar.YEAR);
 	int month=calendar.get(Calendar.MONTH);
 	int dayofmonth=calendar.get(Calendar.DAY_OF_MONTH);
+	int weekofyear=calendar.get(Calendar.WEEK_OF_YEAR);
 	ArrayList<Data> datalist=new ArrayList<Data>();
 	
 SQLiteDatabase db = this.getReadableDatabase();
@@ -633,9 +670,10 @@ SQLiteDatabase db = this.getReadableDatabase();
 	    		+" AND "+TABLE_DATA_COL14+"="+userid
 	    		;
     
-    String orderby=TABLE_DATA_COL2+","+TABLE_DATA_COL3+","+TABLE_DATA_COL4+","+TABLE_DATA_COL6+","+TABLE_DATA_COL7+" ASC";
+    String orderby=TABLE_DATA_COL2+" DESC ,"+TABLE_DATA_COL3+" DESC ,"+TABLE_DATA_COL4+" DESC ,"+TABLE_DATA_COL6+" DESC ,"+TABLE_DATA_COL7+" DESC";
     Cursor cursor=null;
 cursor = db.query(TABLE_DATA,null,where,null, null, null, orderby);
+
 if(cursor.moveToFirst()){
 	do{
 		int tmpyear=cursor.getInt(1);
@@ -660,7 +698,7 @@ if(cursor.moveToFirst()){
 	tmpdate.set(Calendar.SECOND, tmpsecond);
 	tmpdate.set(Calendar.WEEK_OF_YEAR,tmpweekofyear);
 		
-		Data data=new Data(cursor.getInt(0),tmpdate,cursor.getDouble(8),cursor.getDouble(9),cursor.getDouble(11),cursor.getString(10),cursor.getInt(12),cursor.getInt(13));
+		Data data=new Data(cursor.getInt(0),tmpdate,cursor.getString(8),cursor.getString(9),cursor.getString(11),cursor.getString(10),cursor.getString(12),cursor.getInt(13));
 	
 		datalist.add(data);
 	
@@ -668,7 +706,7 @@ if(cursor.moveToFirst()){
 	while (cursor.moveToNext());
 }
 
-	
+
 	
 	return datalist;
 	
@@ -723,7 +761,87 @@ public void updateUser(User user) {
 	
 }
 
-public void updateContact(Contact Contact){};
-public void updateData(Data data){};
+public void updateContact(Contact contact){
+	
+	SQLiteDatabase db = this.getWritableDatabase();
+	
+	int contactid=contact.getContactID();
+	ContentValues insertValues = new ContentValues();
+	
+	insertValues.put(TABLE_CONTACT_COL5, contact.getUserID());
+	if(contact.getContactName().length()==0){}
+	else{
+			insertValues.put(TABLE_CONTACT_COL2, contact.getContactName());}
+	
+	if(contact.getContactNumber().length()==0){}
+	else{
+			insertValues.put(TABLE_CONTACT_COL3, contact.getContactNumber());}
+	if(contact.getContactType().length()==0){}
+	else{
+			insertValues.put(TABLE_CONTACT_COL4, contact.getContactType());}
+	
+	if(contact.getContactEmail().length()==0){}
+	else{
+			insertValues.put(TABLE_CONTACT_COL6, contact.getContactEmail());}
+	
+
+	String where=TABLE_CONTACT_COL1+"="+contactid+";";
+	db.update(TABLE_CONTACT, insertValues, where, null);
+	
+	
+	
+};
+public void updateData(Data data){
+Calendar indate=data.getDate();
+	
+int dataid=data.getDataID();
+	SQLiteDatabase db = this.getWritableDatabase();
+	ContentValues insertValues = new ContentValues();
+	insertValues.put(TABLE_DATA_COL2, indate.get(Calendar.YEAR));
+	insertValues.put(TABLE_DATA_COL3, indate.get(Calendar.MONTH));
+	insertValues.put(TABLE_DATA_COL4, indate.get(Calendar.DAY_OF_MONTH));
+	insertValues.put(TABLE_DATA_COL5, indate.get(Calendar.DAY_OF_WEEK));
+	insertValues.put(TABLE_DATA_COL6, indate.get(Calendar.HOUR_OF_DAY));
+	insertValues.put(TABLE_DATA_COL7, indate.get(Calendar.MINUTE));
+	insertValues.put(TABLE_DATA_COL8, indate.get(Calendar.SECOND));
+
+	 insertValues.put(TABLE_DATA_COL9,data.getLongtitude());
+	 insertValues.put(TABLE_DATA_COL10,data.getLatitude());
+	 insertValues.put(TABLE_DATA_COL11, data.getNote());
+	insertValues.put(TABLE_DATA_COL12, data.getGL());
+	insertValues.put(TABLE_DATA_COL13, data.getSampleType());
+	insertValues.put(TABLE_DATA_COL14, data.getUserID());
+	insertValues.put(TABLE_DATA_COL15, indate.get(Calendar.WEEK_OF_YEAR));
+		
+	
+	String where=TABLE_DATA_COL1+"="+dataid+";";
+	
+	db.update(TABLE_DATA, insertValues,where,null);
+
+	
+	
+	
+	
+	
+};
+
+public void deleteContact(int contactid){
+	SQLiteDatabase db = this.getWritableDatabase();
+	String where=TABLE_CONTACT_COL1+"="+contactid;
+	db.delete(TABLE_CONTACT, where, null);
+	db.close();
+};
+public void deleteData(int dataid){
+	SQLiteDatabase db = this.getWritableDatabase();
+	String delete="DELETE FROM "+TABLE_DATA+" WHERE "+TABLE_DATA_COL1+" = "+dataid +";";
+	db.execSQL(delete);
+	db.close();
+	
+}
+public void delteUser(int userid){
+	
+}
+
+
 }  
 

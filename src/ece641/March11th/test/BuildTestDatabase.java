@@ -129,51 +129,51 @@ public class BuildTestDatabase {
 		l18.setLongitude(tlo+0.0004);
 		l18.setLatitude(tla+0.0004);
 		
-		l21.setLongitude(tlo-0.0001);
-		l21.setLatitude(tla-0.0001);
+		l21.setLongitude(tlo-0.0021);
+		l21.setLatitude(tla-0.0011);
 		
-		l22.setLongitude(tlo-0.0002);
-		l22.setLatitude(tla-0.0002);
+		l22.setLongitude(tlo-0.0052);
+		l22.setLatitude(tla-0.0032);
 		
-		l23.setLongitude(tlo+0.0001);
-		l23.setLatitude(tla+0.0001);
+		l23.setLongitude(tlo+0.0031);
+		l23.setLatitude(tla+0.0021);
 		
-		l24.setLongitude(tlo+0.0002);
+		l24.setLongitude(tlo+0.0052);
 		l24.setLatitude(tla+0.0002);
 		
-		l25.setLongitude(tlo-0.0003);
+		l25.setLongitude(tlo-0.0023);
 		l25.setLatitude(tla-0.0003);
 		
-		l26.setLongitude(tlo+0.0003);
+		l26.setLongitude(tlo+0.0033);
 		l26.setLatitude(tla+0.0003);
 		
-		l27.setLongitude(tlo-0.0004);
+		l27.setLongitude(tlo-0.0024);
 		l27.setLatitude(tla-0.0004);
 		
 		l28.setLongitude(tlo+0.0004);
-		l28.setLatitude(tla+0.0004);
+		l28.setLatitude(tla+0.0054);
 		
 		
 
 	
 		
-		Data data11=new Data(date11,l11,130,null,1,adminid);
-		Data data12=new Data(date12,l12,125,null,3,adminid);
-		Data data13=new Data(date13,l13,167,null,5,adminid);
-		Data data14=new Data(date14,l14,98,null,5,adminid);
-		Data data15=new Data(date15,l15,130,null,5,adminid);
-		Data data16=new Data(date16,l16,158,null,5,adminid);
-		Data data17=new Data(date17,l17,88,null,5,adminid);
-		Data data18=new Data(date18,l18,75,null,5,adminid);
+		Data data11=new Data(date11,null,"130","no","Wake Up",adminid);
+		Data data12=new Data(date12,null,"125","no","Wake Up",adminid);
+		Data data13=new Data(date13,l13,"167","no","Wake Up",adminid);
+		Data data14=new Data(date14,l14,"98","no","Wake Up",adminid);
+		Data data15=new Data(date15,l15,"130","no","Wake Up",adminid);
+		Data data16=new Data(date16,l16,"158","no","Wake Up",adminid);
+		Data data17=new Data(date17,l17,"88","no","Wake Up",adminid);
+		Data data18=new Data(date18,l18,"189","no","Wake Up",adminid);
 		
-		Data data21=new Data(date21,l21,110,null,1,adminid);
-		Data data22=new Data(date22,l22,152,null,3,adminid);
-		Data data23=new Data(date23,l23,148,null,5,adminid);
-		Data data24=new Data(date24,l24,122,null,5,adminid);
-		Data data25=new Data(date25,l25,105,null,5,adminid);
-		Data data26=new Data(date26,l26,148,null,5,adminid);
-		Data data27=new Data(date27,l27,112,null,5,adminid);
-		Data data28=new Data(date28,l28,79,null,5,adminid);
+		Data data21=new Data(date21,l21,"110","no","Wake Up",adminid);
+		Data data22=new Data(date22,l22,"152","no","Wake Up",adminid);
+		Data data23=new Data(date23,l23,"148","no","Wake Up",adminid);
+		Data data24=new Data(date24,l24,"122","no","Wake Up",adminid);
+		Data data25=new Data(date25,l25,"105","no","Wake Up",adminid);
+		Data data26=new Data(date26,l26,"148","no","Wake Up",adminid);
+		Data data27=new Data(date27,l27,"112","no","Wake Up",adminid);
+		Data data28=new Data(date28,l28,"79","no","Wake Up",adminid);
 		
 		
 		

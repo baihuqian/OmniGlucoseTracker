@@ -10,8 +10,11 @@ import java.util.Calendar;
 
 
 
+
+
 import ece641.March11th.IO.AddActivity;
 import ece641.March11th.IO.CreateAccountDialog;
+
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.dblayout.abstractODTDatabaseHelper;
 import ece641.March11th.entities.Data;
@@ -20,6 +23,7 @@ import ece641.March11th.entities.UserInfoConstants;
 import ece641.March11th.map.LocationLoggerService;
 import ece641.March11th.test.BuildTestDatabase;
 import ece641.March11th.test.DatabaseTestActivity;
+import ece641.March11th.test.TestActivity;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.ActivityManager;
@@ -73,7 +77,7 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 			if(checkloginnameandpassword){
 				int userid=dbh.getUserID(userloginname);
 				intentToUserInfoActivity.putExtra(USERID, userid);
-
+				intentToUserInfoActivity.putExtra("userid", userid);
 
 				// Find and stop the gps logger service, and start a new service for current user!
 
@@ -249,8 +253,7 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 
 
 	public void returnTest(View view){
-		Intent intentToDatabaseTestActivity=new Intent(this,AddActivity.class);
-		startActivity(intentToDatabaseTestActivity);
+		dbh.deleteData(5);
 
 	}	
 

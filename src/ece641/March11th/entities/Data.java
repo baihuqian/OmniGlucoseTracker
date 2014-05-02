@@ -15,11 +15,11 @@ public class Data {
 	private	int hour;
 	private	int minute;
 	private	int second;
-	private	double longtitude;
-	private	double latitude;
-	private	double GL;
-	private	String activity;
-	private	int sampletype;
+	private	String longtitude;
+	private	String latitude;
+	private	String GL;
+	private String note;
+	private	String sampletype;
 	private	int userid;
 	private	int weekofyear;
 	
@@ -27,7 +27,7 @@ public class Data {
     
     
     //constructor for input data,without eventid,must have the correct userid!!!
-    public Data(Calendar date,Location location,double gl,String activity,int sampletype,int userid){
+    public Data(Calendar date,Location location,String gl,String note,String sampletype,int userid){
     	this.year=date.get(Calendar.YEAR);
     	this.month=date.get(Calendar.MONTH);
     	this.dayofmonth=date.get(Calendar.DAY_OF_MONTH);
@@ -38,14 +38,14 @@ public class Data {
     	this.weekofyear=date.get(Calendar.WEEK_OF_YEAR);
     	
     	if(location!=null){
-    	this.longtitude=location.getLongitude();
-    	this.latitude=location.getLatitude();}
-    	else{this.longtitude=1000;
-    	this.latitude=1000;
+    	this.longtitude=Double.toString(location.getLongitude());
+    	this.latitude=Double.toString(location.getLatitude());}
+    	else{this.longtitude="no";
+    	this.latitude="no";
     	}
-    	
+    	this.note=note;
     	this.GL=gl;
-    	this.activity=activity;
+    	
     	this.sampletype=sampletype;
     	this.userid=userid;   	
     }
@@ -53,7 +53,7 @@ public class Data {
     
   
     //constructor for output data,with eventid
-    public Data(int eventid,Calendar date,double longtitude,double latitude ,double gl,String activity,int sampletype,int userid){
+    public Data(int eventid,Calendar date,String longtitude,String latitude ,String gl,String note,String sampletype,int userid){
     	this.eventid=eventid;
     	this.year=date.get(Calendar.YEAR);
     	this.month=date.get(Calendar.MONTH);
@@ -64,14 +64,42 @@ public class Data {
     	this.second=date.get(Calendar.SECOND);
     	this.longtitude=longtitude;
     	this.latitude=latitude;
+    	this.GL=gl;
     	this.sampletype=sampletype;
     	this.userid=userid; 
+    	this.note=note;
     	this.weekofyear=date.get(Calendar.WEEK_OF_YEAR);
       	
     }
     
     
-    public Calendar getDate(){
+    public Data(int dataid, Calendar date,Location location,String gl,String note,String sampletype,int userid) {
+    	this.eventid=dataid;
+    	this.year=date.get(Calendar.YEAR);
+    	this.month=date.get(Calendar.MONTH);
+    	this.dayofmonth=date.get(Calendar.DAY_OF_MONTH);
+    	this.dayofweek=date.get(Calendar.DAY_OF_WEEK);
+    	this.hour=date.get(Calendar.HOUR_OF_DAY);
+    	this.minute=date.get(Calendar.MINUTE);
+    	this.second=date.get(Calendar.SECOND);
+    	this.weekofyear=date.get(Calendar.WEEK_OF_YEAR);
+    	
+    	if(location!=null){
+    	this.longtitude=Double.toString(location.getLongitude());
+    	this.latitude=Double.toString(location.getLatitude());}
+    	else{this.longtitude="no";
+    	this.latitude="no";
+    	}
+    	this.note=note;
+    	this.GL=gl;
+    	
+    	this.sampletype=sampletype;
+    	this.userid=userid;  
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Calendar getDate(){
     	Calendar date=Calendar.getInstance();
     	
     	date.set(Calendar.YEAR, this.year);
@@ -87,7 +115,7 @@ public class Data {
    
     }
     
-    public Double getGL(){
+    public String getGL(){
     		
    return this.GL;	
     }
@@ -104,26 +132,27 @@ public class Data {
 		
 		return this.eventid;
 	}
+	public String getSampleType() {
+		// TODO Auto-generated method stub
+		
+		return this.sampletype;
+	}
 
-
-	public double getLongtitude() {
+public String getLongtitude() {
 		// TODO Auto-generated method stub
 		return this.longtitude;
 	}
-	public double getLatitude() {
+	public String getLatitude() {
 		// TODO Auto-generated method stub
 		return this.latitude;
 	}
 
 
-	public String getActivity() {
+	public String getNote() {
 		// TODO Auto-generated method stub
-		return this.activity;
+		return this.note;
 	}
-	public int getSampleType() {
-		// TODO Auto-generated method stub
-		return this.sampletype;
-	}
+	
 
 	
     

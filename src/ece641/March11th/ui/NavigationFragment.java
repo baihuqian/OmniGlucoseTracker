@@ -1,7 +1,7 @@
 package ece641.March11th.ui;
 
 
-import ece641.March11th.IO.AddContactActivity;
+
 import ece641.March11th.IO.UpdateUserInfoActivity;
 import ece641.March11th.IO.ViewContactActivity;
 import ece641.March11th.IO.ViewLogActivity;
@@ -75,6 +75,7 @@ public class NavigationFragment extends Fragment
 			// TODO Auto-generated method stub
 			Intent intent=new Intent(context,ViewUserInfoActivity.class);
 			intent.putExtra(USERID, userID);
+			intent.putExtra("userid", userID);
 			startActivity(intent);
 			
 		}
@@ -88,6 +89,7 @@ public class NavigationFragment extends Fragment
 			Context context=getActivity().getApplicationContext();
 			// TODO Auto-generated method stub
 			Intent intent=new Intent(context,ViewContactActivity.class);
+			intent.putExtra("userid", userID);
 			startActivity(intent);
 		}
 		
@@ -101,7 +103,8 @@ public class NavigationFragment extends Fragment
 			Context context=getActivity().getApplicationContext();
 			// TODO Auto-generated method stub
 		Intent intent=new Intent(context,ViewOnMapActivity.class);
-			intent.putExtra("userid", 1);
+		intent.putExtra("userid", userID);
+			
 			startActivity(intent);
 		}
 		
@@ -115,6 +118,7 @@ public class NavigationFragment extends Fragment
 			Intent intent = new Intent(getActivity(), DisplayActivity.class);
 			intent.putExtra(LAUNCH_TYPE, DISPLAY_DAILY);
 			intent.putExtra(USERID, userID);
+			
 			startActivity(intent);
 		}
 		
@@ -167,6 +171,7 @@ public class NavigationFragment extends Fragment
 			// TODO Auto-generated method stub
 			
 			Intent intent=new Intent(context,ViewLogActivity.class);
+			intent.putExtra("userid", userID);
 			startActivity(intent);
 			
 		}

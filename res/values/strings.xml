@@ -48,5 +48,8 @@
     <string name="title_activity_view_user_info">ViewUserInfoActivity</string>
     <string name="title_activity_view_on_map">ViewOnMapActivity</string>
     <string name="title_activity_analysis">Analysis</string>
+    <string name="title_activity_data_editor">DataEditorActivity</string>
+    <string name="title_activity_edit_data">EditDataActivity</string>
+    <string name="title_activity_edit_contact">EditContactActivity</string>
 
 </resources>

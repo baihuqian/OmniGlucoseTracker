@@ -8,6 +8,7 @@ import ece641.March11th.ui.R.layout;
 import ece641.March11th.ui.R.menu;
 import android.app.Activity;
 import android.app.ActionBar;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +19,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.os.Build;
 
-public class ViewUserInfoActivity extends Activity {
+public class ViewUserInfoActivity extends Activity
+implements EditUserDialog.EditUserDialogListener{
 private int userid;
 private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
 	@Override
@@ -54,10 +57,11 @@ private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
 
 	public void updateUserInfo(View view){
 		
-		Intent intent=new Intent(this,UpdateUserInfoActivity.class);
-		intent.putExtra("userid",userid);
-		startActivity(intent);
-		
+		Bundle args = new Bundle();
+		args.putInt("userid", userid);
+		EditUserDialog dialog2 = new EditUserDialog  ();
+		dialog2 .setArguments(args);
+		dialog2.show(getFragmentManager(), null);
 		
 	}
 	
@@ -76,6 +80,25 @@ User user=db.getUser(userid);
 		gender.setText(user.getGender());
 		height.setText(Double.toString(user.getHeight()));
 		weight.setText(Double.toString(user.getWeight()));
+		
+	}
+
+	@Override
+	public void onEditUserDialogPositiveClick(DialogFragment dialog,
+			User user) {
+		db.updateUser(user);
+		// TODO Auto-generated method stub
+
+		
+		 Toast.makeText(this, "User Information is Updated!", Toast.LENGTH_LONG).show();
+		View v=getWindow().getDecorView().findViewById(android.R.id.content);
+		refreshUserInfo(v);
+		
+	}
+
+	@Override
+	public void onEditUserDialogNegativeClick(DialogFragment dialog) {
+		// TODO Auto-generated method stub
 		
 	}
 }
