@@ -843,8 +843,73 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	public double getLatestGL(int userid) {
-		return 0;
+		
+Calendar date=Calendar.getInstance();
+int year=date.get(Calendar.YEAR);
+int month=date.get(Calendar.MONTH);
+int dayofmonth=date.get(Calendar.DAY_OF_MONTH);
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		String where=TABLE_DATA_COL2+"="+year
+				+" AND "+TABLE_DATA_COL3+"="+month
+				+" AND "+TABLE_DATA_COL4+"="+ dayofmonth
+				+" AND "+TABLE_DATA_COL14+"="+userid
+				+" AND "+TABLE_DATA_COL12 +" !='no';";
+
+		String orderby=TABLE_DATA_COL2+" DESC ,"+TABLE_DATA_COL3+" DESC ,"+TABLE_DATA_COL4+" DESC ,"+TABLE_DATA_COL6+" DESC ,"+TABLE_DATA_COL7+" DESC ;";
+		Cursor cursor=null;
+		cursor = db.query(TABLE_DATA,null,where,null, null, null, orderby);
+		
+		if(cursor.moveToFirst()){
+			
+			return cursor.getDouble(11);
+			
+		}
+		else{
+		return 0;}
 	}
 
+	public ArrayList<String> getNumberListofEmergencyContact(int userid){
+		ArrayList<String> numberlist=new ArrayList<String>();
+		
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		String where=TABLE_CONTACT_COL5+"="+userid
+				+" AND "+TABLE_CONTACT_COL3+"IS NOT NULL"
+				+" AND "+TABLE_CONTACT_COL4+"='Emergency'";
+		Cursor cursor=null;
+		cursor = db.query(TABLE_CONTACT, null,where,null, null, null, null);
+		if(cursor.moveToFirst()){
+			do{
+		numberlist.add(cursor.getString(2));}
+			while(cursor.moveToNext());
+
+		}
+		return numberlist;
+		
+	}
+	
+public ArrayList<String> getEmailListofEmergencyContact(int userid){
+	
+	ArrayList<String> emaillist=new ArrayList<String>();
+	
+	SQLiteDatabase db = this.getReadableDatabase();
+	String where=TABLE_CONTACT_COL5+"="+userid
+			+" AND "+TABLE_CONTACT_COL6+"IS NOT NULL"
+			+" AND "+TABLE_CONTACT_COL4+"='Emergency'";
+	Cursor cursor=null;
+	cursor = db.query(TABLE_CONTACT, null,where,null, null, null, null);
+	if(cursor.moveToFirst()){
+		do{
+	emaillist.add(cursor.getString(5));}
+		while(cursor.moveToNext());
+
+	}
+	
+	return emaillist;
+	
+		
+	}
+	
 }  
 

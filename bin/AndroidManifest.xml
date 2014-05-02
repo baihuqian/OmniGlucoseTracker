@@ -121,10 +121,7 @@
             android:name="ece641.March11th.IO.EditContactActivity"
             android:label="@string/title_activity_edit_contact" >
         </activity>
-        <activity
-            android:name="ece641.March11th.IO.ViewLogActivity"
-            android:label="@string/title_activity_view_log" >
-        </activity>
+        
     </application>
 
     <uses-feature

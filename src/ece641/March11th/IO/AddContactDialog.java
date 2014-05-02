@@ -108,11 +108,14 @@ public class AddContactDialog extends DialogFragment {
             	EditText contactnumberText=(EditText) layout.findViewById(R.id.editTextEditContactNumber); 
             	EditText contactemailText=(EditText) layout.findViewById(R.id.editTextEditContactEmail); 
             	
-            	if(contactnameText.getText().toString().trim().length()==0){
+            	if((contactnameText.getText().toString().trim().length()==0)
+            			|(contactnumberText.getText().toString().trim().length()==0)
+            			|(contactemailText.getText().toString().trim().length()==0)
+            			){
             		
             		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            		builder.setMessage("NO Contact Name!")
-            		.setTitle("NO Contact Name!");
+            		builder.setMessage("Not Valid Contact!")
+            		.setTitle("Not Valid Contact!");
 
             		builder.setPositiveButton("Return", new DialogInterface.OnClickListener() {
             			public void onClick(DialogInterface dialog, int id) {}
