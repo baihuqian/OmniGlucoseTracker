@@ -62,8 +62,8 @@ public abstract class abstractODTDatabaseHelper extends SQLiteOpenHelper {
 
 
 	public abstractODTDatabaseHelper(Context context) {
-		super(context, "/mnt/sdcard/test.db", null, DATABASE_VERSION);
-		// super(context, DATABASE_NAME, null, DATABASE_VERSION);
+	//	super(context, "/mnt/sdcard/test.db", null, DATABASE_VERSION);
+	 super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		// TODO Auto-generated constructor stub
 
 
