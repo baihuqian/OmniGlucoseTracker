@@ -77,7 +77,7 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 			if(checkloginnameandpassword){
 				int userid=dbh.getUserID(userloginname);
 				intentToUserInfoActivity.putExtra(USERID, userid);
-				intentToUserInfoActivity.putExtra("userid", userid);
+				//intentToUserInfoActivity.putExtra("userid", userid);
 
 				// Find and stop the gps logger service, and start a new service for current user!
 

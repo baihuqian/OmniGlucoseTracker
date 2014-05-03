@@ -3,39 +3,29 @@ package ece641.March11th.IO;
 import java.util.ArrayList;
 import java.util.List;
 
-import ece641.March11th.dblayout.ODTDatabaseHelper;
-import ece641.March11th.entities.Contact;
-import ece641.March11th.ui.UIHelper;
-import ece641.March11th.ui.R;
-import ece641.March11th.ui.R.id;
-import ece641.March11th.ui.R.layout;
-import ece641.March11th.ui.R.menu;
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
-import android.os.Build;
+import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.entities.Contact;
+import ece641.March11th.entities.UserInfoConstants;
+import ece641.March11th.ui.R;
+import ece641.March11th.ui.UIHelper;
 
 public class ViewContactActivity extends Activity implements 
 ShowContactDialog.ShowContactDialogListener,
 EditContactDialog.EditContactDialogListener,
-AddContactDialog.AddContactDialogListener{
+AddContactDialog.AddContactDialogListener,
+UserInfoConstants {
 	int contactid;
 	String contactname;
 	String contactnumber;
@@ -53,7 +43,7 @@ AddContactDialog.AddContactDialogListener{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_contact);
 		Intent intent=getIntent();
-		userid=intent.getIntExtra("userid", 1);
+		userid=intent.getIntExtra(USERID, 1);
 		UIHelper.setOrientation(this);
 		//UIHelper.hideActionBar(this);
 		
@@ -94,7 +84,7 @@ AddContactDialog.AddContactDialogListener{
 					
 					Bundle args = new Bundle();
 					args.putInt("contactid", contactid);
-					args.putInt("userid", userid);
+					args.putInt(USERID, userid);
 					ShowContactDialog dialog = new ShowContactDialog ();
 					dialog .setArguments(args);
 					dialog.show(getFragmentManager(), null);
@@ -117,7 +107,7 @@ AddContactDialog.AddContactDialogListener{
 		
 		Bundle args = new Bundle();
 		
-		args.putInt("userid", userid);
+		args.putInt(USERID, userid);
 		
 		AddContactDialog dialog = new AddContactDialog();
 		dialog .setArguments(args);
@@ -166,7 +156,7 @@ AddContactDialog.AddContactDialogListener{
 		
 		Bundle args = new Bundle();
 		args.putInt("contactid", contactid);
-		args.putInt("userid", userid);
+		args.putInt(USERID, userid);
 		EditContactDialog dialog1 = new EditContactDialog ();
 		dialog1 .setArguments(args);
 		dialog1.show(getFragmentManager(), null);

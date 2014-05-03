@@ -7,6 +7,7 @@ import java.util.List;
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.Contact;
 import ece641.March11th.entities.Data;
+import ece641.March11th.entities.UserInfoConstants;
 import ece641.March11th.test.TestActivity;
 import ece641.March11th.ui.UIHelper;
 import ece641.March11th.ui.NewDatePickerFragment;
@@ -40,7 +41,8 @@ public class ViewLogActivity extends Activity implements
 ShowDataDialog.ShowDataDialogListener,
 EditDataDialog.EditDataDialogListener,
 AddDataDialog.AddDataDialogListener,
-NewDatePickerFragment.OnDateSelectedListener {
+NewDatePickerFragment.OnDateSelectedListener,
+UserInfoConstants {
 	int userid;
 	int dataid;
 	Context context;
@@ -62,7 +64,7 @@ List<String>	 showlist=new ArrayList<String>();
 		UIHelper.setOrientation(this);
 		//UIHelper.hideActionBar(this);
 		Intent intent=getIntent();
-		userid=intent.getIntExtra("userid", 1);
+		userid=intent.getIntExtra(USERID, 1);
 		Calendar calendar=Calendar.getInstance();
 		datalist=dbh.getDataListSortByTimeForView(calendar,userid);
 		context=getApplicationContext();
@@ -107,7 +109,7 @@ List<String>	 showlist=new ArrayList<String>();
 			
 			Bundle args = new Bundle();
 			args.putInt("dataid", dataid);
-			args.putInt("userid", userid);
+			args.putInt(USERID, userid);
 			args.putString("date", showlist.get(position));
 			ShowDataDialog dialog = new ShowDataDialog ();
 			dialog .setArguments(args);
@@ -127,7 +129,7 @@ List<String>	 showlist=new ArrayList<String>();
 	
 Bundle args = new Bundle();
 		
-		args.putInt("userid", userid);
+		args.putInt(USERID, userid);
 		
 		AddDataDialog dialog = new AddDataDialog();
 		dialog .setArguments(args);
@@ -198,7 +200,7 @@ Bundle args = new Bundle();
 		
 		Bundle args = new Bundle();
 		args.putInt("dataid", dataid);
-		args.putInt("userid", userid);
+		args.putInt(USERID, userid);
 		EditDataDialog dialog2 = new EditDataDialog ();
 		dialog2 .setArguments(args);
 		dialog2.show(getFragmentManager(), null);

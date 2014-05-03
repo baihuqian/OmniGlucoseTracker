@@ -1,30 +1,20 @@
 package ece641.March11th.IO;
 
-import ece641.March11th.dblayout.ODTDatabaseHelper;
-import ece641.March11th.entities.User;
-import ece641.March11th.ui.UIHelper;
-import ece641.March11th.ui.R;
-import ece641.March11th.ui.R.id;
-import ece641.March11th.ui.R.layout;
-import ece641.March11th.ui.R.menu;
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.DialogFragment;
-import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
+import ece641.March11th.dblayout.ODTDatabaseHelper;
+import ece641.March11th.entities.User;
+import ece641.March11th.entities.UserInfoConstants;
+import ece641.March11th.ui.R;
+import ece641.March11th.ui.UIHelper;
 
 public class ViewUserInfoActivity extends Activity
-implements EditUserDialog.EditUserDialogListener{
+implements EditUserDialog.EditUserDialogListener, UserInfoConstants{
 private int userid;
 private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
 	@Override
@@ -35,7 +25,7 @@ private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
 		UIHelper.setOrientation(this);
 		//UIHelper.hideActionBar(this);
 		Intent intent=getIntent();
-		userid=intent.getIntExtra("userid", 1);
+		userid=intent.getIntExtra(USERID, 1);
 	
 		User user=db.getUser(userid);
 		
@@ -60,7 +50,7 @@ private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
 	public void updateUserInfo(View view){
 		
 		Bundle args = new Bundle();
-		args.putInt("userid", userid);
+		args.putInt(USERID, userid);
 		EditUserDialog dialog2 = new EditUserDialog  ();
 		dialog2 .setArguments(args);
 		dialog2.show(getFragmentManager(), null);

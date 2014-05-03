@@ -16,7 +16,7 @@ import ece641.March11th.entities.UserInfoConstants;
 public class WelcomeActivity extends Activity implements UserInfoConstants, UserIDInterface{
 	private boolean isTablet;
 	private int userID;
-	private int userid;
+	//private int userid;
 	
 	public int getUserID() {
 		return userID;
@@ -29,7 +29,7 @@ public class WelcomeActivity extends Activity implements UserInfoConstants, User
 		// retrieve payloads in intent
 		Intent intent = getIntent();
 		userID = intent.getIntExtra(USERID, 1);
-		userid=intent.getIntExtra("userid", 1);
+		
 		
 		UIHelper.hideActionBar(this);
 
