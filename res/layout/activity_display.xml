@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="#000016"
     tools:context="ece641.March11th.ui.DisplayActivity" >
 
     

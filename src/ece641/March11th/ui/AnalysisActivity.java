@@ -5,6 +5,7 @@ import java.util.Calendar;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +32,8 @@ public class AnalysisActivity extends Activity implements UserInfoConstants, Gra
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_analysis);
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+		UIHelper.hideActionBar(this);
 		
 		Intent intent = getIntent();
 		userID = intent.getIntExtra(USERID, -1);

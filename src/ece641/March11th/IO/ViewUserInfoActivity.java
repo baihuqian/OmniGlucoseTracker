@@ -2,6 +2,7 @@ package ece641.March11th.IO;
 
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.User;
+import ece641.March11th.ui.UIHelper;
 import ece641.March11th.ui.R;
 import ece641.March11th.ui.R.id;
 import ece641.March11th.ui.R.layout;
@@ -31,7 +32,8 @@ private ODTDatabaseHelper db=new ODTDatabaseHelper(this);
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_view_user_info);
-		
+		UIHelper.setOrientation(this);
+		//UIHelper.hideActionBar(this);
 		Intent intent=getIntent();
 		userid=intent.getIntExtra("userid", 1);
 	

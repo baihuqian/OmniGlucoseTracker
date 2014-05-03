@@ -11,13 +11,13 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="mapkey" />
-    <string name="title_activity_show_all_users">ShowAllUsersActivity</string>
-    <string name="title_activity_database_test">DatabaseTestActivity</string>
-    <string name="title_activity_gpslogger">GPSLoggerActivity</string>
+    <string name="title_activity_show_all_users">Show All Users</string>
+    <string name="title_activity_database_test">Database Test </string>
+    <string name="title_activity_gpslogger">GPS Logger</string>
     <string name="title_activity_add">AddActivity</string>
-    <string name="title_activity_add_contact">AddContactActivity</string>
-    <string name="title_activity_view_contact">ViewContactActivity</string>
-    <string name="title_activity_view_log">ViewLogActivity</string>
+    <string name="title_activity_add_contact">Add Contact</string>
+    <string name="title_activity_view_contact">View Contact</string>
+    <string name="title_activity_view_log">View Log</string>
     <string name="title_activity_welcome">Welcome</string>
 
     <string-array name="gender_array">
@@ -43,13 +43,13 @@
         <item>Doctor</item>
     </string-array>
 
-    <string name="title_activity_add_data">AddDataActivity</string>
-    <string name="title_activity_update_user_info">UpdateUserInfoActivity</string>
-    <string name="title_activity_view_user_info">ViewUserInfoActivity</string>
-    <string name="title_activity_view_on_map">ViewOnMapActivity</string>
+    <string name="title_activity_add_data">Add Data</string>
+    <string name="title_activity_update_user_info">Update User Info</string>
+    <string name="title_activity_view_user_info">View User Info</string>
+    <string name="title_activity_view_on_map">View Map</string>
     <string name="title_activity_analysis">Analysis</string>
-    <string name="title_activity_data_editor">DataEditorActivity</string>
-    <string name="title_activity_edit_data">EditDataActivity</string>
-    <string name="title_activity_edit_contact">EditContactActivity</string>
+    <string name="title_activity_data_editor">Data Editor</string>
+    <string name="title_activity_edit_data">Edit Data</string>
+    <string name="title_activity_edit_contact">Edit Contact </string>
 
 </resources>

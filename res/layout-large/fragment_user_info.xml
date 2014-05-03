@@ -1,119 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="220dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ImageView
-        android:id="@+id/userImageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="fitXY"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_action_user" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <TableLayout
-        android:id="@+id/userInfoTable"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="30dp" >
+        android:gravity="center_horizontal"
+        android:text="User Info"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TableRow
-            android:id="@+id/tableRowName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView 
-                
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Name"/>
-            <TextView 
-                android:id="@+id/userName"
-                android:layout_width="100dp"
-                android:gravity="right"
-                android:layout_height="wrap_content"
-                android:text="John Doe"/>
-        </TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal" >
 
-        <TableRow
-            android:id="@+id/tableRowAge"
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <TableLayout
+            android:id="@+id/userInfoTable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             >
-            <TextView 
-                
-                android:layout_width="60dp"
+            android:layout_gravity="center_horizontal" >
+
+            <TableRow
+                android:id="@+id/tableRowName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Age"/>
-            <TextView 
-                android:id="@+id/userAge"
-                android:layout_width="100dp"
-                android:gravity="right"
+                android:layout_gravity="center_horizontal" >
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:text="Name"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:gravity="right"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowAge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:text="Age"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/userAge"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:gravity="right"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowGender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:text="Gender"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/userGender"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:gravity="right"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowHeight"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                
-                android:text="10"/>
-        </TableRow>
+               >
 
-        <TableRow
-            android:id="@+id/tableRowGender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-            <TextView 
-                
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Gender"/>
-            <TextView 
-                android:id="@+id/userGender"
-                android:layout_width="100dp"
-                android:gravity="right"
-                android:layout_height="wrap_content"
-                android:text="100"
-                />
-        </TableRow>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:text="Height"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <TableRow
-            android:id="@+id/tableRowHeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/textViewHeight"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:gravity="right"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
 
-            <TextView
-                
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Height" />
+            <TableRow
+                android:id="@+id/tableRowWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textViewHeight"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="" />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:text="Weight"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        </TableRow>
+                <TextView
+                    android:id="@+id/textViewWeight"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/cell_shape_user_info"
+                    android:gravity="right"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </TableRow>
+        </TableLayout>
 
-        <TableRow
-            android:id="@+id/tableRowWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
 
-            <TextView
-                
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Weight" />
-
-            <TextView
-                android:id="@+id/textViewWeight"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:gravity="right"
-                android:text="" />
-
-        </TableRow>
-
-    </TableLayout>
-
-    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>

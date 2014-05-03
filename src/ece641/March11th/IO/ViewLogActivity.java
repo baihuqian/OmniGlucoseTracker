@@ -8,6 +8,7 @@ import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.Contact;
 import ece641.March11th.entities.Data;
 import ece641.March11th.test.TestActivity;
+import ece641.March11th.ui.UIHelper;
 import ece641.March11th.ui.NewDatePickerFragment;
 import ece641.March11th.ui.R;
 import ece641.March11th.ui.UserLoginActivity;
@@ -58,7 +59,8 @@ List<String>	 showlist=new ArrayList<String>();
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_log);
-		
+		UIHelper.setOrientation(this);
+		//UIHelper.hideActionBar(this);
 		Intent intent=getIntent();
 		userid=intent.getIntExtra("userid", 1);
 		Calendar calendar=Calendar.getInstance();

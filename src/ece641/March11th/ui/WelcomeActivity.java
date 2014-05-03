@@ -31,23 +31,10 @@ public class WelcomeActivity extends Activity implements UserInfoConstants, User
 		userID = intent.getIntExtra(USERID, 1);
 		userid=intent.getIntExtra("userid", 1);
 		
-		View decorView = getWindow().getDecorView();
-		// Hide the status bar.
-		int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-		decorView.setSystemUiVisibility(uiOptions);
-		// Remember that you should never show the action bar if the
-		// status bar is hidden, so hide that too if necessary.
-		ActionBar actionBar = getActionBar();
-		actionBar.hide();
+		UIHelper.hideActionBar(this);
 
-		View userInfoContainer = findViewById(R.id.userinfoContainer);
-		isTablet = userInfoContainer != null && userInfoContainer.getVisibility() == View.VISIBLE;
-		if(isTablet) {
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-		}
-		else {
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		}
+		UIHelper.setOrientation(this);
+		
 		FragmentManager fragmentManager = getFragmentManager();
 		FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 		

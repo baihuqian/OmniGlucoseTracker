@@ -71,7 +71,7 @@
             <LinearLayout
                 android:id="@+id/dailyGraphViewHolder"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="220dp"
                 android:orientation="vertical" >
             </LinearLayout>
         </TableRow>
@@ -82,7 +82,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp" >
 
                 <TextView
                     android:id="@+id/textViewSayNumDataPoints"
@@ -90,7 +91,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="# data" />
+                    android:text="# data"
+                     />
 
                 <TextView
                     android:id="@+id/textViewNumDataPoints"
@@ -98,7 +100,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="" />
+                    android:gravity="center"
+                     />
 
                 <TextView
                     android:id="@+id/textViewSayMax"
@@ -106,7 +109,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="Max Value" />
+                    android:text="Max Value"
+                     />
 
                 <TextView
                     android:id="@+id/textViewMax"
@@ -114,7 +118,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="" />
+                    android:gravity="center"
+                     />
 
                 <TextView
                     android:id="@+id/textViewSayMin"
@@ -122,7 +127,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="Min value" />
+                    android:text="Min value"
+                     />
 
                 <TextView
                     android:id="@+id/textViewMin"
@@ -130,7 +136,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="" />
+                    android:gravity="center"
+                     />
 
                 <TextView
                     android:id="@+id/textViewSayAvg"
@@ -138,7 +145,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="Average" />
+                    android:text="Average"
+                     />
 
                 <TextView
                     android:id="@+id/textViewAvg"
@@ -146,7 +154,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/cell_shape"
-                    android:text="" />
+                    android:gravity="center"
+                     />
             </LinearLayout>
         </TableRow>
     </TableLayout>

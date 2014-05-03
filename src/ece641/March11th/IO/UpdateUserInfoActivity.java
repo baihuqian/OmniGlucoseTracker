@@ -2,6 +2,7 @@ package ece641.March11th.IO;
 
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.User;
+import ece641.March11th.ui.UIHelper;
 import ece641.March11th.ui.R;
 import ece641.March11th.ui.R.array;
 import ece641.March11th.ui.R.id;
@@ -43,6 +44,9 @@ public class UpdateUserInfoActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_update_user_info);
+		
+		UIHelper.setOrientation(this);
+		//UIHelper.hideActionBar(this);
 		Intent intent = getIntent();
 		userid=intent.getIntExtra("userid", 1);
 		

@@ -5,6 +5,7 @@ import java.util.List;
 
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.entities.Contact;
+import ece641.March11th.ui.UIHelper;
 import ece641.March11th.ui.R;
 import ece641.March11th.ui.R.id;
 import ece641.March11th.ui.R.layout;
@@ -53,7 +54,8 @@ AddContactDialog.AddContactDialogListener{
 		setContentView(R.layout.activity_view_contact);
 		Intent intent=getIntent();
 		userid=intent.getIntExtra("userid", 1);
-		
+		UIHelper.setOrientation(this);
+		//UIHelper.hideActionBar(this);
 		
 		
 

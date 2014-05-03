@@ -39,42 +39,42 @@
         <activity
             android:name="ece641.March11th.test.TestActivity"
             android:label="@string/title_activity_test"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <activity
             android:name="ece641.March11th.ui.ShowAllUsersActivity"
             android:label="@string/title_activity_show_all_users"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <activity
             android:name="ece641.March11th.test.DatabaseTestActivity"
             android:label="@string/title_activity_database_test"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <activity
             android:name="ece641.March11th.map.GPSLoggerActivity"
             android:label="@string/title_activity_gpslogger"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <activity
             android:name="ece641.March11th.IO.AddActivity"
             android:label="@string/title_activity_add"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <activity
             android:name="ece641.March11th.IO.AddContactActivity"
             android:label="@string/title_activity_add_contact"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <activity
             android:name="ece641.March11th.IO.ViewContactActivity"
             android:label="@string/title_activity_view_contact"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <activity
             android:name="ece641.March11th.IO.ViewLogActivity"
             android:label="@string/title_activity_view_log"
-            android:screenOrientation="portrait" >
+             >
         </activity>
         <!-- for map application -->
         <meta-data

@@ -3,7 +3,7 @@
     android:id="@+id/LinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="#000016"
     tools:context="ece641.March11th.ui.DisplayActivity" >
 
    
@@ -11,13 +11,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:id="@+id/userinfoContainer"
-        android:layout_weight="0.22" >
+        android:layout_weight="0" >
     </FrameLayout>
     
     <FrameLayout
         android:layout_width="0dp"
         android:id="@+id/maininfoContainer"
-        android:layout_height="match_parent" android:layout_weight="0.78">
+        android:layout_height="match_parent" android:layout_weight="1">
     </FrameLayout>
     
     <FrameLayout

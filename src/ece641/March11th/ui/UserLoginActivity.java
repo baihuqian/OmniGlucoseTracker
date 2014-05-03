@@ -12,9 +12,9 @@ import java.util.Calendar;
 
 
 
+
 import ece641.March11th.IO.AddActivity;
 import ece641.March11th.IO.CreateAccountDialog;
-
 import ece641.March11th.dblayout.ODTDatabaseHelper;
 import ece641.March11th.dblayout.abstractODTDatabaseHelper;
 import ece641.March11th.entities.Data;
@@ -157,6 +157,8 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_user_log_in);
 		// the following is hard code for database checking	
+		UIHelper.setOrientation(this);
+		UIHelper.hideActionBar(this);
 		context=getApplicationContext();
 		if(	dbh.checkIfLoginNameExist("admin")){}
 		else{
@@ -169,18 +171,6 @@ implements UserInfoConstants, CreateAccountDialog.NoticeDialogListener {
 
 		((EditText) findViewById(R.id.inputUsername)).setText("admin");
 		((EditText) findViewById(R.id.inputPassword)).setText("admin");
-
-
-
-		//Hide the status bar.
-
-		View decorView = getWindow().getDecorView();	
-		int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-		decorView.setSystemUiVisibility(uiOptions);
-		// Remember that you should never show the action bar if the
-		// status bar is hidden, so hide that too if necessary.
-		ActionBar actionBar = getActionBar();
-		actionBar.hide();
 
 	}
 
