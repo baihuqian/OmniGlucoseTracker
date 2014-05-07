@@ -29,7 +29,7 @@ public class WelcomeActivity extends Activity implements UserInfoConstants, User
 		// retrieve payloads in intent
 		Intent intent = getIntent();
 		userID = intent.getIntExtra(USERID, 1);
-		
+		isTablet = UIHelper.isTablet(this);
 		
 		UIHelper.hideActionBar(this);
 

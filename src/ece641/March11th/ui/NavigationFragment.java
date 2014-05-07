@@ -190,18 +190,20 @@ public class NavigationFragment extends Fragment
 			// TODO Auto-generated method stub
 			ODTDatabaseHelper dbHelper = new ODTDatabaseHelper(view.getContext());
 			ArrayList<Contact> contactSet = dbHelper.getContactList(userID);
-			String [] phone = new String [contactSet.size()];
-			String [] email = new String [contactSet.size()];
-			for(int i = 0; i < contactSet.size(); i++) {
-				Contact c = contactSet.get(i);
-				phone[i] = c.getContactNumber();
-				email[i] = c.getContactEmail();
+			ArrayList<String> phone = dbHelper.getNumberListofEmergencyContact(userID);
+			ArrayList<String> email = dbHelper.getEmailListofEmergencyContact(userID);
+			String [] phoneList = new String[phone.size()];
+			String [] emailList = new String[email.size()];
+			
+			for(int i = 0; i < phone.size(); i++) {
+				phoneList[i] = phone.get(i);
+				emailList[i] = email.get(i);
 			}
 			
 			String text = "Name: " + dbHelper.getUser(userID).getUserName() + "\n" +
 					"Glucose Level: " + dbHelper.getLatestGL(userID) + "\n";
 			String subject = dbHelper.getUser(userID).getUserName() + " in emergency";
-			EmergencyContactHandler handler = new EmergencyContactHandler(getActivity(), phone, email, text, text, subject);
+			EmergencyContactHandler handler = new EmergencyContactHandler(getActivity(), phoneList, emailList, text, text, subject);
 			handler.sendEmergency();
 		}
 		

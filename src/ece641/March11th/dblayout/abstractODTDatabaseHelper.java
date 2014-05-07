@@ -875,7 +875,6 @@ int dayofmonth=date.get(Calendar.DAY_OF_MONTH);
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		String where=TABLE_CONTACT_COL5+"="+userid
-				+" AND "+TABLE_CONTACT_COL3+"IS NOT NULL"
 				+" AND "+TABLE_CONTACT_COL4+"='Emergency'";
 		Cursor cursor=null;
 		cursor = db.query(TABLE_CONTACT, null,where,null, null, null, null);
@@ -895,7 +894,6 @@ public ArrayList<String> getEmailListofEmergencyContact(int userid){
 	
 	SQLiteDatabase db = this.getReadableDatabase();
 	String where=TABLE_CONTACT_COL5+"="+userid
-			+" AND "+TABLE_CONTACT_COL6+"IS NOT NULL"
 			+" AND "+TABLE_CONTACT_COL4+"='Emergency'";
 	Cursor cursor=null;
 	cursor = db.query(TABLE_CONTACT, null,where,null, null, null, null);
